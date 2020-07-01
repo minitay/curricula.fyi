@@ -615,4 +615,56 @@ export const cmu: Array<Requirement> = [
       },
     ],
   },
+  {
+    type: ReqType.Sequence,
+    label: "One Domain elective",
+    requirements: [
+      {
+        type: ReqType.Or,
+        courses: [
+          {
+            name: "Great Ideas in Computational Biology",
+            code: "02-251",
+            color: { r: 187, g: 0, b: 0, a: 0.55 },
+          },
+          {
+            name: "Designing Human Centered Software",
+            code: "05-391",
+            color: { r: 187, g: 0, b: 0, a: 0.55 },
+          },
+          {
+            name: "Introduction to Computer Music",
+            code: "15-322",
+            color: { r: 187, g: 0, b: 0, a: 0.55 },
+          },
+          {
+            name: "Introduction to Computer Security",
+            code: "15-330",
+            color: { r: 187, g: 0, b: 0, a: 0.55 },
+          },
+          {
+            name: "Undergraduate Complexity Theory",
+            code: "15-455",
+            color: { r: 187, g: 0, b: 0, a: 0.55 },
+          },
+          {
+            name: "Computer Graphics",
+            code: "15-462",
+            color: { r: 187, g: 0, b: 0, a: 0.55 },
+          },
+          {
+            name: "Foundations of Software Engineering",
+            code: "17-313",
+            color: { r: 187, g: 0, b: 0, a: 0.55 },
+          },
+        ],
+      },
+    ],
+  },
+  {
+    type: ReqType.Text,
+    label: "Two electives",
+    content:
+      "These electives can be from any SCS department; 200-level or above",
+  },
 ];

@@ -15,6 +15,15 @@ const styles = {
     padding: "20px",
     margin: "20px",
   },
+  text: {
+    border: "1px solid #888888",
+    width: "80vw",
+    padding: "20px",
+    margin: "20px",
+  },
+  textContent: {
+    maxWidth: "600px",
+  },
 } as const;
 const useStyles = createUseStyles(styles);
 
@@ -37,6 +46,13 @@ const Requirements: React.FC<Props> = ({ requirements }) => {
               <div className={classes.sequence}>
                 <label> {req.label} </label>
                 <Requirements requirements={req.requirements} />
+              </div>
+            );
+          case ReqType.Text:
+            return (
+              <div className={classes.text}>
+                <label> {req.label}</label>
+                <p className={classes.textContent}>{req.content}</p>
               </div>
             );
           default:
