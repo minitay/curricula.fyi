@@ -8,7 +8,7 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     padding: "20px",
-    border: "1px solid #323232",
+    border: "1px solid #888888",
     margin: "20px",
   },
   tiles: {

@@ -1,11 +1,14 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
+import { Color } from "./types";
 
 const styles = {
   CourseTile: {
-    width: "300px",
-    height: "150px",
-    backgroundColor: (props: Props) => props.color,
+    width: "200px",
+    height: "100px",
+    fontSize: "0.8em",
+    backgroundColor: (props: Props) =>
+      `rgba(${props.color.r}, ${props.color.g}, ${props.color.b}, ${props.color.a})`,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -13,6 +16,8 @@ const styles = {
     margin: "10px",
   },
   name: {
+    overflow: "hidden",
+    textOverflow: "ellipsis",
     height: "50px",
     textAlign: "center",
     width: "80%",
@@ -23,7 +28,7 @@ const useStyles = createUseStyles(styles);
 interface Props {
   name: string;
   code: string;
-  color: string;
+  color: Color;
 }
 
 const CourseTile: React.FC<Props> = ({ name, code, ...props }) => {

@@ -16,8 +16,9 @@ interface Props {
   courses: Array<Course>;
 }
 
-const TileRow: React.FC<Props> = ({ courses }) => {
-  const classes = useStyles();
+const TileRow: React.FC<Props> = (props) => {
+  const classes = useStyles(props);
+  const { courses } = props;
   return (
     <div className={classes.TileRow}>
       {courses.map(({ name, code, color }) => (

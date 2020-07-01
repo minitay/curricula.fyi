@@ -11,8 +11,7 @@ const styles = {
     alignItems: "center",
   },
   sequence: {
-    display: "inline-block",
-    border: "1px solid #323232",
+    border: "1px solid #888888",
     padding: "20px",
     margin: "20px",
   },
