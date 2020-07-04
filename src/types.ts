@@ -1,7 +1,12 @@
-export interface Course {
-  code: string;
+export interface School {
   name: string;
-  color: Color;
+  requirements: Array<Requirement>;
+  color: Color
+}
+
+export interface Course {
+  code?: string;
+  name: string;
 }
 
 export enum ReqType {
@@ -15,11 +20,10 @@ export type Requirement =
   | { type: ReqType.Or; courses: Array<Course> }
   | { type: ReqType.Group; courses: Array<Course>; label: string }
   | { type: ReqType.Sequence; requirements: Array<Requirement>; label: string }
-  | { type: ReqType.Text; label: string; content: string };
+  | { type: ReqType.Text; label: string; content: string; courses?: Array<Course> };
 
 export interface Color {
   r: number;
   g: number;
   b: number;
-  a: number
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
-import { Course } from "./types";
+import { Color, Course } from "./types";
 import CourseTile from "./CourseTile";
 
 const styles = {
@@ -23,16 +23,18 @@ const useStyles = createUseStyles(styles);
 interface Props {
   courses: Array<Course>;
   label: string;
+  color: Color;
+  opacity: number;
 }
 
-const TileGrouping: React.FC<Props> = ({ courses, label }) => {
+const TileGrouping: React.FC<Props> = ({ courses, label, color, opacity }) => {
   const classes = useStyles();
   return (
     <div className={classes.TileGrouping}>
       <label> {label} </label>
       <div className={classes.tiles}>
-        {courses.map(({ name, code, color }) => (
-          <CourseTile name={name} code={code} color={color} />
+        {courses.map(({ name, code }) => (
+          <CourseTile name={name} code={code} color={color} opacity={opacity} />
         ))}
       </div>
     </div>

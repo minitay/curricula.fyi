@@ -1,6 +1,6 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
-import { ReqType, Requirement } from "./types";
+import { Color, ReqType, Requirement } from "./types";
 import TileRow from "./TileRow";
 import TileGrouping from "./TileGrouping";
 
@@ -17,7 +17,6 @@ const styles = {
   },
   text: {
     border: "1px solid #888888",
-    width: "80vw",
     padding: "20px",
     margin: "20px",
   },
@@ -29,23 +28,46 @@ const useStyles = createUseStyles(styles);
 
 interface Props {
   requirements: Array<Requirement>;
+  start: number;
+  totalSteps: number;
+  color: Color;
 }
 
-const Requirements: React.FC<Props> = ({ requirements }) => {
+const Requirements: React.FC<Props> = ({
+  requirements,
+  start,
+  totalSteps,
+  color,
+}) => {
   const classes = useStyles();
   return (
     <div className={classes.Requirements}>
-      {requirements.map((req) => {
+      {requirements.map((req, i) => {
+        const opacity = (0.5 * (start + i)) / totalSteps;
         switch (req.type) {
           case ReqType.Or:
-            return <TileRow courses={req.courses} />;
+            return (
+              <TileRow courses={req.courses} opacity={opacity} color={color} />
+            );
           case ReqType.Group:
-            return <TileGrouping courses={req.courses} label={req.label} />;
+            return (
+              <TileGrouping
+                courses={req.courses}
+                label={req.label}
+                opacity={opacity}
+                color={color}
+              />
+            );
           case ReqType.Sequence:
             return (
               <div className={classes.sequence}>
                 <label> {req.label} </label>
-                <Requirements requirements={req.requirements} />
+                <Requirements
+                  requirements={req.requirements}
+                  start={start + i}
+                  totalSteps={totalSteps}
+                  color={color}
+                />
               </div>
             );
           case ReqType.Text:
@@ -53,6 +75,13 @@ const Requirements: React.FC<Props> = ({ requirements }) => {
               <div className={classes.text}>
                 <label> {req.label}</label>
                 <p className={classes.textContent}>{req.content}</p>
+                {req.courses && (
+                  <TileRow
+                    courses={req.courses}
+                    color={color}
+                    opacity={opacity}
+                  />
+                )}
               </div>
             );
           default:

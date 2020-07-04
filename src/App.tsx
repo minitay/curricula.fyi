@@ -1,7 +1,7 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
-import Requirements from "./Requirements";
-import { cmu, cornell, nyuCAS } from "./schools";
+import SchoolPage from "./SchoolPage";
+import { nyuCAS } from "./schools";
 
 const styles = {
   App: {
@@ -20,18 +20,7 @@ function App() {
   const classes = useStyles();
   return (
     <div className={classes.App}>
-      <div className={classes.school}>
-        <h1> Cornell </h1>
-        <Requirements requirements={cornell} />
-      </div>
-      <div className={classes.school}>
-        <h1> NYU CAS </h1>
-        <Requirements requirements={nyuCAS} />
-      </div>
-      <div className={classes.school}>
-        <h1> CMU </h1>
-        <Requirements requirements={cmu} />
-      </div>
+      <SchoolPage school={nyuCAS} />
     </div>
   );
 }

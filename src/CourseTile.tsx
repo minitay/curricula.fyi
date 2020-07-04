@@ -8,7 +8,7 @@ const styles = {
     height: "100px",
     fontSize: "0.8em",
     backgroundColor: (props: Props) =>
-      `rgba(${props.color.r}, ${props.color.g}, ${props.color.b}, ${props.color.a})`,
+      `rgba(${props.color.r}, ${props.color.g}, ${props.color.b}, ${props.opacity})`,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -20,22 +20,22 @@ const styles = {
     textOverflow: "ellipsis",
     height: "50px",
     textAlign: "center",
-    width: "80%",
   },
 } as const;
 const useStyles = createUseStyles(styles);
 
 interface Props {
   name: string;
-  code: string;
+  code?: string;
   color: Color;
+  opacity: number;
 }
 
 const CourseTile: React.FC<Props> = ({ name, code, ...props }) => {
   const classes = useStyles(props);
   return (
     <div className={classes.CourseTile}>
-      <div>{code}</div>
+      {code && <div>{code}</div>}
       <div className={classes.name}>{name}</div>
     </div>
   );
