@@ -1,7 +1,9 @@
 export interface School {
   name: string;
+  shortName: string;
   requirements: Array<Requirement>;
-  color: Color
+  color: Color;
+  logo: string;
 }
 
 export interface Course {
@@ -18,7 +20,7 @@ export enum ReqType {
 
 export type Requirement =
   | { type: ReqType.Or; courses: Array<Course> }
-  | { type: ReqType.Group; courses: Array<Course>; label: string }
+  | { type: ReqType.Group; courses: Array<Course>; label?: string }
   | { type: ReqType.Sequence; requirements: Array<Requirement>; label: string }
   | { type: ReqType.Text; label: string; content: string; courses?: Array<Course> };
 

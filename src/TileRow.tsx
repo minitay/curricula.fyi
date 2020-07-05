@@ -2,15 +2,30 @@ import React from "react";
 import { createUseStyles } from "react-jss";
 import { Color, Course } from "./types";
 import CourseTile from "./CourseTile";
+import { useWindowSize } from "./utils";
 
 const styles = {
   TileRow: {
     display: "flex",
+    flexDirection: "column",
+  },
+  row: {
+    display: "flex",
     justifyContent: "center",
     flexWrap: "wrap",
-    padding: {
-      top: "20px",
-      bottom: "20px",
+  },
+  or: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  "@media(max-width: 1000px)": {
+    TileRow: {
+      padding: {
+        top: "20px",
+        bottom: "20px",
+      },
     },
   },
 } as const;
@@ -23,13 +38,30 @@ interface Props {
 }
 
 const TileRow: React.FC<Props> = (props) => {
+  const { width } = useWindowSize();
   const classes = useStyles(props);
   const { courses, color, opacity } = props;
   return (
     <div className={classes.TileRow}>
-      {courses.map(({ name, code }) => (
-        <CourseTile name={name} code={code} color={color} opacity={opacity} />
-      ))}
+      {width! < 1000 && courses.length > 1 && <span> One of: </span>}
+      <div className={classes.row}>
+        {courses.map(({ name, code }, i) => {
+          // If we're on mobile, there's more than one course and we're not at the end,
+          // we put an "or" to indicate you can choose one of multiple courses
+          const shouldAddDividers =
+            width! < 700 && i < courses.length - 1 && courses.length > 1;
+          return (
+            <div>
+              <CourseTile
+                name={name}
+                code={code}
+                color={color}
+                opacity={opacity}
+              />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

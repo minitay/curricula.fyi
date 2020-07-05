@@ -20,6 +20,7 @@ const styles = {
     textOverflow: "ellipsis",
     height: "50px",
     textAlign: "center",
+    width: "80%",
   },
 } as const;
 const useStyles = createUseStyles(styles);

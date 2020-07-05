@@ -8,7 +8,7 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     padding: "20px",
-    border: "1px solid #888888",
+    border: (isOutlined: boolean) => (isOutlined ? "1px solid #888888" : ""),
     margin: "20px",
   },
   tiles: {
@@ -22,13 +22,20 @@ const useStyles = createUseStyles(styles);
 
 interface Props {
   courses: Array<Course>;
-  label: string;
+  label?: string;
   color: Color;
   opacity: number;
+  isOutlined: boolean;
 }
 
-const TileGrouping: React.FC<Props> = ({ courses, label, color, opacity }) => {
-  const classes = useStyles();
+const TileGrouping: React.FC<Props> = ({
+  courses,
+  label,
+  color,
+  opacity,
+  isOutlined,
+}) => {
+  const classes = useStyles(isOutlined);
   return (
     <div className={classes.TileGrouping}>
       <label> {label} </label>

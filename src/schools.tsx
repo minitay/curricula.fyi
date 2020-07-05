@@ -1,8 +1,13 @@
-import { ReqType, Requirement, School } from "./types";
+import { ReqType, School } from "./types";
+import cornellLogo from "./cornell.png";
+import nyuLogo from "./nyu.png";
+import cmuLogo from "./cmu.png";
 
 export const cornell: School = {
   name: "Cornell University",
+  shortName: "Cornell",
   color: { r: 255, g: 3, b: 3 },
+  logo: cornellLogo,
   requirements: [
     {
       type: ReqType.Sequence,
@@ -230,6 +235,8 @@ export const cornell: School = {
 
 export const nyuCAS: School = {
   name: "New York University: College of Arts & Sciences",
+  shortName: "NYU CAS",
+  logo: nyuLogo,
   color: { r: 87, g: 6, b: 140 },
   requirements: [
     {
@@ -358,8 +365,80 @@ export const nyuCAS: School = {
 
 export const cmu: School = {
   name: "Carnegie Mellon University",
+  shortName: "CMU",
+  logo: cmuLogo,
   color: { r: 187, g: 0, b: 0 },
   requirements: [
+    {
+      type: ReqType.Sequence,
+      label: "Mathematics",
+      requirements: [
+        {
+          type: ReqType.Or,
+          courses: [
+            {
+              name: "Mathematical Foundations for Computer Science",
+              code: "15-151",
+            },
+            { name: "Concepts of Mathematics", code: "21-127" },
+            { name: "Mathematical Concepts and Proofs", code: "21-128" },
+          ],
+        },
+        {
+          type: ReqType.Or,
+          courses: [
+            {
+              name: "Integration and Approximation",
+              code: "21-122",
+            },
+          ],
+        },
+        {
+          type: ReqType.Or,
+          courses: [
+            {
+              name: "Matrices and Linear Transformations",
+              code: "21-241",
+            },
+            {
+              name: "Matrix Theory",
+              code: "21-242",
+            },
+          ],
+        },
+        {
+          type: ReqType.Or,
+          courses: [
+            {
+              name: "Calculus in Three Dimensions",
+              code: "21-259",
+            },
+          ],
+        },
+        {
+          type: ReqType.Or,
+          courses: [
+            {
+              name: "Probability and Computing",
+              code: "15-259",
+            },
+            {
+              name: "Probability",
+              code: "21-325",
+            },
+            {
+              name: "Probability Theory for Computer Scientists",
+              code: "36-218",
+            },
+            {
+              name:
+                "Introduction to Probability Theory—Introduction to Statistical Inference",
+              code: "36-225—36-226",
+            },
+          ],
+        },
+      ],
+    },
     {
       type: ReqType.Sequence,
       label: "Computer Science Core",
@@ -434,7 +513,7 @@ export const cmu: School = {
       label: "One Logics/Languages elective",
       requirements: [
         {
-          type: ReqType.Or,
+          type: ReqType.Group,
           courses: [
             {
               name: "Foundations of Programming Languages",
@@ -477,7 +556,7 @@ export const cmu: School = {
       label: "One Software Systems elective",
       requirements: [
         {
-          type: ReqType.Or,
+          type: ReqType.Group,
           courses: [
             {
               name: "Operating System Design and Implementation",
@@ -512,7 +591,7 @@ export const cmu: School = {
       label: "One Artificial Intelligence elective",
       requirements: [
         {
-          type: ReqType.Or,
+          type: ReqType.Group,
           courses: [
             {
               name: "Introduction to Machine Learning (SCS Majors)",
@@ -552,7 +631,7 @@ export const cmu: School = {
       label: "One Domain elective",
       requirements: [
         {
-          type: ReqType.Or,
+          type: ReqType.Group,
           courses: [
             {
               name: "Great Ideas in Computational Biology",
@@ -591,7 +670,7 @@ export const cmu: School = {
       label: "Two electives",
       content:
         "These electives can be from any SCS department; 200-level or above",
-      courses: [],
+      courses: [{ name: "Elective 1" }, { name: "Elective 2" }],
     },
   ],
 };

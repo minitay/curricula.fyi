@@ -1,7 +1,8 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
 import SchoolPage from "./SchoolPage";
-import { nyuCAS } from "./schools";
+import * as schools from "./schools";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const styles = {
   App: {
@@ -10,8 +11,19 @@ const styles = {
     flexDirection: "column",
     alignItems: "center",
   },
-  school: {
-    width: "80vw",
+  schoolName: {
+    fontSize: "3em",
+    color: "black",
+    textDecoration: "none",
+    fontWeight: 700,
+    "&:visited": {
+      textDecoration: "none",
+    },
+  },
+  schoolLogo: {
+    width: "200px",
+    padding: "5px",
+    transition: "filter 0.2s",
   },
 } as const;
 const useStyles = createUseStyles(styles);
@@ -19,9 +31,28 @@ const useStyles = createUseStyles(styles);
 function App() {
   const classes = useStyles();
   return (
-    <div className={classes.App}>
-      <SchoolPage school={nyuCAS} />
-    </div>
+    <Router>
+      <div className={classes.App}>
+        <Route exact path="/">
+          {Object.entries(schools).map(([slug, school]) => {
+            return (
+              <Link to={`/schools/${slug}`}>
+                <div className={classes.schoolName}> {school.shortName}</div>
+              </Link>
+            );
+          })}
+        </Route>
+        <div>
+          {Object.entries(schools).map(([slug, school]) => {
+            return (
+              <Route path={`/schools/${slug}`}>
+                <SchoolPage school={school} />
+              </Route>
+            );
+          })}
+        </div>
+      </div>
+    </Router>
   );
 }
 

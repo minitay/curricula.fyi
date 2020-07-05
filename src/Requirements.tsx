@@ -3,6 +3,7 @@ import { createUseStyles } from "react-jss";
 import { Color, ReqType, Requirement } from "./types";
 import TileRow from "./TileRow";
 import TileGrouping from "./TileGrouping";
+import { getReqsTreeHeight } from "./utils";
 
 const styles = {
   Requirements: {
@@ -31,6 +32,7 @@ interface Props {
   start: number;
   totalSteps: number;
   color: Color;
+  isOutlined: boolean;
 }
 
 const Requirements: React.FC<Props> = ({
@@ -38,28 +40,36 @@ const Requirements: React.FC<Props> = ({
   start,
   totalSteps,
   color,
+  isOutlined,
 }) => {
+  let i = 0;
   const classes = useStyles();
   return (
     <div className={classes.Requirements}>
-      {requirements.map((req, i) => {
+      {requirements.map((req) => {
         const opacity = (0.5 * (start + i)) / totalSteps;
+        let component;
         switch (req.type) {
           case ReqType.Or:
-            return (
+            component = (
               <TileRow courses={req.courses} opacity={opacity} color={color} />
             );
+            i += 1;
+            break;
           case ReqType.Group:
-            return (
+            component = (
               <TileGrouping
+                isOutlined={isOutlined}
                 courses={req.courses}
                 label={req.label}
                 opacity={opacity}
                 color={color}
               />
             );
+            i += 1;
+            break;
           case ReqType.Sequence:
-            return (
+            component = (
               <div className={classes.sequence}>
                 <label> {req.label} </label>
                 <Requirements
@@ -67,26 +77,33 @@ const Requirements: React.FC<Props> = ({
                   start={start + i}
                   totalSteps={totalSteps}
                   color={color}
+                  isOutlined={false}
                 />
               </div>
             );
+            i += getReqsTreeHeight(req.requirements);
+            break;
           case ReqType.Text:
-            return (
+            component = (
               <div className={classes.text}>
                 <label> {req.label}</label>
                 <p className={classes.textContent}>{req.content}</p>
                 {req.courses && (
-                  <TileRow
+                  <TileGrouping
                     courses={req.courses}
                     color={color}
                     opacity={opacity}
+                    isOutlined={false}
                   />
                 )}
               </div>
             );
+            i += 1;
+            break;
           default:
-            return <div> Error! This should not be reachable </div>;
+            component = <div> Error! This should not be reachable </div>;
         }
+        return component;
       })}
     </div>
   );
