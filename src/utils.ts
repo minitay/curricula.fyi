@@ -1,5 +1,6 @@
 import {ReqType, Requirement} from "./types";
 import {useEffect, useState} from "react";
+import { useLocation } from "react-router-dom";
 
 export function getReqsTreeHeight(reqs: Array<Requirement>): number {
   let count = 0;
@@ -8,6 +9,7 @@ export function getReqsTreeHeight(reqs: Array<Requirement>): number {
       case ReqType.Group:
       case ReqType.Text:
       case ReqType.Or:
+      case ReqType.One:
         count += 1;
         break;
       case ReqType.Sequence:
@@ -37,4 +39,8 @@ export function useWindowSize() {
     return () => window.removeEventListener('resize', handleResize);
   }, []); // Empty array ensures that effect is only run on mount and unmount
   return windowSize;
+}
+
+export function useQuery() {
+  return new URLSearchParams(useLocation().search);
 }

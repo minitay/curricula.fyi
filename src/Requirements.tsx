@@ -4,6 +4,7 @@ import { Color, ReqType, Requirement } from "./types";
 import TileRow from "./TileRow";
 import TileGrouping from "./TileGrouping";
 import { getReqsTreeHeight } from "./utils";
+import CourseTile from "./CourseTile";
 
 const styles = {
   Requirements: {
@@ -50,6 +51,16 @@ const Requirements: React.FC<Props> = ({
         const opacity = (0.5 * (start + i)) / totalSteps;
         let component;
         switch (req.type) {
+          case ReqType.One:
+            component = (
+              <CourseTile
+                name={req.course.name}
+                color={color}
+                opacity={opacity}
+              />
+            );
+            i += 1;
+            break;
           case ReqType.Or:
             component = (
               <TileRow courses={req.courses} opacity={opacity} color={color} />

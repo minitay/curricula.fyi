@@ -1,8 +1,10 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
 import SchoolPage from "./SchoolPage";
-import * as schools from "./schools";
+import schools from "./schools";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import ComparePage from "./ComparePage";
+import PlanPage from "./PlanPage";
 
 const styles = {
   App: {
@@ -33,7 +35,9 @@ function App() {
   return (
     <Router>
       <div className={classes.App}>
+        <h1> Curricula.fyi </h1>
         <Route exact path="/">
+          <p>Explore different schools' Computer Science requirements</p>
           {Object.entries(schools).map(([slug, school]) => {
             return (
               <Link to={`/schools/${slug}`}>
@@ -41,6 +45,12 @@ function App() {
               </Link>
             );
           })}
+        </Route>
+        <Route path="/compare">
+          <ComparePage />
+        </Route>
+        <Route path="/plan">
+          <PlanPage />
         </Route>
         <div>
           {Object.entries(schools).map(([slug, school]) => {

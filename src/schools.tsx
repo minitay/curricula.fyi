@@ -2,8 +2,9 @@ import { ReqType, School } from "./types";
 import cornellLogo from "./cornell.png";
 import nyuLogo from "./nyu.png";
 import cmuLogo from "./cmu.png";
+import northeasternLogo from "./northeastern.png";
 
-export const cornell: School = {
+const cornell: School = {
   name: "Cornell University",
   shortName: "Cornell",
   color: { r: 255, g: 3, b: 3 },
@@ -14,13 +15,11 @@ export const cornell: School = {
       label: "Calculus Sequence",
       requirements: [
         {
-          type: ReqType.Or,
-          courses: [
-            {
-              name: "Calculus I",
-              code: "Math 1110",
-            },
-          ],
+          type: ReqType.One,
+          course: {
+            name: "Calculus I",
+            code: "Math 1110",
+          },
         },
         {
           type: ReqType.Or,
@@ -36,13 +35,11 @@ export const cornell: School = {
           ],
         },
         {
-          type: ReqType.Or,
-          courses: [
-            {
-              name: "Linear Algebra",
-              code: "Math 2210",
-            },
-          ],
+          type: ReqType.One,
+          course: {
+            name: "Linear Algebra",
+            code: "Math 2210",
+          },
         },
       ],
     },
@@ -105,13 +102,11 @@ export const cornell: School = {
           ],
         },
         {
-          type: ReqType.Or,
-          courses: [
-            {
-              name: "Data Structures and Functional Programming",
-              code: "CS 3110",
-            },
-          ],
+          type: ReqType.One,
+          course: {
+            name: "Data Structures and Functional Programming",
+            code: "CS 3110",
+          },
         },
         {
           type: ReqType.Or,
@@ -127,22 +122,18 @@ export const cornell: School = {
           ],
         },
         {
-          type: ReqType.Or,
-          courses: [
-            {
-              name: "Operating Systems",
-              code: "CS 4410",
-            },
-          ],
+          type: ReqType.One,
+          course: {
+            name: "Operating Systems",
+            code: "CS 4410",
+          },
         },
         {
-          type: ReqType.Or,
-          courses: [
-            {
-              name: "Introduction to Analysis of Algorithms",
-              code: "CS 4820",
-            },
-          ],
+          type: ReqType.One,
+          course: {
+            name: "Introduction to Analysis of Algorithms",
+            code: "CS 4820",
+          },
         },
       ],
     },
@@ -233,7 +224,7 @@ export const cornell: School = {
   ],
 };
 
-export const nyuCAS: School = {
+const nyuCAS: School = {
   name: "New York University: College of Arts & Sciences",
   shortName: "NYU CAS",
   logo: nyuLogo,
@@ -244,22 +235,18 @@ export const nyuCAS: School = {
       label: "Math",
       requirements: [
         {
-          type: ReqType.Or,
-          courses: [
-            {
-              name: "Calculus I",
-              code: "MATH-UA 121",
-            },
-          ],
+          type: ReqType.One,
+          course: {
+            name: "Calculus I",
+            code: "MATH-UA 121",
+          },
         },
         {
-          type: ReqType.Or,
-          courses: [
-            {
-              name: "Discrete Mathematics",
-              code: "MATH-UA 120",
-            },
-          ],
+          type: ReqType.One,
+          course: {
+            name: "Discrete Mathematics",
+            code: "MATH-UA 120",
+          },
         },
       ],
     },
@@ -268,49 +255,39 @@ export const nyuCAS: School = {
       label: "Core Requirements",
       requirements: [
         {
-          type: ReqType.Or,
-          courses: [
-            {
-              name: "Introduction to Computer Science",
-              code: "CSCI-UA 101",
-            },
-          ],
+          type: ReqType.One,
+          course: {
+            name: "Introduction to Computer Science",
+            code: "CSCI-UA 101",
+          },
         },
         {
-          type: ReqType.Or,
-          courses: [
-            {
-              name: "Data Structures",
-              code: "CSCI-UA 102",
-            },
-          ],
+          type: ReqType.One,
+          course: {
+            name: "Data Structures",
+            code: "CSCI-UA 102",
+          },
         },
         {
-          type: ReqType.Or,
-          courses: [
-            {
-              name: "Computer Systems Organization",
-              code: "CSCI-UA 201",
-            },
-          ],
+          type: ReqType.One,
+          course: {
+            name: "Computer Systems Organization",
+            code: "CSCI-UA 201",
+          },
         },
         {
-          type: ReqType.Or,
-          courses: [
-            {
-              name: "Operating Systems",
-              code: "CSCI-UA 202",
-            },
-          ],
+          type: ReqType.One,
+          course: {
+            name: "Operating Systems",
+            code: "CSCI-UA 202",
+          },
         },
         {
-          type: ReqType.Or,
-          courses: [
-            {
-              name: "Basic Algorithms",
-              code: "CSCI-UA 310",
-            },
-          ],
+          type: ReqType.One,
+          course: {
+            name: "Basic Algorithms",
+            code: "CSCI-UA 310",
+          },
         },
       ],
     },
@@ -363,7 +340,7 @@ export const nyuCAS: School = {
   ],
 };
 
-export const cmu: School = {
+const cmu: School = {
   name: "Carnegie Mellon University",
   shortName: "CMU",
   logo: cmuLogo,
@@ -385,13 +362,11 @@ export const cmu: School = {
           ],
         },
         {
-          type: ReqType.Or,
-          courses: [
-            {
-              name: "Integration and Approximation",
-              code: "21-122",
-            },
-          ],
+          type: ReqType.One,
+          course: {
+            name: "Integration and Approximation",
+            code: "21-122",
+          },
         },
         {
           type: ReqType.Or,
@@ -407,13 +382,11 @@ export const cmu: School = {
           ],
         },
         {
-          type: ReqType.Or,
-          courses: [
-            {
-              name: "Calculus in Three Dimensions",
-              code: "21-259",
-            },
-          ],
+          type: ReqType.One,
+          course: {
+            name: "Calculus in Three Dimensions",
+            code: "21-259",
+          },
         },
         {
           type: ReqType.Or,
@@ -444,67 +417,53 @@ export const cmu: School = {
       label: "Computer Science Core",
       requirements: [
         {
-          type: ReqType.Or,
-          courses: [
-            {
-              name: "First Year Immigration Course",
-              code: "07-128",
-            },
-          ],
+          type: ReqType.One,
+          course: {
+            name: "First Year Immigration Course",
+            code: "07-128",
+          },
         },
         {
-          type: ReqType.Or,
-          courses: [
-            {
-              name: "Principles of Imperative Computation",
-              code: "15-122",
-            },
-          ],
+          type: ReqType.One,
+          course: {
+            name: "Principles of Imperative Computation",
+            code: "15-122",
+          },
         },
         {
-          type: ReqType.Or,
-          courses: [
-            {
-              name: "Principles of Functional Programming",
-              code: "15-150",
-            },
-          ],
+          type: ReqType.One,
+          course: {
+            name: "Principles of Functional Programming",
+            code: "15-150",
+          },
         },
         {
-          type: ReqType.Or,
-          courses: [
-            {
-              name: "Parallel and Sequential Data Structures and Algorithms",
-              code: "15-210",
-            },
-          ],
+          type: ReqType.One,
+          course: {
+            name: "Parallel and Sequential Data Structures and Algorithms",
+            code: "15-210",
+          },
         },
         {
-          type: ReqType.Or,
-          courses: [
-            {
-              name: "Introduction to Computer Systems",
-              code: "15-213",
-            },
-          ],
+          type: ReqType.One,
+          course: {
+            name: "Introduction to Computer Systems",
+            code: "15-213",
+          },
         },
         {
-          type: ReqType.Or,
-          courses: [
-            {
-              name: "Great Ideas in Theoretical Computer Science",
-              code: "15-251",
-            },
-          ],
+          type: ReqType.One,
+          course: {
+            name: "Great Ideas in Theoretical Computer Science",
+            code: "15-251",
+          },
         },
         {
-          type: ReqType.Or,
-          courses: [
-            {
-              name: "Algorithm Design and Analysis",
-              code: "15-451",
-            },
-          ],
+          type: ReqType.One,
+          course: {
+            name: "Algorithm Design and Analysis",
+            code: "15-451",
+          },
         },
       ],
     },
@@ -672,5 +631,347 @@ export const cmu: School = {
         "These electives can be from any SCS department; 200-level or above",
       courses: [{ name: "Elective 1" }, { name: "Elective 2" }],
     },
+    {
+      type: ReqType.Sequence,
+      label: "One Technical Communications Course",
+      requirements: [
+        {
+          type: ReqType.Group,
+          courses: [
+            {
+              name: "Research and Innovation in Computer Science",
+              code: "15-300",
+            },
+            { name: "Ethics and Policy Issues in Computing", code: "17-200" },
+            { name: "Writing for the Professions", code: "76-270" },
+          ],
+        },
+      ],
+    },
   ],
 };
+
+const northeastern: School = {
+  name: "Northeastern University",
+  shortName: "Northeastern",
+  logo: northeasternLogo,
+  color: { r: 212, g: 27, b: 44 },
+  requirements: [
+    {
+      type: ReqType.Sequence,
+      label: "Mathematics",
+      requirements: [
+        {
+          type: ReqType.One,
+          course: {
+            name: "Calculus 1 for Science and Engineering",
+            code: "MATH 1341",
+          },
+        },
+        {
+          type: ReqType.One,
+          course: {
+            name: "Introduction to Mathematical Reasoning",
+            code: "MATH 1365",
+          },
+        },
+      ],
+    },
+    {
+      type: ReqType.Sequence,
+      label: "Computer Science Overview",
+      requirements: [
+        {
+          type: ReqType.One,
+          course: { name: "Leadership Skill Development", code: "CS 1200" },
+        },
+        {
+          type: ReqType.One,
+          course: {
+            name: "Professional Development for Khoury Co-op",
+            code: "CS 1210",
+          },
+        },
+      ],
+    },
+    {
+      type: ReqType.Sequence,
+      label: "Computer Science Fundamental Courses",
+      requirements: [
+        {
+          type: ReqType.One,
+          course: { name: "Discrete Structures", code: "CS 1800" },
+        },
+        {
+          type: ReqType.One,
+          course: {
+            name: "Fundamentals of Computer Science 1",
+            code: "CS 2500",
+          },
+        },
+        {
+          type: ReqType.One,
+          course: {
+            name: "Fundamentals of Computer Science 2",
+            code: "CS 2510",
+          },
+        },
+        {
+          type: ReqType.One,
+          course: {
+            name: "Mathematics of Data Models",
+            code: "CS 2810",
+          },
+        },
+      ],
+    },
+    {
+      type: ReqType.Sequence,
+      label: "Computer Science Required Courses",
+      requirements: [
+        {
+          type: ReqType.One,
+          course: { name: "Algorithms and Data", code: "CS 3000" },
+        },
+        {
+          type: ReqType.One,
+          course: { name: "Object-Oriented Design", code: "CS 3500" },
+        },
+        {
+          type: ReqType.One,
+          course: { name: "Computer Systems", code: "CS 3650" },
+        },
+        {
+          type: ReqType.One,
+          course: { name: "Theory of Computation", code: "CS 3800" },
+        },
+        {
+          type: ReqType.One,
+          course: { name: "Software Development", code: "CS 4500" },
+        },
+      ],
+    },
+    {
+      type: ReqType.Sequence,
+      label: "Security Required Course",
+      requirements: [
+        {
+          type: ReqType.Or,
+          courses: [
+            { name: "Foundations of Cybersecurity", code: "CY 2550" },
+            { name: "Systems Security", code: "CY 3740" },
+            { name: "Network Security", code: "CY 4740" },
+          ],
+        },
+      ],
+    },
+    {
+      type: ReqType.Sequence,
+      label: "Presentation Requirement",
+      requirements: [
+        {
+          type: ReqType.One,
+          course: { name: "The Eloquent Presenter", code: "THTR 1170" },
+        },
+      ],
+    },
+    {
+      type: ReqType.Text,
+      label: "Khoury Elective Courses",
+      content:
+        "Complete 4 credits of CS, CY, DS, or IS classes that are not already required",
+      courses: [{ name: "Elective" }],
+    },
+    {
+      type: ReqType.Sequence,
+      label: "Concentration: Pick one",
+      requirements: [
+        {
+          type: ReqType.Sequence,
+          label: "Artificial Intelligence",
+          requirements: [
+            {
+              type: ReqType.One,
+              course: { name: "Artificial Intelligence", code: "CS 4100" },
+            },
+            {
+              type: ReqType.One,
+              course: {
+                name: "Machine Learning and Data Mining 1",
+                code: "DS 4400",
+              },
+            },
+            {
+              type: ReqType.Group,
+              label: "Two of:",
+              courses: [
+                { name: "Natural Language Processing", code: "CS 4120" },
+                { name: "Game Artificial Intelligence", code: "CS 4150" },
+                { name: "Robotic Science and Systems", code: "CS 4610" },
+                { name: "Information Retrieval", code: "IS 4200" },
+                { name: "Machine Learning and Data Mining 2", code: "DS 4420" },
+                { name: "Cognition", code: "PSYC 3466" },
+              ],
+            },
+          ],
+        },
+        {
+          type: ReqType.Sequence,
+          label: "Foundations",
+          requirements: [
+            {
+              type: ReqType.Or,
+              courses: [
+                { name: "Logic and Computation", code: "CS 2800" },
+                { name: "Computer-Aided Reasoning", code: "CS 4820" },
+              ],
+            },
+            {
+              type: ReqType.Or,
+              courses: [
+                {
+                  name: "Advanced Theory of Computation",
+                  code: "CS 4805",
+                },
+                { name: "Advanced Algorithms", code: "CS 4810" },
+              ],
+            },
+            {
+              type: ReqType.Group,
+              label: "Two of:",
+              courses: [
+                { name: "Advanced Theory of Computation", code: "CS 4805" },
+                { name: "Advanced Algorithms", code: "CS 4810" },
+                { name: "Computer-Aided Reasoning", code: "CS 4820" },
+                {
+                  name: "System Specification, Verification, and Synthesis",
+                  code: "CS 4830",
+                },
+                {
+                  name: "Introduction to Computer Science Research",
+                  code: "CS 3950",
+                },
+                { name: "Cryptograph", code: "Cryptography CY 4770" },
+              ],
+            },
+          ],
+        },
+        {
+          type: ReqType.Sequence,
+          label: "Human Centered Computing",
+          requirements: [
+            {
+              type: ReqType.One,
+              course: { name: "Human Computer Interaction", code: "IS 4300" },
+            },
+            {
+              type: ReqType.One,
+              course: {
+                name: "Empirical Research Methods",
+                code: "IS 4800",
+              },
+            },
+            {
+              type: ReqType.Group,
+              label: "Two of:",
+              courses: [
+                { name: "Principles of Information Science", code: "IS 2000" },
+                { name: "Social Information Systems", code: "IS 4700" },
+                { name: "Natural Language Processing", code: "CS 4120" },
+                { name: "Mobile Application Development", code: "CS 4520" },
+                { name: "Web Development", code: "CS 4550" },
+                {
+                  name: "Information Presentation and Visualization",
+                  code: "DS 4200",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: ReqType.Sequence,
+          label: "Software",
+          requirements: [
+            {
+              type: ReqType.One,
+              course: { name: "Logic and Computation", code: "CS 2800" },
+            },
+            {
+              type: ReqType.One,
+              course: {
+                name: "Networks and Distributed Systems",
+                code: "CS 3700",
+              },
+            },
+            {
+              type: ReqType.One,
+              course: {
+                name: "Programming Languages",
+                code: "CS 4400",
+              },
+            },
+            {
+              type: ReqType.Group,
+              label: "One of:",
+              courses: [
+                { name: "Programming in C++", code: "CS 3520" },
+                { name: "Building Extensible Systems", code: "CS 3620" },
+                {
+                  name: "Large-Scale Parallel Data Processing",
+                  code: "CS 4240",
+                },
+                { name: "Compilers", code: "CS 4410" },
+                { name: "Web Development", code: "CS 4550" },
+                { name: "Mobile Application Development", code: "CS 4520" },
+                { name: "Computer-Aided Reasoning", code: "CS 4820" },
+              ],
+            },
+          ],
+        },
+        {
+          type: ReqType.Sequence,
+          label: "Systems",
+          requirements: [
+            {
+              type: ReqType.One,
+              course: {
+                name: "Networks and Distributed Systems",
+                code: "CS 3700",
+              },
+            },
+            {
+              type: ReqType.Or,
+              courses: [
+                {
+                  name: "Systems Security",
+                  code: "CS 3740",
+                },
+                { name: "Network Security", code: "CS 4740" },
+              ],
+            },
+            {
+              type: ReqType.Group,
+              label: "Two of:",
+              courses: [
+                { name: "Programming in C++", code: "CS 3520" },
+                { name: "Computer Graphics", code: "CS 4300" },
+                {
+                  name: "Systems Security",
+                  code: "CY 3740",
+                },
+                { name: "Robotic Science and Systems", code: "CS 4610" },
+                { name: "Mobile and Wireless Systems", code: "CS 4710" },
+                { name: "High Performance Computing", code: "CS 4650" },
+                { name: "Network Security", code: "CY 4740" },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
+const schools: { [s: string]: School } = { cornell, nyuCAS, cmu, northeastern };
+
+export default schools;

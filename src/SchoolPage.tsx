@@ -6,17 +6,19 @@ import { createUseStyles } from "react-jss";
 
 interface Props {
   school: School;
+  width?: string;
 }
 
 const styles = {
   SchoolPage: {
-    width: "80vw",
+    maxWidth: (props: Props) => props.width || "80vw",
   },
 } as const;
 const useStyles = createUseStyles(styles);
 
-const SchoolPage: React.FC<Props> = ({ school }) => {
-  const classes = useStyles();
+const SchoolPage: React.FC<Props> = (props) => {
+  const classes = useStyles(props);
+  const { school } = props;
   return (
     <div className={classes.SchoolPage}>
       <h1>{school.name} </h1>

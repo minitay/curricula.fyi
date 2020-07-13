@@ -12,6 +12,7 @@ export interface Course {
 }
 
 export enum ReqType {
+  One,
   Or,
   Group, // Used for stuff like "Five of" or "Two of"
   Sequence, // Used to group other requirements
@@ -19,6 +20,7 @@ export enum ReqType {
 }
 
 export type Requirement =
+  | { type: ReqType.One, course: Course }
   | { type: ReqType.Or; courses: Array<Course> }
   | { type: ReqType.Group; courses: Array<Course>; label?: string }
   | { type: ReqType.Sequence; requirements: Array<Requirement>; label: string }

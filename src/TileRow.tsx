@@ -45,11 +45,7 @@ const TileRow: React.FC<Props> = (props) => {
     <div className={classes.TileRow}>
       {width! < 1000 && courses.length > 1 && <span> One of: </span>}
       <div className={classes.row}>
-        {courses.map(({ name, code }, i) => {
-          // If we're on mobile, there's more than one course and we're not at the end,
-          // we put an "or" to indicate you can choose one of multiple courses
-          const shouldAddDividers =
-            width! < 700 && i < courses.length - 1 && courses.length > 1;
+        {courses.map(({ name, code }) => {
           return (
             <div>
               <CourseTile

@@ -7,8 +7,8 @@ const styles = {
     width: "200px",
     height: "100px",
     fontSize: "0.8em",
-    backgroundColor: (props: Props) =>
-      `rgba(${props.color.r}, ${props.color.g}, ${props.color.b}, ${props.opacity})`,
+    backgroundColor: ({ color, opacity }: { color: Color; opacity: number }) =>
+      `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity})`,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -30,12 +30,19 @@ interface Props {
   code?: string;
   color: Color;
   opacity: number;
+  ref?: React.Ref<HTMLDivElement>;
 }
 
-const CourseTile: React.FC<Props> = ({ name, code, ...props }) => {
-  const classes = useStyles(props);
+const CourseTile: React.FC<Props> = ({
+  name,
+  code,
+  color,
+  opacity,
+  ...props
+}) => {
+  const classes = useStyles({ color, opacity });
   return (
-    <div className={classes.CourseTile}>
+    <div className={classes.CourseTile} {...props}>
       {code && <div>{code}</div>}
       <div className={classes.name}>{name}</div>
     </div>
