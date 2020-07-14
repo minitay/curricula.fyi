@@ -1,6 +1,7 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
 import { Color } from "./types";
+import { DraggableProps } from "react-beautiful-dnd";
 
 const styles = {
   CourseTile: {
@@ -25,7 +26,7 @@ const styles = {
 } as const;
 const useStyles = createUseStyles(styles);
 
-interface Props {
+interface Props extends Partial<DraggableProps> {
   name: string;
   code?: string;
   color: Color;

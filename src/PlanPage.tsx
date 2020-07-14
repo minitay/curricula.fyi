@@ -9,8 +9,25 @@ import {
   ResponderProvided,
 } from "react-beautiful-dnd";
 import { Course } from "./types";
+import CourseTile from "./CourseTile";
+import { createUseStyles } from "react-jss";
+
+const styles = {
+  PlanPage: {
+    display: "flex",
+    width: "80vw",
+    justifyContent: "space-around",
+  },
+  dropzone: {
+    margin: "20px",
+    padding: "20px",
+    borderRadius: "5px",
+  },
+} as const;
+const useStyles = createUseStyles(styles);
 
 const PlanPage = () => {
+  const classes = useStyles();
   const [scheduleCourses, setScheduleCourses] = useState<Course[]>([]);
   const [reqCourses, setReqCourses] = useState<Course[]>([
     {
@@ -33,27 +50,52 @@ const PlanPage = () => {
       result.destination?.droppableId === "schedule"
     ) {
       setReqCourses(reqCourses.filter((course, i) => i !== id));
-      setScheduleCourses([...scheduleCourses, reqCourses[id]]);
+      scheduleCourses.splice(result.destination.index, 0, reqCourses[id]);
+      setScheduleCourses(scheduleCourses);
     } else if (
       result.source.droppableId === "schedule" &&
       result.destination?.droppableId === "reqs"
     ) {
       setScheduleCourses(scheduleCourses.filter((course, i) => i !== id));
-      setReqCourses([...reqCourses, scheduleCourses[id]]);
+      reqCourses.splice(result.destination.index, 0, scheduleCourses[id]);
+      setReqCourses(reqCourses);
+    } else if (
+      result.source.droppableId === "schedule" &&
+      result.destination?.droppableId === "schedule"
+    ) {
+      const newScheduleCourses = scheduleCourses.filter(
+        (course, i) => i !== id
+      );
+      newScheduleCourses.splice(
+        result.destination.index,
+        0,
+        scheduleCourses[id]
+      );
+      setScheduleCourses(newScheduleCourses);
+    } else if (
+      result.source.droppableId === "reqs" &&
+      result.destination?.droppableId === "reqs"
+    ) {
+      const newReqsCourses = reqCourses.filter((course, i) => i !== id);
+      newReqsCourses.splice(result.destination.index, 0, reqCourses[id]);
+      setReqCourses(newReqsCourses);
     }
-    console.log("DRAG END");
-    console.log(result);
-    console.log(provided);
+    console.log("SOURCE");
+    console.log(result.source);
+    console.log("DEST");
+    console.log(result.destination);
   };
   return (
-    <div>
-      <DragDropContext onDragEnd={handleDragEnd}>
+    <DragDropContext onDragEnd={handleDragEnd}>
+      <div className={classes.PlanPage}>
         <Droppable droppableId="reqs" type="PERSON">
           {(provided: DroppableProvided, snapshot: DroppableStateSnapshot) => (
             <div
               ref={provided.innerRef}
+              className={classes.dropzone}
               style={{
-                backgroundColor: snapshot.isDraggingOver ? "blue" : "grey",
+                transition: "background-color 0.2s",
+                backgroundColor: snapshot.isDraggingOver ? "lightgray" : "grey",
               }}
               {...provided.droppableProps}
             >
@@ -65,8 +107,11 @@ const PlanPage = () => {
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                     >
-                      <h3> {course.name}</h3>
-                      <h4> {course.code}</h4>
+                      <CourseTile
+                        name={course.name}
+                        color={{ r: 255, g: 0, b: 0 }}
+                        opacity={0.5}
+                      />
                     </div>
                   )}
                 </Draggable>
@@ -79,6 +124,7 @@ const PlanPage = () => {
           {(provided, snapshot) => (
             <div
               ref={provided.innerRef}
+              className={classes.dropzone}
               style={{
                 backgroundColor: snapshot.isDraggingOver ? "blue" : "grey",
               }}
@@ -95,8 +141,11 @@ const PlanPage = () => {
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                     >
-                      <h3> {course.name}</h3>
-                      <h4> {course.code}</h4>
+                      <CourseTile
+                        name={course.name}
+                        color={{ r: 255, g: 0, b: 0 }}
+                        opacity={0.5}
+                      />
                     </div>
                   )}
                 </Draggable>
@@ -105,8 +154,8 @@ const PlanPage = () => {
             </div>
           )}
         </Droppable>
-      </DragDropContext>
-    </div>
+      </div>
+    </DragDropContext>
   );
 };
 
