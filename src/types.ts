@@ -7,6 +7,7 @@ export interface School {
 }
 
 export interface Course {
+  id?: string;
   code?: string;
   name: string;
 }
@@ -18,6 +19,7 @@ export enum ReqType {
   Sequence, // Used to group other requirements
   Text // For when a text box is needed
 }
+
 
 export type Requirement =
   | { type: ReqType.One, course: Course }

@@ -11,6 +11,8 @@ import {
 import { Course } from "./types";
 import CourseTile from "./CourseTile";
 import { createUseStyles } from "react-jss";
+import SemesterSchedule from "./SemesterSchedule";
+import { cornellCourses } from "./schools";
 
 const styles = {
   PlanPage: {
@@ -18,89 +20,81 @@ const styles = {
     width: "80vw",
     justifyContent: "space-around",
   },
-  dropzone: {
+  requirements: {
+    background: "#bababa",
     margin: "20px",
     padding: "20px",
     borderRadius: "5px",
+    maxHeight: "100vh",
+    userSelect: "none",
   },
 } as const;
 const useStyles = createUseStyles(styles);
 
 const PlanPage = () => {
   const classes = useStyles();
-  const [scheduleCourses, setScheduleCourses] = useState<Course[]>([]);
-  const [reqCourses, setReqCourses] = useState<Course[]>([
-    {
-      name: "Introduction to Computer Science",
-      code: "CSCI-UA 101",
-    },
-    {
-      name: "Data Structures",
-      code: "CSCI-UA 102",
-    },
-    {
-      name: "Computer Systems Organization",
-      code: "CSCI-UA 201",
-    },
+  const [scheduleCourses, setScheduleCourses] = useState<Course[][]>([
+    [],
+    [],
+    [],
+    [],
   ]);
+  const [reqCourses, setReqCourses] = useState<Course[]>(cornellCourses);
   const handleDragEnd = (result: DropResult, provided: ResponderProvided) => {
-    const id = parseInt(result.draggableId);
-    if (
-      result.source.droppableId === "reqs" &&
-      result.destination?.droppableId === "schedule"
-    ) {
-      setReqCourses(reqCourses.filter((course, i) => i !== id));
-      scheduleCourses.splice(result.destination.index, 0, reqCourses[id]);
-      setScheduleCourses(scheduleCourses);
-    } else if (
-      result.source.droppableId === "schedule" &&
-      result.destination?.droppableId === "reqs"
-    ) {
-      setScheduleCourses(scheduleCourses.filter((course, i) => i !== id));
-      reqCourses.splice(result.destination.index, 0, scheduleCourses[id]);
-      setReqCourses(reqCourses);
-    } else if (
-      result.source.droppableId === "schedule" &&
-      result.destination?.droppableId === "schedule"
-    ) {
-      const newScheduleCourses = scheduleCourses.filter(
-        (course, i) => i !== id
-      );
-      newScheduleCourses.splice(
-        result.destination.index,
-        0,
-        scheduleCourses[id]
-      );
-      setScheduleCourses(newScheduleCourses);
-    } else if (
-      result.source.droppableId === "reqs" &&
-      result.destination?.droppableId === "reqs"
-    ) {
-      const newReqsCourses = reqCourses.filter((course, i) => i !== id);
-      newReqsCourses.splice(result.destination.index, 0, reqCourses[id]);
-      setReqCourses(newReqsCourses);
+    if (!result.destination) {
+      return;
     }
-    console.log("SOURCE");
-    console.log(result.source);
-    console.log("DEST");
-    console.log(result.destination);
+    const [srcType, srcId] = result.source.droppableId.split("-");
+    const [destType, destId] = result.destination.droppableId.split("-");
+    if (srcType === "reqs" && destType === "semester") {
+      const [course] = reqCourses.splice(result.source.index, 1);
+      const semester = parseInt(destId);
+      setReqCourses(reqCourses);
+      scheduleCourses[semester].splice(result.destination.index, 0, course);
+      setScheduleCourses(scheduleCourses);
+    } else if (srcType === "semester" && destType === "reqs") {
+      const semester = parseInt(srcId);
+      const [course] = scheduleCourses[semester].splice(result.source.index, 1);
+      setScheduleCourses(scheduleCourses);
+      reqCourses.splice(result.destination.index, 0, course);
+      setReqCourses(reqCourses);
+    } else if (srcType === "semester" && destType === "semester") {
+      const srcSemester = parseInt(srcId);
+      const [course] = scheduleCourses[srcSemester].splice(
+        result.source.index,
+        1
+      );
+      const destSemester = parseInt(destId);
+      scheduleCourses[destSemester].splice(result.destination.index, 0, course);
+      setScheduleCourses(scheduleCourses);
+    } else if (srcType === "reqs" && destType === "reqs") {
+      const [course] = reqCourses.splice(result.source.index, 1);
+      reqCourses.splice(result.destination.index, 0, course);
+      setReqCourses(reqCourses);
+    }
   };
+  const semesters = [];
+  for (let i = 0; i < 4; i++) {
+    semesters.push(
+      <SemesterSchedule key={i} id={i} courses={scheduleCourses[i]} />
+    );
+  }
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
       <div className={classes.PlanPage}>
-        <Droppable droppableId="reqs" type="PERSON">
+        <Droppable droppableId="reqs-0">
           {(provided: DroppableProvided, snapshot: DroppableStateSnapshot) => (
             <div
               ref={provided.innerRef}
-              className={classes.dropzone}
-              style={{
-                transition: "background-color 0.2s",
-                backgroundColor: snapshot.isDraggingOver ? "lightgray" : "grey",
-              }}
+              className={classes.requirements}
               {...provided.droppableProps}
             >
               {reqCourses.map((course, i) => (
-                <Draggable draggableId={String(i)} index={i}>
+                <Draggable
+                  key={course.name}
+                  draggableId={course.name}
+                  index={i}
+                >
                   {(provided, snapshot) => (
                     <div
                       ref={provided.innerRef}
@@ -120,40 +114,7 @@ const PlanPage = () => {
             </div>
           )}
         </Droppable>
-        <Droppable droppableId="schedule" type="PERSON">
-          {(provided, snapshot) => (
-            <div
-              ref={provided.innerRef}
-              className={classes.dropzone}
-              style={{
-                backgroundColor: snapshot.isDraggingOver ? "blue" : "grey",
-              }}
-              {...provided.droppableProps}
-            >
-              <div>
-                <h2> Schedule </h2>
-              </div>
-              {scheduleCourses.map((course, i) => (
-                <Draggable draggableId={String(i)} index={i}>
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                    >
-                      <CourseTile
-                        name={course.name}
-                        color={{ r: 255, g: 0, b: 0 }}
-                        opacity={0.5}
-                      />
-                    </div>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
+        {semesters}
       </div>
     </DragDropContext>
   );

@@ -1,8 +1,44 @@
-import { ReqType, School } from "./types";
+import { Course, ReqType, School } from "./types";
 import cornellLogo from "./cornell.png";
 import nyuLogo from "./nyu.png";
 import cmuLogo from "./cmu.png";
 import northeasternLogo from "./northeastern.png";
+
+export const cornellCourses: Course[] = [
+  {
+    name: "Calculus I",
+    code: "Math 1110",
+  },
+  {
+    name: "Calculus II",
+    code: "Math 1120",
+  },
+  {
+    name: "Theoretical Calculus II",
+    code: "Math 1220",
+  },
+  {
+    name: "Linear Algebra",
+    code: "Math 2210",
+  },
+  {
+    name: "Introduction to Computing Using Python",
+    code: "CS 1110",
+  },
+  {
+    name: "Introduction to Computing Using MATLAB",
+    code: "CS 1112",
+  },
+  {
+    name: "Introduction to Computing Using MATLAB and Robotics",
+    code: "CS 1114",
+  },
+  {
+    name:
+      "Introduction to Computational Science and Engineering Using MATLAB Graphical User Interfaces",
+    code: "CS 1115",
+  },
+];
 
 const cornell: School = {
   name: "Cornell University",
@@ -16,30 +52,15 @@ const cornell: School = {
       requirements: [
         {
           type: ReqType.One,
-          course: {
-            name: "Calculus I",
-            code: "Math 1110",
-          },
+          course: cornellCourses[0],
         },
         {
           type: ReqType.Or,
-          courses: [
-            {
-              name: "Calculus II",
-              code: "Math 1120",
-            },
-            {
-              name: "Theoretical Calculus II",
-              code: "Math 1220",
-            },
-          ],
+          courses: [cornellCourses[1], cornellCourses[2]],
         },
         {
           type: ReqType.One,
-          course: {
-            name: "Linear Algebra",
-            code: "Math 2210",
-          },
+          course: cornellCourses[3],
         },
       ],
     },
@@ -50,23 +71,10 @@ const cornell: School = {
         {
           type: ReqType.Or,
           courses: [
-            {
-              name: "Introduction to Computing Using Python",
-              code: "CS 1110",
-            },
-            {
-              name: "Introduction to Computing Using MATLAB",
-              code: "CS 1112",
-            },
-            {
-              name: "Introduction to Computing Using MATLAB and Robotics",
-              code: "CS 1114",
-            },
-            {
-              name:
-                "Introduction to Computational Science and Engineering Using MATLAB Graphical User Interfaces",
-              code: "CS 1115",
-            },
+            cornellCourses[4],
+            cornellCourses[5],
+            cornellCourses[6],
+            cornellCourses[7],
           ],
         },
         {

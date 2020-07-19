@@ -11,6 +11,7 @@ interface Props {
 
 const styles = {
   SchoolPage: {
+    minWidth: "250px",
     maxWidth: (props: Props) => props.width || "80vw",
   },
 } as const;

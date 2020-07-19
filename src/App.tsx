@@ -9,9 +9,8 @@ import PlanPage from "./PlanPage";
 const styles = {
   App: {
     width: "100vw",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    display: "grid",
+    placeItems: "center",
   },
   schoolName: {
     fontSize: "3em",
@@ -40,7 +39,7 @@ function App() {
           <p>Explore different schools' Computer Science requirements</p>
           {Object.entries(schools).map(([slug, school]) => {
             return (
-              <Link to={`/schools/${slug}`}>
+              <Link key={slug} to={`/schools/${slug}`}>
                 <div className={classes.schoolName}> {school.shortName}</div>
               </Link>
             );
@@ -55,7 +54,7 @@ function App() {
         <div>
           {Object.entries(schools).map(([slug, school]) => {
             return (
-              <Route path={`/schools/${slug}`}>
+              <Route key={slug} path={`/schools/${slug}`}>
                 <SchoolPage school={school} />
               </Route>
             );
