@@ -12,7 +12,7 @@ import {
 import { Course, School } from "./types";
 import CourseTile from "./CourseTile";
 import { createUseStyles } from "react-jss";
-import SemesterSchedule from "./SemesterSchedule";
+import TermSchedule from "./TermSchedule";
 import { Link } from "react-router-dom";
 
 const styles = {
@@ -33,19 +33,19 @@ const styles = {
     flexDirection: "column",
     width: "60vw",
   },
-  semesters: {
+  terms: {
     display: "flex",
     flexDirection: "column",
     overflowY: "scroll",
     height: "calc(80vh - 100px)",
   },
-  semesterSchedule: {
+  termSchedule: {
     display: "flex",
     alignItems: "center",
     fontSize: "1.1em",
     padding: "20px",
   },
-  semesterIndex: {
+  termIndex: {
     padding: {
       left: "10px",
       right: "20px",
@@ -65,7 +65,7 @@ const styles = {
     margin: "10px",
     boxSizing: "border-box",
   },
-  addSemesterButton: {
+  addTermButton: {
     border: "none",
     fontSize: "1.1em",
     color: "#555",
@@ -93,7 +93,7 @@ interface Props {
 const PlanPage: React.FC<Props> = ({ slug, school }) => {
   const classes = useStyles();
   const [nonCSCount, setNonCSCount] = useState(1);
-  const [semesterCount, setSemesterCount] = useState(8);
+  const [termCount, setTermCount] = useState(8);
   const [scheduleCourses, setScheduleCourses] = useState<Course[][]>([
     [],
     [],
@@ -116,23 +116,23 @@ const PlanPage: React.FC<Props> = ({ slug, school }) => {
       const course: Course = {
         name: `Non CS ${nonCSCount}`,
       };
-      const semester = parseInt(destId);
+      const term = parseInt(destId);
       setNonCSCount(nonCSCount + 1);
-      scheduleCourses[semester].splice(result.destination.index, 0, course);
+      scheduleCourses[term].splice(result.destination.index, 0, course);
       setScheduleCourses(scheduleCourses);
-    } else if (srcType === "reqs" && destType === "semester") {
+    } else if (srcType === "reqs" && destType === "term") {
       const [course] = reqCourses.splice(result.source.index, 1);
-      const semester = parseInt(destId);
+      const term = parseInt(destId);
       setReqCourses(reqCourses);
-      scheduleCourses[semester].splice(result.destination.index, 0, course);
+      scheduleCourses[term].splice(result.destination.index, 0, course);
       setScheduleCourses(scheduleCourses);
-    } else if (srcType === "semester" && destType === "reqs") {
-      const semester = parseInt(srcId);
-      const [course] = scheduleCourses[semester].splice(result.source.index, 1);
+    } else if (srcType === "term" && destType === "reqs") {
+      const term = parseInt(srcId);
+      const [course] = scheduleCourses[term].splice(result.source.index, 1);
       setScheduleCourses(scheduleCourses);
       reqCourses.splice(result.destination.index, 0, course);
       setReqCourses(reqCourses);
-    } else if (srcType === "semester" && destType === "semester") {
+    } else if (srcType === "term" && destType === "term") {
       const srcSemester = parseInt(srcId);
       const [course] = scheduleCourses[srcSemester].splice(
         result.source.index,
@@ -147,16 +147,16 @@ const PlanPage: React.FC<Props> = ({ slug, school }) => {
       setReqCourses(reqCourses);
     }
   };
-  const semesters = [];
-  for (let i = 0; i < semesterCount; i++) {
-    semesters.push(
-      <div className={classes.semesterSchedule}>
-        <span className={classes.semesterIndex}> {i + 1}</span>
-        <SemesterSchedule
+  const terms = [];
+  for (let i = 0; i < termCount; i++) {
+    terms.push(
+      <div className={classes.termSchedule}>
+        <span className={classes.termIndex}> {i + 1}</span>
+        <TermSchedule
           deleteSchedule={() => {
             scheduleCourses.splice(i, 1);
             setScheduleCourses(scheduleCourses);
-            setSemesterCount(semesterCount - 1);
+            setTermCount(termCount - 1);
           }}
           schoolColor={school.color}
           key={i}
@@ -267,14 +267,14 @@ const PlanPage: React.FC<Props> = ({ slug, school }) => {
         <div className={classes.plan}>
           <button
             onClick={() => {
-              setSemesterCount(semesterCount + 1);
+              setTermCount(termCount + 1);
               setScheduleCourses((prevState) => [[], ...prevState]);
             }}
-            className={classes.addSemesterButton}
+            className={classes.addTermButton}
           >
-            <AddCircleOutlineIcon /> Add Semester{" "}
+            <AddCircleOutlineIcon /> Add Term{" "}
           </button>
-          <div className={classes.semesters}>{semesters}</div>
+          <div className={classes.terms}>{terms}</div>
         </div>
       </div>
     </DragDropContext>

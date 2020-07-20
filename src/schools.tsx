@@ -817,6 +817,44 @@ const neuCourses: Course[] = [
     name: "Information Presentation and Visualization",
     code: "DS 4200",
   },
+  { name: "Logic and Computation", code: "CS 2800" },
+  {
+    name: "Networks and Distributed Systems",
+    code: "CS 3700",
+  },
+  {
+    name: "Programming Languages",
+    code: "CS 4400",
+  },
+  { name: "Programming in C++", code: "CS 3520" },
+  { name: "Building Extensible Systems", code: "CS 3620" },
+  {
+    name: "Large-Scale Parallel Data Processing",
+    code: "CS 4240",
+  },
+  { name: "Compilers", code: "CS 4410" },
+  { name: "Web Development", code: "CS 4550" },
+  { name: "Mobile Application Development", code: "CS 4520" },
+  { name: "Computer-Aided Reasoning", code: "CS 4820" },
+  {
+    name: "Networks and Distributed Systems",
+    code: "CS 3700",
+  },
+  {
+    name: "Systems Security",
+    code: "CS 3740",
+  },
+  { name: "Network Security", code: "CS 4740" },
+  { name: "Programming in C++", code: "CS 3520" },
+  { name: "Computer Graphics", code: "CS 4300" },
+  {
+    name: "Systems Security",
+    code: "CY 3740",
+  },
+  { name: "Robotic Science and Systems", code: "CS 4610" },
+  { name: "Mobile and Wireless Systems", code: "CS 4710" },
+  { name: "High Performance Computing", code: "CS 4650" },
+  { name: "Network Security", code: "CY 4740" },
 ];
 
 const northeastern: School = {
@@ -1017,36 +1055,27 @@ const northeastern: School = {
           requirements: [
             {
               type: ReqType.One,
-              course: { name: "Logic and Computation", code: "CS 2800" },
+              course: neuCourses[43],
             },
             {
               type: ReqType.One,
-              course: {
-                name: "Networks and Distributed Systems",
-                code: "CS 3700",
-              },
+              course: neuCourses[44],
             },
             {
               type: ReqType.One,
-              course: {
-                name: "Programming Languages",
-                code: "CS 4400",
-              },
+              course: neuCourses[45],
             },
             {
               type: ReqType.Group,
               label: "One of:",
               courses: [
-                { name: "Programming in C++", code: "CS 3520" },
-                { name: "Building Extensible Systems", code: "CS 3620" },
-                {
-                  name: "Large-Scale Parallel Data Processing",
-                  code: "CS 4240",
-                },
-                { name: "Compilers", code: "CS 4410" },
-                { name: "Web Development", code: "CS 4550" },
-                { name: "Mobile Application Development", code: "CS 4520" },
-                { name: "Computer-Aided Reasoning", code: "CS 4820" },
+                neuCourses[46],
+                neuCourses[47],
+                neuCourses[48],
+                neuCourses[49],
+                neuCourses[50],
+                neuCourses[51],
+                neuCourses[52],
               ],
             },
           ],
@@ -1057,35 +1086,23 @@ const northeastern: School = {
           requirements: [
             {
               type: ReqType.One,
-              course: {
-                name: "Networks and Distributed Systems",
-                code: "CS 3700",
-              },
+              course: neuCourses[53],
             },
             {
               type: ReqType.Or,
-              courses: [
-                {
-                  name: "Systems Security",
-                  code: "CS 3740",
-                },
-                { name: "Network Security", code: "CS 4740" },
-              ],
+              courses: [neuCourses[54], neuCourses[55]],
             },
             {
               type: ReqType.Group,
               label: "Two of:",
               courses: [
-                { name: "Programming in C++", code: "CS 3520" },
-                { name: "Computer Graphics", code: "CS 4300" },
-                {
-                  name: "Systems Security",
-                  code: "CY 3740",
-                },
-                { name: "Robotic Science and Systems", code: "CS 4610" },
-                { name: "Mobile and Wireless Systems", code: "CS 4710" },
-                { name: "High Performance Computing", code: "CS 4650" },
-                { name: "Network Security", code: "CY 4740" },
+                neuCourses[56],
+                neuCourses[57],
+                neuCourses[58],
+                neuCourses[59],
+                neuCourses[60],
+                neuCourses[61],
+                neuCourses[62],
               ],
             },
           ],

@@ -17,7 +17,7 @@ const styles = {
   container: {
     position: "relative",
   },
-  SemesterSchedule: {
+  TermSchedule: {
     background: "#cacaca",
     margin: "5px",
     padding: "20px",
@@ -51,7 +51,7 @@ const styles = {
 } as const;
 const useStyles = createUseStyles(styles);
 
-const SemesterSchedule: React.FC<Props> = ({
+const TermSchedule: React.FC<Props> = ({
   id,
   courses,
   schoolColor,
@@ -68,11 +68,11 @@ const SemesterSchedule: React.FC<Props> = ({
       >
         <ClearIcon />
       </button>
-      <Droppable droppableId={`semester-${id}`} direction="horizontal">
+      <Droppable droppableId={`term-${id}`} direction="horizontal">
         {(provided, snapshot) => (
           <div
             ref={provided.innerRef}
-            className={classes.SemesterSchedule}
+            className={classes.TermSchedule}
             onMouseEnter={() => {
               delay(200).then(() => {
                 setShouldDisplayDelete(true);
@@ -124,4 +124,4 @@ const SemesterSchedule: React.FC<Props> = ({
   );
 };
 
-export default SemesterSchedule;
+export default TermSchedule;
