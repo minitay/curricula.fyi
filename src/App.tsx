@@ -5,6 +5,7 @@ import schools from "./schools";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import ComparePage from "./ComparePage";
 import PlanPage from "./PlanPage";
+import ReqsPage from "./ReqsPage";
 
 const styles = {
   App: {
@@ -59,10 +60,13 @@ function App() {
             return (
               <React.Fragment>
                 <Route key={slug} path={`/schools/${slug}`}>
-                  <SchoolPage school={school} />
+                  <SchoolPage slug={slug} school={school} />
                 </Route>
                 <Route path={`/plan/${slug}`}>
-                  <PlanPage school={school} />
+                  <PlanPage slug={slug} school={school} />
+                </Route>
+                <Route path={`/reqs/${slug}`}>
+                  <ReqsPage slug={slug} school={school} />
                 </Route>
               </React.Fragment>
             );

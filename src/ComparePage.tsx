@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useQuery } from "./utils";
 import schools from "./schools";
 import { useHistory } from "react-router-dom";
-import SchoolPage from "./SchoolPage";
 import { createUseStyles } from "react-jss";
+import ReqsPage from "./ReqsPage";
 
 const styles = {
   schools: {
@@ -54,7 +54,7 @@ const ComparePage = () => {
       <div className={classes.schools}>
         {selectedSchools.map((school) => (
           <div className={classes.school}>
-            <SchoolPage width="40vw" school={schools[school]} />
+            <ReqsPage width="40vw" slug={school} school={schools[school]} />
           </div>
         ))}
       </div>

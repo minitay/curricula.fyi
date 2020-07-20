@@ -27,6 +27,7 @@ const styles = {
     display: "flex",
     minHeight: "120px",
     position: "relative",
+    alignItems: "center",
   },
   deleteButton: {
     position: "absolute",
@@ -41,6 +42,11 @@ const styles = {
   },
   course: {
     userSelect: "none",
+  },
+  placeholder: {
+    fontSize: "1.1em",
+    color: "#888",
+    paddingLeft: "20px",
   },
 } as const;
 const useStyles = createUseStyles(styles);
@@ -79,6 +85,9 @@ const SemesterSchedule: React.FC<Props> = ({
             }}
             {...provided.droppableProps}
           >
+            {courses.length === 0 && (
+              <div className={classes.placeholder}> Drop a course here </div>
+            )}
             {courses.map((course, i) => {
               const color = course.name.includes("Non CS")
                 ? { r: 120, g: 120, b: 120 }

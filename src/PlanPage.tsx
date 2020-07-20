@@ -13,6 +13,7 @@ import { Course, School } from "./types";
 import CourseTile from "./CourseTile";
 import { createUseStyles } from "react-jss";
 import SemesterSchedule from "./SemesterSchedule";
+import { Link } from "react-router-dom";
 
 const styles = {
   PlanPage: {
@@ -78,10 +79,11 @@ const styles = {
 const useStyles = createUseStyles(styles);
 
 interface Props {
+  slug: string;
   school: School;
 }
 
-const PlanPage: React.FC<Props> = ({ school }) => {
+const PlanPage: React.FC<Props> = ({ slug, school }) => {
   const classes = useStyles();
   const [nonCSCount, setNonCSCount] = useState(1);
   const [semesterCount, setSemesterCount] = useState(8);
@@ -159,6 +161,7 @@ const PlanPage: React.FC<Props> = ({ school }) => {
   }
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
+      <Link to={`/schools/${slug}`}> Back to school page </Link>
       <div className={classes.PlanPage}>
         <div className={classes.requirements}>
           <div className={classes.addCourseButton}>
