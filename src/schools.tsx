@@ -251,14 +251,80 @@ const cornell: School = {
   ],
 };
 
-const nyuCourses: Course[] = [];
+const nyuCourses: Course[] = [
+  {
+    name: "Calculus I",
+    code: "MATH-UA 121",
+  },
+  {
+    name: "Discrete Mathematics",
+    code: "MATH-UA 120",
+  },
+  {
+    name: "Introduction to Computer Science",
+    code: "CSCI-UA 101",
+  },
+  {
+    name: "Data Structures",
+    code: "CSCI-UA 102",
+  },
+  {
+    name: "Computer Systems Organization",
+    code: "CSCI-UA 201",
+  },
+  {
+    name: "Operating Systems",
+    code: "CSCI-UA 202",
+  },
+  { name: "Basic Algorithms", code: "CSCI-UA 310" },
+  {
+    name: "Artificial Intelligence",
+    code: "CSCI-UA 472",
+  },
+  {
+    name: "Intro To Machine Learning",
+    code: "CSCI-UA 473",
+  },
+  {
+    name: "Processing Big Data for Analytics Applications",
+    code: "CSCI-UA 476",
+  },
+  {
+    name: "Special Topics: Applied Internet Technology",
+    code: "CSCI-UA 480",
+  },
+  {
+    name: "Special Topics: Computer Graphics",
+    code: "CSCI-UA 480",
+  },
+  {
+    name: "Special Topics: Intro to Social Networking",
+    code: "CSCI-UA 480",
+  },
+  {
+    name: "Special Topics: Parallel Computing",
+    code: "CSCI-UA 480",
+  },
+  {
+    name: "Special Topics: iOS Programming",
+    code: "CSCI-UA 480",
+  },
+  {
+    name: "Special Topics: Computer Networks",
+    code: "CSCI-UA 480",
+  },
+  {
+    name: "Special Topics: Natural Language Processing",
+    code: "CSCI-UA 480",
+  },
+];
 
 const nyuCAS: School = {
   name: "New York University: College of Arts & Sciences",
   shortName: "NYU CAS",
   logo: nyuLogo,
   color: { r: 87, g: 6, b: 140 },
-  courses: [],
+  courses: nyuCourses,
   requirements: [
     {
       type: ReqType.Sequence,
@@ -266,17 +332,11 @@ const nyuCAS: School = {
       requirements: [
         {
           type: ReqType.One,
-          course: {
-            name: "Calculus I",
-            code: "MATH-UA 121",
-          },
+          course: nyuCourses[0],
         },
         {
           type: ReqType.One,
-          course: {
-            name: "Discrete Mathematics",
-            code: "MATH-UA 120",
-          },
+          course: nyuCourses[1],
         },
       ],
     },
@@ -286,38 +346,23 @@ const nyuCAS: School = {
       requirements: [
         {
           type: ReqType.One,
-          course: {
-            name: "Introduction to Computer Science",
-            code: "CSCI-UA 101",
-          },
+          course: nyuCourses[2],
         },
         {
           type: ReqType.One,
-          course: {
-            name: "Data Structures",
-            code: "CSCI-UA 102",
-          },
+          course: nyuCourses[3],
         },
         {
           type: ReqType.One,
-          course: {
-            name: "Computer Systems Organization",
-            code: "CSCI-UA 201",
-          },
+          course: nyuCourses[4],
         },
         {
           type: ReqType.One,
-          course: {
-            name: "Operating Systems",
-            code: "CSCI-UA 202",
-          },
+          course: nyuCourses[5],
         },
         {
           type: ReqType.One,
-          course: {
-            name: "Basic Algorithms",
-            code: "CSCI-UA 310",
-          },
+          course: nyuCourses[6],
         },
       ],
     },
@@ -325,46 +370,16 @@ const nyuCAS: School = {
       type: ReqType.Group,
       label: "Five of:",
       courses: [
-        {
-          name: "Artificial Intelligence",
-          code: "CSCI-UA 472",
-        },
-        {
-          name: "Intro To Machine Learning",
-          code: "CSCI-UA 473",
-        },
-        {
-          name: "Processing Big Data for Analytics Applications",
-          code: "CSCI-UA 476",
-        },
-        {
-          name: "Special Topics: Applied Internet Technology",
-          code: "CSCI-UA 480",
-        },
-        {
-          name: "Special Topics: Computer Graphics",
-          code: "CSCI-UA 480",
-        },
-        {
-          name: "Special Topics: Intro to Social Networking",
-          code: "CSCI-UA 480",
-        },
-        {
-          name: "Special Topics: Parallel Computing",
-          code: "CSCI-UA 480",
-        },
-        {
-          name: "Special Topics: iOS Programming",
-          code: "CSCI-UA 480",
-        },
-        {
-          name: "Special Topics: Computer Networks",
-          code: "CSCI-UA 480",
-        },
-        {
-          name: "Special Topics: Natural Language Processing",
-          code: "CSCI-UA 480",
-        },
+        nyuCourses[7],
+        nyuCourses[8],
+        nyuCourses[9],
+        nyuCourses[10],
+        nyuCourses[11],
+        nyuCourses[12],
+        nyuCourses[13],
+        nyuCourses[14],
+        nyuCourses[15],
+        nyuCourses[16],
       ],
     },
   ],

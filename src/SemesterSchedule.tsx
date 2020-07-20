@@ -33,7 +33,7 @@ const styles = {
     borderRadius: "50%",
     width: "40px",
     height: "40px",
-    left: "0px",
+    right: "0px",
     top: "0px",
     zIndex: "10",
     backgroundColor: "white",
@@ -98,6 +98,7 @@ const SemesterSchedule: React.FC<Props> = ({
                     >
                       <CourseTile
                         name={course.name}
+                        code={course.code}
                         color={color}
                         opacity={0.5}
                       />

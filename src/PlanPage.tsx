@@ -28,10 +28,22 @@ const styles = {
     userSelect: "none",
     overflowY: "scroll",
   },
-  semesters: {
+  plan: {
     display: "flex",
     flexDirection: "column",
     width: "60vw",
+  },
+  semesters: {
+    display: "flex",
+    flexDirection: "column",
+    overflowY: "scroll",
+    height: "calc(80vh - 100px)",
+  },
+  semesterSchedule: {
+    display: "flex",
+    alignItems: "center",
+    fontSize: "1.1em",
+    padding: "20px",
   },
   addCourseButton: {
     color: "#888888",
@@ -69,14 +81,20 @@ const useStyles = createUseStyles(styles);
 const PlanPage = () => {
   const classes = useStyles();
   const [nonCSCount, setNonCSCount] = useState(1);
-  const [semesterCount, setSemesterCount] = useState(4);
+  const [semesterCount, setSemesterCount] = useState(8);
   const [scheduleCourses, setScheduleCourses] = useState<Course[][]>([
     [],
     [],
     [],
     [],
+    [],
+    [],
+    [],
+    [],
   ]);
-  const [reqCourses, setReqCourses] = useState<Course[]>(cornellCourses);
+  const [reqCourses, setReqCourses] = useState<Course[]>(
+    schools.nyuCAS.courses
+  );
   const handleDragEnd = (result: DropResult, provided: ResponderProvided) => {
     if (!result.destination) {
       return;
@@ -122,17 +140,20 @@ const PlanPage = () => {
   const semesters = [];
   for (let i = 0; i < semesterCount; i++) {
     semesters.push(
-      <SemesterSchedule
-        deleteSchedule={() => {
-          scheduleCourses.splice(i, 1);
-          setScheduleCourses(scheduleCourses);
-          setSemesterCount(semesterCount - 1);
-        }}
-        schoolColor={schools.cornell.color}
-        key={i}
-        id={i}
-        courses={scheduleCourses[i]}
-      />
+      <div className={classes.semesterSchedule}>
+        {i + 1}
+        <SemesterSchedule
+          deleteSchedule={() => {
+            scheduleCourses.splice(i, 1);
+            setScheduleCourses(scheduleCourses);
+            setSemesterCount(semesterCount - 1);
+          }}
+          schoolColor={schools.nyuCAS.color}
+          key={i}
+          id={i}
+          courses={scheduleCourses[i]}
+        />
+      </div>
     );
   }
   return (
@@ -219,7 +240,8 @@ const PlanPage = () => {
                       >
                         <CourseTile
                           name={course.name}
-                          color={schools.cornell.color}
+                          code={course.code}
+                          color={schools.nyuCAS.color}
                           opacity={0.5}
                         />
                       </div>
@@ -231,7 +253,7 @@ const PlanPage = () => {
             )}
           </Droppable>
         </div>
-        <div className={classes.semesters}>
+        <div className={classes.plan}>
           <button
             onClick={() => {
               setSemesterCount(semesterCount + 1);
@@ -241,7 +263,7 @@ const PlanPage = () => {
           >
             <AddCircleOutlineIcon /> Add Semester{" "}
           </button>
-          {semesters}
+          <div className={classes.semesters}>{semesters}</div>
         </div>
       </div>
     </DragDropContext>
