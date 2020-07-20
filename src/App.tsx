@@ -54,15 +54,17 @@ function App() {
         <Route path="/compare">
           <ComparePage />
         </Route>
-        <Route path="/plan">
-          <PlanPage />
-        </Route>
         <div>
           {Object.entries(schools).map(([slug, school]) => {
             return (
-              <Route key={slug} path={`/schools/${slug}`}>
-                <SchoolPage school={school} />
-              </Route>
+              <React.Fragment>
+                <Route key={slug} path={`/schools/${slug}`}>
+                  <SchoolPage school={school} />
+                </Route>
+                <Route path={`/plan/${slug}`}>
+                  <PlanPage school={school} />
+                </Route>
+              </React.Fragment>
             );
           })}
         </div>

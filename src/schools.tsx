@@ -385,6 +385,108 @@ const nyuCAS: School = {
   ],
 };
 
+const cmuCourses: Course[] = [
+  {
+    name: "Mathematical Foundations for Computer Science",
+    code: "15-151",
+  },
+  { name: "Concepts of Mathematics", code: "21-127" },
+  { name: "Mathematical Concepts and Proofs", code: "21-128" },
+  {
+    name: "Integration and Approximation",
+    code: "21-122",
+  },
+  {
+    name: "Matrices and Linear Transformations",
+    code: "21-241",
+  },
+  {
+    name: "Matrix Theory",
+    code: "21-242",
+  },
+  {
+    name: "Calculus in Three Dimensions",
+    code: "21-259",
+  },
+  {
+    name: "Probability and Computing",
+    code: "15-259",
+  },
+  {
+    name: "Probability",
+    code: "21-325",
+  },
+  {
+    name: "Probability Theory for Computer Scientists",
+    code: "36-218",
+  },
+  {
+    name:
+      "Introduction to Probability Theory—Introduction to Statistical Inference",
+    code: "36-225—36-226",
+  },
+  {
+    name: "First Year Immigration Course",
+    code: "07-128",
+  },
+  {
+    name: "Principles of Imperative Computation",
+    code: "15-122",
+  },
+  {
+    name: "Principles of Functional Programming",
+    code: "15-150",
+  },
+  {
+    name: "Parallel and Sequential Data Structures and Algorithms",
+    code: "15-210",
+  },
+  {
+    name: "Introduction to Computer Systems",
+    code: "15-213",
+  },
+  {
+    name: "Great Ideas in Theoretical Computer Science",
+    code: "15-251",
+  },
+  {
+    name: "Algorithm Design and Analysis",
+    code: "15-451",
+  },
+  {
+    name: "Foundations of Programming Languages",
+    code: "15-312",
+  },
+  {
+    name: "Programming Language Semantics",
+    code: "15-314",
+  },
+  {
+    name: "Software Foundations of Security and Privacy",
+    code: "15-316",
+  },
+  {
+    name: "Constructive Logic",
+    code: "15-317",
+  },
+  {
+    name: "Bug Catching: Automated Program Verification",
+    code: "15-414",
+  },
+  {
+    name: "Logical Foundations of Cyber-Physical Systems",
+    code: "15-424",
+  },
+  {
+    name: "Program Analysis",
+    code: "17-355",
+  },
+  {
+    name: "Category Theory",
+    code: "80-413",
+  },
+];
+
 const cmu: School = {
   name: "Carnegie Mellon University",
   shortName: "CMU",
@@ -398,62 +500,27 @@ const cmu: School = {
       requirements: [
         {
           type: ReqType.Or,
-          courses: [
-            {
-              name: "Mathematical Foundations for Computer Science",
-              code: "15-151",
-            },
-            { name: "Concepts of Mathematics", code: "21-127" },
-            { name: "Mathematical Concepts and Proofs", code: "21-128" },
-          ],
+          courses: [cmuCourses[0], cmuCourses[1], cmuCourses[2]],
         },
         {
           type: ReqType.One,
-          course: {
-            name: "Integration and Approximation",
-            code: "21-122",
-          },
+          course: cmuCourses[3],
+        },
+        {
+          type: ReqType.Or,
+          courses: [cmuCourses[4], cmuCourses[5]],
+        },
+        {
+          type: ReqType.One,
+          course: cmuCourses[6],
         },
         {
           type: ReqType.Or,
           courses: [
-            {
-              name: "Matrices and Linear Transformations",
-              code: "21-241",
-            },
-            {
-              name: "Matrix Theory",
-              code: "21-242",
-            },
-          ],
-        },
-        {
-          type: ReqType.One,
-          course: {
-            name: "Calculus in Three Dimensions",
-            code: "21-259",
-          },
-        },
-        {
-          type: ReqType.Or,
-          courses: [
-            {
-              name: "Probability and Computing",
-              code: "15-259",
-            },
-            {
-              name: "Probability",
-              code: "21-325",
-            },
-            {
-              name: "Probability Theory for Computer Scientists",
-              code: "36-218",
-            },
-            {
-              name:
-                "Introduction to Probability Theory—Introduction to Statistical Inference",
-              code: "36-225—36-226",
-            },
+            cmuCourses[7],
+            cmuCourses[8],
+            cmuCourses[9],
+            cmuCourses[10],
           ],
         },
       ],
@@ -464,52 +531,31 @@ const cmu: School = {
       requirements: [
         {
           type: ReqType.One,
-          course: {
-            name: "First Year Immigration Course",
-            code: "07-128",
-          },
+          course: cmuCourses[11],
         },
         {
           type: ReqType.One,
-          course: {
-            name: "Principles of Imperative Computation",
-            code: "15-122",
-          },
+          course: cmuCourses[12],
         },
         {
           type: ReqType.One,
-          course: {
-            name: "Principles of Functional Programming",
-            code: "15-150",
-          },
+          course: cmuCourses[13],
         },
         {
           type: ReqType.One,
-          course: {
-            name: "Parallel and Sequential Data Structures and Algorithms",
-            code: "15-210",
-          },
+          course: cmuCourses[14],
         },
         {
           type: ReqType.One,
-          course: {
-            name: "Introduction to Computer Systems",
-            code: "15-213",
-          },
+          course: cmuCourses[15],
         },
         {
           type: ReqType.One,
-          course: {
-            name: "Great Ideas in Theoretical Computer Science",
-            code: "15-251",
-          },
+          course: cmuCourses[16],
         },
         {
           type: ReqType.One,
-          course: {
-            name: "Algorithm Design and Analysis",
-            code: "15-451",
-          },
+          course: cmuCourses[17],
         },
       ],
     },
@@ -520,38 +566,14 @@ const cmu: School = {
         {
           type: ReqType.Group,
           courses: [
-            {
-              name: "Foundations of Programming Languages",
-              code: "15-312",
-            },
-            {
-              name: "Programming Language Semantics",
-              code: "15-314",
-            },
-            {
-              name: "Software Foundations of Security and Privacy",
-              code: "15-316",
-            },
-            {
-              name: "Constructive Logic",
-              code: "15-317",
-            },
-            {
-              name: "Bug Catching: Automated Program Verification",
-              code: "15-414",
-            },
-            {
-              name: "Logical Foundations of Cyber-Physical Systems",
-              code: "15-424",
-            },
-            {
-              name: "Program Analysis",
-              code: "17-355",
-            },
-            {
-              name: "Category Theory",
-              code: "80-413",
-            },
+            cmuCourses[18],
+            cmuCourses[19],
+            cmuCourses[20],
+            cmuCourses[21],
+            cmuCourses[22],
+            cmuCourses[23],
+            cmuCourses[24],
+            cmuCourses[25],
           ],
         },
       ],

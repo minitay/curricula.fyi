@@ -9,11 +9,10 @@ import {
   DropResult,
   ResponderProvided,
 } from "react-beautiful-dnd";
-import { Course } from "./types";
+import { Course, School } from "./types";
 import CourseTile from "./CourseTile";
 import { createUseStyles } from "react-jss";
 import SemesterSchedule from "./SemesterSchedule";
-import schools, { cornellCourses } from "./schools";
 
 const styles = {
   PlanPage: {
@@ -78,7 +77,11 @@ const styles = {
 } as const;
 const useStyles = createUseStyles(styles);
 
-const PlanPage = () => {
+interface Props {
+  school: School;
+}
+
+const PlanPage: React.FC<Props> = ({ school }) => {
   const classes = useStyles();
   const [nonCSCount, setNonCSCount] = useState(1);
   const [semesterCount, setSemesterCount] = useState(8);
@@ -92,9 +95,7 @@ const PlanPage = () => {
     [],
     [],
   ]);
-  const [reqCourses, setReqCourses] = useState<Course[]>(
-    schools.nyuCAS.courses
-  );
+  const [reqCourses, setReqCourses] = useState<Course[]>(school.courses);
   const handleDragEnd = (result: DropResult, provided: ResponderProvided) => {
     if (!result.destination) {
       return;
@@ -148,7 +149,7 @@ const PlanPage = () => {
             setScheduleCourses(scheduleCourses);
             setSemesterCount(semesterCount - 1);
           }}
-          schoolColor={schools.nyuCAS.color}
+          schoolColor={school.color}
           key={i}
           id={i}
           courses={scheduleCourses[i]}
@@ -241,7 +242,7 @@ const PlanPage = () => {
                         <CourseTile
                           name={course.name}
                           code={course.code}
-                          color={schools.nyuCAS.color}
+                          color={school.color}
                           opacity={0.5}
                         />
                       </div>
