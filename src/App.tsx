@@ -12,6 +12,10 @@ const styles = {
     display: "grid",
     placeItems: "center",
   },
+  header: {
+    color: "black",
+    textDecoration: "none",
+  },
   schoolName: {
     fontSize: "3em",
     color: "black",
@@ -34,7 +38,9 @@ function App() {
   return (
     <Router>
       <div className={classes.App}>
-        <h1> Curricula.fyi </h1>
+        <Link to="/">
+          <h1 className={classes.header}> Curricula.fyi </h1>
+        </Link>
         <Route exact path="/">
           <p>Explore different schools' Computer Science requirements</p>
           {Object.entries(schools).map(([slug, school]) => {

@@ -58,6 +58,94 @@ export const cornellCourses: Course[] = [
     name: "Data Structures and Functional Programming",
     code: "CS 3110",
   },
+  {
+    name: "Computer Systems Organization and Programming",
+    code: "CS 3410",
+  },
+  {
+    name: "Embedded Systems",
+    code: "CS 3420",
+  },
+  {
+    name: "Operating Systems",
+    code: "CS 4410",
+  },
+  {
+    name: "Introduction to Analysis of Algorithms",
+    code: "CS 4820",
+  },
+  {
+    name: "Programming Languages and Logics",
+    code: "CS 4110",
+  },
+  {
+    name: "Numerical Analysis and Differential Equations",
+    code: "CS 4210",
+  },
+  {
+    name: "Introduction to Database Systems",
+    code: "CS 4320",
+  },
+  {
+    name: "Systems Programming",
+    code: "CS 4414",
+  },
+  {
+    name: "Computer Architecture",
+    code: "CS 4420",
+  },
+  {
+    name: "Introduction to Computer Graphics",
+    code: "CS 4620",
+  },
+  {
+    name: "Foundations of Artificial Intelligence",
+    code: "CS 4700",
+  },
+  {
+    name: "Computational Genetics and Genomics",
+    code: "CS 4775",
+  },
+  {
+    name: "Introduction to Machine Learning",
+    code: "CS 4780",
+  },
+  {
+    name: "Quantum Information Processing",
+    code: "CS 4812",
+  },
+  {
+    name: "Applied Logic",
+    code: "CS 4860",
+  },
+  {
+    name: "Practicum in Database Systems",
+    code: "CS 4321",
+  },
+  {
+    name: "Practicum in Operating Systems",
+    code: "CS 4411",
+  },
+  {
+    name: "Computer Graphics Practicum",
+    code: "CS 4621",
+  },
+  {
+    name: "Practicum in Artificial Intelligence",
+    code: "CS 4701",
+  },
+  {
+    name: "Natural Language Processing",
+    code: "CS 4740",
+  },
+  {
+    name: "Software Engineering",
+    code: "CS 5150",
+  },
+  {
+    name: "Distributed Computing Principles",
+    code: "CS 5414",
+  },
 ];
 
 const cornell: School = {
@@ -65,6 +153,7 @@ const cornell: School = {
   shortName: "Cornell",
   color: { r: 255, g: 3, b: 3 },
   logo: cornellLogo,
+  courses: cornellCourses,
   requirements: [
     {
       type: ReqType.Sequence,
@@ -117,80 +206,32 @@ const cornell: School = {
         },
         {
           type: ReqType.Or,
-          courses: [
-            {
-              name: "Computer Systems Organization and Programming",
-              code: "CS 3410",
-            },
-            {
-              name: "Embedded Systems",
-              code: "CS 3420",
-            },
-          ],
+          courses: [cornellCourses[13], cornellCourses[14]],
         },
         {
           type: ReqType.One,
-          course: {
-            name: "Operating Systems",
-            code: "CS 4410",
-          },
+          course: cornellCourses[15],
         },
         {
           type: ReqType.One,
-          course: {
-            name: "Introduction to Analysis of Algorithms",
-            code: "CS 4820",
-          },
+          course: cornellCourses[16],
         },
       ],
     },
     {
       type: ReqType.Group,
       courses: [
-        {
-          name: "Programming Languages and Logics",
-          code: "CS 4110",
-        },
-        {
-          name: "Numerical Analysis and Differential Equations",
-          code: "CS 4210",
-        },
-        {
-          name: "Introduction to Database Systems",
-          code: "CS 4320",
-        },
-        {
-          name: "Systems Programming",
-          code: "CS 4414",
-        },
-        {
-          name: "Computer Architecture",
-          code: "CS 4420",
-        },
-        {
-          name: "Introduction to Computer Graphics",
-          code: "CS 4620",
-        },
-        {
-          name: "Foundations of Artificial Intelligence",
-          code: "CS 4700",
-        },
-        {
-          name: "Computational Genetics and Genomics",
-          code: "CS 4775",
-        },
-        {
-          name: "Introduction to Machine Learning",
-          code: "CS 4780",
-        },
-        {
-          name: "Quantum Information Processing",
-          code: "CS 4812",
-        },
-        {
-          name: "Applied Logic",
-          code: "CS 4860",
-        },
+        cornellCourses[17],
+        cornellCourses[18],
+        cornellCourses[19],
+        cornellCourses[20],
+        cornellCourses[21],
+        cornellCourses[22],
+        cornellCourses[23],
+        cornellCourses[24],
+        cornellCourses[25],
+        cornellCourses[26],
+        cornellCourses[27],
       ],
       label: "Three of:",
     },
@@ -198,44 +239,26 @@ const cornell: School = {
       type: ReqType.Group,
       label: "One of:",
       courses: [
-        {
-          name: "Practicum in Database Systems",
-          code: "CS 4321",
-        },
-        {
-          name: "Practicum in Operating Systems",
-          code: "CS 4411",
-        },
-        {
-          name: "Computer Graphics Practicum",
-          code: "CS 4621",
-        },
-        {
-          name: "Practicum in Artificial Intelligence",
-          code: "CS 4701",
-        },
-        {
-          name: "Natural Language Processing",
-          code: "CS 4740",
-        },
-        {
-          name: "Software Engineering",
-          code: "CS 5150",
-        },
-        {
-          name: "Distributed Computing Principles",
-          code: "CS 5414",
-        },
+        cornellCourses[28],
+        cornellCourses[29],
+        cornellCourses[30],
+        cornellCourses[31],
+        cornellCourses[32],
+        cornellCourses[33],
+        cornellCourses[34],
       ],
     },
   ],
 };
+
+const nyuCourses: Course[] = [];
 
 const nyuCAS: School = {
   name: "New York University: College of Arts & Sciences",
   shortName: "NYU CAS",
   logo: nyuLogo,
   color: { r: 87, g: 6, b: 140 },
+  courses: [],
   requirements: [
     {
       type: ReqType.Sequence,
@@ -352,6 +375,7 @@ const cmu: School = {
   shortName: "CMU",
   logo: cmuLogo,
   color: { r: 187, g: 0, b: 0 },
+  courses: [],
   requirements: [
     {
       type: ReqType.Sequence,
@@ -663,6 +687,7 @@ const northeastern: School = {
   shortName: "Northeastern",
   logo: northeasternLogo,
   color: { r: 212, g: 27, b: 44 },
+  courses: [],
   requirements: [
     {
       type: ReqType.Sequence,

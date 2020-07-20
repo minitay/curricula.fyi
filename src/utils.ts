@@ -44,3 +44,6 @@ export function useWindowSize() {
 export function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
+
+export const delay = (time: number) =>
+  new Promise(resolve => setTimeout(resolve, time));

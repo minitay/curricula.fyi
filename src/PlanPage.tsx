@@ -31,7 +31,7 @@ const styles = {
   semesters: {
     display: "flex",
     flexDirection: "column",
-    width: "40vw",
+    width: "60vw",
   },
   addCourseButton: {
     color: "#888888",
@@ -46,12 +46,30 @@ const styles = {
     margin: "10px",
     boxSizing: "border-box",
   },
+  addSemesterButton: {
+    border: "none",
+    fontSize: "1.1em",
+    color: "#555",
+    width: "20vw",
+    minWidth: "200px",
+    backgroundColor: "#dedede",
+    display: "flex",
+    alignItems: "center",
+    margin: "20px",
+    padding: "20px",
+    borderRadius: "5px",
+    transition: "filter 0.2s",
+    "&:hover": {
+      backgroundColor: "#cecece",
+    },
+  },
 } as const;
 const useStyles = createUseStyles(styles);
 
 const PlanPage = () => {
   const classes = useStyles();
   const [nonCSCount, setNonCSCount] = useState(1);
+  const [semesterCount, setSemesterCount] = useState(4);
   const [scheduleCourses, setScheduleCourses] = useState<Course[][]>([
     [],
     [],
@@ -102,9 +120,14 @@ const PlanPage = () => {
     }
   };
   const semesters = [];
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < semesterCount; i++) {
     semesters.push(
       <SemesterSchedule
+        deleteSchedule={() => {
+          scheduleCourses.splice(i, 1);
+          setScheduleCourses(scheduleCourses);
+          setSemesterCount(semesterCount - 1);
+        }}
         schoolColor={schools.cornell.color}
         key={i}
         id={i}
@@ -208,7 +231,18 @@ const PlanPage = () => {
             )}
           </Droppable>
         </div>
-        <div className={classes.semesters}>{semesters}</div>
+        <div className={classes.semesters}>
+          <button
+            onClick={() => {
+              setSemesterCount(semesterCount + 1);
+              setScheduleCourses((prevState) => [[], ...prevState]);
+            }}
+            className={classes.addSemesterButton}
+          >
+            <AddCircleOutlineIcon /> Add Semester{" "}
+          </button>
+          {semesters}
+        </div>
       </div>
     </DragDropContext>
   );

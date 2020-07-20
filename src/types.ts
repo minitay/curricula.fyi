@@ -3,6 +3,7 @@ export interface School {
   shortName: string;
   requirements: Array<Requirement>;
   color: Color;
+  courses: Course[];
   logo: string;
 }
 
