@@ -15,6 +15,7 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     margin: "10px",
+    borderRadius: "5px",
   },
   name: {
     overflow: "hidden",

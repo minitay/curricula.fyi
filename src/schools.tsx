@@ -38,6 +38,26 @@ export const cornellCourses: Course[] = [
       "Introduction to Computational Science and Engineering Using MATLAB Graphical User Interfaces",
     code: "CS 1115",
   },
+  {
+    name: "Object Oriented Programming and Data Structures",
+    code: "CS 2110",
+  },
+  {
+    name: "Object Oriented Design and Data Structures (Honors)",
+    code: "CS 2112",
+  },
+  {
+    name: "Discrete Structures",
+    code: "CS 2800",
+  },
+  {
+    name: "Discrete Structures (Honors)",
+    code: "CS 2800",
+  },
+  {
+    name: "Data Structures and Functional Programming",
+    code: "CS 3110",
+  },
 ];
 
 const cornell: School = {
@@ -79,16 +99,7 @@ const cornell: School = {
         },
         {
           type: ReqType.Or,
-          courses: [
-            {
-              name: "Object Oriented Programming and Data Structures",
-              code: "CS 2110",
-            },
-            {
-              name: "Object Oriented Design and Data Structures (Honors)",
-              code: "CS 2112",
-            },
-          ],
+          courses: [cornellCourses[8], cornellCourses[9]],
         },
       ],
     },
@@ -98,23 +109,11 @@ const cornell: School = {
       requirements: [
         {
           type: ReqType.Or,
-          courses: [
-            {
-              name: "Discrete Structures",
-              code: "CS 2800",
-            },
-            {
-              name: "Discrete Structures (Honors)",
-              code: "CS 2800",
-            },
-          ],
+          courses: [cornellCourses[10], cornellCourses[11]],
         },
         {
           type: ReqType.One,
-          course: {
-            name: "Data Structures and Functional Programming",
-            code: "CS 3110",
-          },
+          course: cornellCourses[12],
         },
         {
           type: ReqType.Or,
