@@ -485,6 +485,92 @@ const cmuCourses: Course[] = [
     name: "Category Theory",
     code: "80-413",
   },
+  {
+    name: "Operating System Design and Implementation",
+    code: "15-410",
+  },
+  {
+    name: "Compiler Design",
+    code: "15-411",
+  },
+  {
+    name: "Parallel Computer Architecture and Programming",
+    code: "15-418",
+  },
+  {
+    name: "Distributed Systems",
+    code: "15-440",
+  },
+  {
+    name: "Networking and the Internet",
+    code: "15-441",
+  },
+  {
+    name: "Database Systems",
+    code: "15-445",
+  },
+  {
+    name: "Introduction to Machine Learning (SCS Majors)",
+    code: "10-315",
+  },
+  {
+    name: "Natural Language Processing",
+    code: "11-411",
+  },
+  {
+    name: "Introduction to Deep Learning",
+    code: "11-485",
+  },
+  {
+    name: "Artificial Intelligence: Representation and Problem Solving",
+    code: "15-281",
+  },
+  {
+    name: "Neural Computation",
+    code: "15-386",
+  },
+  {
+    name: "Robot Kinematics and Dynamics",
+    code: "16-384",
+  },
+  {
+    name: "Computer Vision",
+    code: "16-385",
+  },
+  {
+    name: "Great Ideas in Computational Biology",
+    code: "02-251",
+  },
+  {
+    name: "Designing Human Centered Software",
+    code: "05-391",
+  },
+  {
+    name: "Introduction to Computer Music",
+    code: "15-322",
+  },
+  {
+    name: "Introduction to Computer Security",
+    code: "15-330",
+  },
+  {
+    name: "Undergraduate Complexity Theory",
+    code: "15-455",
+  },
+  {
+    name: "Computer Graphics",
+    code: "15-462",
+  },
+  {
+    name: "Foundations of Software Engineering",
+    code: "17-313",
+  },
+  {
+    name: "Research and Innovation in Computer Science",
+    code: "15-300",
+  },
+  { name: "Ethics and Policy Issues in Computing", code: "17-200" },
+  { name: "Writing for the Professions", code: "76-270" },
 ];
 
 const cmu: School = {
@@ -492,7 +578,7 @@ const cmu: School = {
   shortName: "CMU",
   logo: cmuLogo,
   color: { r: 187, g: 0, b: 0 },
-  courses: [],
+  courses: cmuCourses,
   requirements: [
     {
       type: ReqType.Sequence,
@@ -585,30 +671,12 @@ const cmu: School = {
         {
           type: ReqType.Group,
           courses: [
-            {
-              name: "Operating System Design and Implementation",
-              code: "15-410",
-            },
-            {
-              name: "Compiler Design",
-              code: "15-411",
-            },
-            {
-              name: "Parallel Computer Architecture and Programming",
-              code: "15-418",
-            },
-            {
-              name: "Distributed Systems",
-              code: "15-440",
-            },
-            {
-              name: "Networking and the Internet",
-              code: "15-441",
-            },
-            {
-              name: "Database Systems",
-              code: "15-445",
-            },
+            cmuCourses[26],
+            cmuCourses[27],
+            cmuCourses[28],
+            cmuCourses[29],
+            cmuCourses[30],
+            cmuCourses[31],
           ],
         },
       ],
@@ -620,35 +688,13 @@ const cmu: School = {
         {
           type: ReqType.Group,
           courses: [
-            {
-              name: "Introduction to Machine Learning (SCS Majors)",
-              code: "10-315",
-            },
-            {
-              name: "Natural Language Processing",
-              code: "11-411",
-            },
-            {
-              name: "Introduction to Deep Learning",
-              code: "11-485",
-            },
-            {
-              name:
-                "Artificial Intelligence: Representation and Problem Solving",
-              code: "15-281",
-            },
-            {
-              name: "Neural Computation",
-              code: "15-386",
-            },
-            {
-              name: "Robot Kinematics and Dynamics",
-              code: "16-384",
-            },
-            {
-              name: "Computer Vision",
-              code: "16-385",
-            },
+            cmuCourses[32],
+            cmuCourses[33],
+            cmuCourses[34],
+            cmuCourses[35],
+            cmuCourses[36],
+            cmuCourses[37],
+            cmuCourses[38],
           ],
         },
       ],
@@ -660,34 +706,13 @@ const cmu: School = {
         {
           type: ReqType.Group,
           courses: [
-            {
-              name: "Great Ideas in Computational Biology",
-              code: "02-251",
-            },
-            {
-              name: "Designing Human Centered Software",
-              code: "05-391",
-            },
-            {
-              name: "Introduction to Computer Music",
-              code: "15-322",
-            },
-            {
-              name: "Introduction to Computer Security",
-              code: "15-330",
-            },
-            {
-              name: "Undergraduate Complexity Theory",
-              code: "15-455",
-            },
-            {
-              name: "Computer Graphics",
-              code: "15-462",
-            },
-            {
-              name: "Foundations of Software Engineering",
-              code: "17-313",
-            },
+            cmuCourses[39],
+            cmuCourses[40],
+            cmuCourses[41],
+            cmuCourses[42],
+            cmuCourses[43],
+            cmuCourses[44],
+            cmuCourses[45],
           ],
         },
       ],
@@ -705,26 +730,101 @@ const cmu: School = {
       requirements: [
         {
           type: ReqType.Group,
-          courses: [
-            {
-              name: "Research and Innovation in Computer Science",
-              code: "15-300",
-            },
-            { name: "Ethics and Policy Issues in Computing", code: "17-200" },
-            { name: "Writing for the Professions", code: "76-270" },
-          ],
+          courses: [cmuCourses[46], cmuCourses[47], cmuCourses[48]],
         },
       ],
     },
   ],
 };
 
+const neuCourses: Course[] = [
+  {
+    name: "Calculus 1 for Science and Engineering",
+    code: "MATH 1341",
+  },
+  {
+    name: "Introduction to Mathematical Reasoning",
+    code: "MATH 1365",
+  },
+  { name: "Leadership Skill Development", code: "CS 1200" },
+  {
+    name: "Professional Development for Khoury Co-op",
+    code: "CS 1210",
+  },
+  { name: "Discrete Structures", code: "CS 1800" },
+  {
+    name: "Fundamentals of Computer Science 1",
+    code: "CS 2500",
+  },
+  {
+    name: "Fundamentals of Computer Science 2",
+    code: "CS 2510",
+  },
+  {
+    name: "Mathematics of Data Models",
+    code: "CS 2810",
+  },
+  { name: "Algorithms and Data", code: "CS 3000" },
+  { name: "Object-Oriented Design", code: "CS 3500" },
+  { name: "Computer Systems", code: "CS 3650" },
+  { name: "Theory of Computation", code: "CS 3800" },
+  { name: "Software Development", code: "CS 4500" },
+  { name: "Foundations of Cybersecurity", code: "CY 2550" },
+  { name: "Systems Security", code: "CY 3740" },
+  { name: "Network Security", code: "CY 4740" },
+  { name: "The Eloquent Presenter", code: "THTR 1170" },
+  { name: "Artificial Intelligence", code: "CS 4100" },
+  {
+    name: "Machine Learning and Data Mining 1",
+    code: "DS 4400",
+  },
+  { name: "Natural Language Processing", code: "CS 4120" },
+  { name: "Game Artificial Intelligence", code: "CS 4150" },
+  { name: "Robotic Science and Systems", code: "CS 4610" },
+  { name: "Information Retrieval", code: "IS 4200" },
+  { name: "Machine Learning and Data Mining 2", code: "DS 4420" },
+  { name: "Cognition", code: "PSYC 3466" },
+  { name: "Logic and Computation", code: "CS 2800" },
+  { name: "Computer-Aided Reasoning", code: "CS 4820" },
+  {
+    name: "Advanced Theory of Computation",
+    code: "CS 4805",
+  },
+  { name: "Advanced Algorithms", code: "CS 4810" },
+  { name: "Advanced Theory of Computation", code: "CS 4805" },
+  { name: "Advanced Algorithms", code: "CS 4810" },
+  { name: "Computer-Aided Reasoning", code: "CS 4820" },
+  {
+    name: "System Specification, Verification, and Synthesis",
+    code: "CS 4830",
+  },
+  {
+    name: "Introduction to Computer Science Research",
+    code: "CS 3950",
+  },
+  { name: "Cryptograph", code: "Cryptography CY 4770" },
+  { name: "Human Computer Interaction", code: "IS 4300" },
+  {
+    name: "Empirical Research Methods",
+    code: "IS 4800",
+  },
+  { name: "Principles of Information Science", code: "IS 2000" },
+  { name: "Social Information Systems", code: "IS 4700" },
+  { name: "Natural Language Processing", code: "CS 4120" },
+  { name: "Mobile Application Development", code: "CS 4520" },
+  { name: "Web Development", code: "CS 4550" },
+  {
+    name: "Information Presentation and Visualization",
+    code: "DS 4200",
+  },
+];
+
 const northeastern: School = {
   name: "Northeastern University",
   shortName: "Northeastern",
   logo: northeasternLogo,
   color: { r: 212, g: 27, b: 44 },
-  courses: [],
+  courses: neuCourses,
   requirements: [
     {
       type: ReqType.Sequence,
@@ -732,17 +832,11 @@ const northeastern: School = {
       requirements: [
         {
           type: ReqType.One,
-          course: {
-            name: "Calculus 1 for Science and Engineering",
-            code: "MATH 1341",
-          },
+          course: neuCourses[0],
         },
         {
           type: ReqType.One,
-          course: {
-            name: "Introduction to Mathematical Reasoning",
-            code: "MATH 1365",
-          },
+          course: neuCourses[1],
         },
       ],
     },
@@ -752,14 +846,11 @@ const northeastern: School = {
       requirements: [
         {
           type: ReqType.One,
-          course: { name: "Leadership Skill Development", code: "CS 1200" },
+          course: neuCourses[2],
         },
         {
           type: ReqType.One,
-          course: {
-            name: "Professional Development for Khoury Co-op",
-            code: "CS 1210",
-          },
+          course: neuCourses[3],
         },
       ],
     },
@@ -769,28 +860,19 @@ const northeastern: School = {
       requirements: [
         {
           type: ReqType.One,
-          course: { name: "Discrete Structures", code: "CS 1800" },
+          course: neuCourses[4],
         },
         {
           type: ReqType.One,
-          course: {
-            name: "Fundamentals of Computer Science 1",
-            code: "CS 2500",
-          },
+          course: neuCourses[5],
         },
         {
           type: ReqType.One,
-          course: {
-            name: "Fundamentals of Computer Science 2",
-            code: "CS 2510",
-          },
+          course: neuCourses[6],
         },
         {
           type: ReqType.One,
-          course: {
-            name: "Mathematics of Data Models",
-            code: "CS 2810",
-          },
+          course: neuCourses[7],
         },
       ],
     },
@@ -800,23 +882,23 @@ const northeastern: School = {
       requirements: [
         {
           type: ReqType.One,
-          course: { name: "Algorithms and Data", code: "CS 3000" },
+          course: neuCourses[8],
         },
         {
           type: ReqType.One,
-          course: { name: "Object-Oriented Design", code: "CS 3500" },
+          course: neuCourses[9],
         },
         {
           type: ReqType.One,
-          course: { name: "Computer Systems", code: "CS 3650" },
+          course: neuCourses[10],
         },
         {
           type: ReqType.One,
-          course: { name: "Theory of Computation", code: "CS 3800" },
+          course: neuCourses[11],
         },
         {
           type: ReqType.One,
-          course: { name: "Software Development", code: "CS 4500" },
+          course: neuCourses[12],
         },
       ],
     },
@@ -826,11 +908,7 @@ const northeastern: School = {
       requirements: [
         {
           type: ReqType.Or,
-          courses: [
-            { name: "Foundations of Cybersecurity", code: "CY 2550" },
-            { name: "Systems Security", code: "CY 3740" },
-            { name: "Network Security", code: "CY 4740" },
-          ],
+          courses: [neuCourses[13], neuCourses[14], neuCourses[15]],
         },
       ],
     },
@@ -840,7 +918,7 @@ const northeastern: School = {
       requirements: [
         {
           type: ReqType.One,
-          course: { name: "The Eloquent Presenter", code: "THTR 1170" },
+          course: neuCourses[16],
         },
       ],
     },
@@ -861,25 +939,22 @@ const northeastern: School = {
           requirements: [
             {
               type: ReqType.One,
-              course: { name: "Artificial Intelligence", code: "CS 4100" },
+              course: neuCourses[17],
             },
             {
               type: ReqType.One,
-              course: {
-                name: "Machine Learning and Data Mining 1",
-                code: "DS 4400",
-              },
+              course: neuCourses[18],
             },
             {
               type: ReqType.Group,
               label: "Two of:",
               courses: [
-                { name: "Natural Language Processing", code: "CS 4120" },
-                { name: "Game Artificial Intelligence", code: "CS 4150" },
-                { name: "Robotic Science and Systems", code: "CS 4610" },
-                { name: "Information Retrieval", code: "IS 4200" },
-                { name: "Machine Learning and Data Mining 2", code: "DS 4420" },
-                { name: "Cognition", code: "PSYC 3466" },
+                neuCourses[19],
+                neuCourses[20],
+                neuCourses[21],
+                neuCourses[22],
+                neuCourses[23],
+                neuCourses[24],
               ],
             },
           ],
@@ -890,37 +965,22 @@ const northeastern: School = {
           requirements: [
             {
               type: ReqType.Or,
-              courses: [
-                { name: "Logic and Computation", code: "CS 2800" },
-                { name: "Computer-Aided Reasoning", code: "CS 4820" },
-              ],
+              courses: [neuCourses[25], neuCourses[26]],
             },
             {
               type: ReqType.Or,
-              courses: [
-                {
-                  name: "Advanced Theory of Computation",
-                  code: "CS 4805",
-                },
-                { name: "Advanced Algorithms", code: "CS 4810" },
-              ],
+              courses: [neuCourses[27], neuCourses[28]],
             },
             {
               type: ReqType.Group,
               label: "Two of:",
               courses: [
-                { name: "Advanced Theory of Computation", code: "CS 4805" },
-                { name: "Advanced Algorithms", code: "CS 4810" },
-                { name: "Computer-Aided Reasoning", code: "CS 4820" },
-                {
-                  name: "System Specification, Verification, and Synthesis",
-                  code: "CS 4830",
-                },
-                {
-                  name: "Introduction to Computer Science Research",
-                  code: "CS 3950",
-                },
-                { name: "Cryptograph", code: "Cryptography CY 4770" },
+                neuCourses[29],
+                neuCourses[30],
+                neuCourses[31],
+                neuCourses[32],
+                neuCourses[33],
+                neuCourses[34],
               ],
             },
           ],
@@ -931,28 +991,22 @@ const northeastern: School = {
           requirements: [
             {
               type: ReqType.One,
-              course: { name: "Human Computer Interaction", code: "IS 4300" },
+              course: neuCourses[35],
             },
             {
               type: ReqType.One,
-              course: {
-                name: "Empirical Research Methods",
-                code: "IS 4800",
-              },
+              course: neuCourses[36],
             },
             {
               type: ReqType.Group,
               label: "Two of:",
               courses: [
-                { name: "Principles of Information Science", code: "IS 2000" },
-                { name: "Social Information Systems", code: "IS 4700" },
-                { name: "Natural Language Processing", code: "CS 4120" },
-                { name: "Mobile Application Development", code: "CS 4520" },
-                { name: "Web Development", code: "CS 4550" },
-                {
-                  name: "Information Presentation and Visualization",
-                  code: "DS 4200",
-                },
+                neuCourses[37],
+                neuCourses[38],
+                neuCourses[39],
+                neuCourses[40],
+                neuCourses[41],
+                neuCourses[42],
               ],
             },
           ],

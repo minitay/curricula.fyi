@@ -45,6 +45,13 @@ const styles = {
     fontSize: "1.1em",
     padding: "20px",
   },
+  semesterIndex: {
+    padding: {
+      left: "10px",
+      right: "20px",
+    },
+    color: "#555",
+  },
   addCourseButton: {
     color: "#888888",
     width: "200px",
@@ -144,7 +151,7 @@ const PlanPage: React.FC<Props> = ({ slug, school }) => {
   for (let i = 0; i < semesterCount; i++) {
     semesters.push(
       <div className={classes.semesterSchedule}>
-        {i + 1}
+        <span className={classes.semesterIndex}> {i + 1}</span>
         <SemesterSchedule
           deleteSchedule={() => {
             scheduleCourses.splice(i, 1);

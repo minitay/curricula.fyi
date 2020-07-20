@@ -19,11 +19,11 @@ const styles = {
   },
   SemesterSchedule: {
     background: "#cacaca",
-    margin: "20px",
+    margin: "5px",
     padding: "20px",
     borderRadius: "5px",
     width: "min(880px, 50vw)",
-    overflowX: "scroll",
+    overflowX: "auto",
     display: "flex",
     minHeight: "120px",
     position: "relative",
