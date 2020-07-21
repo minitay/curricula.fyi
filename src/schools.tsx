@@ -1112,6 +1112,51 @@ const northeastern: School = {
   ],
 };
 
-const schools: { [s: string]: School } = { cornell, nyuCAS, cmu, northeastern };
+const sbuCourses: Course[] = [
+  { name: "Introduction to Object-Oriented Programming", code: "CSE 114" },
+  { name: "Data Structures", code: "CSE 214" },
+  { name: "Foundations of Computer Science", code: "CSE 215" },
+  { name: "Foundations of Computer Science: Honors", code: "CSE 150" },
+  { name: "Programming Abstractions", code: "CSE 216" },
+  { name: "Systems Fundamentals I", code: "CSE 220" },
+  { name: "Computer Science A: Honors", code: "CSE 160" },
+  { name: "Laboratory for Computer Science A: Honors", code: "CSE 161" },
+  { name: "Computer Science B: Honors", code: "CSE 260" },
+  { name: "Laboratory for Computer Science B: Honors", code: "CSE 261" },
+  { name: "Introduction to the Theory of Computation", code: "CSE 303" },
+  { name: "Theory of Computation: Honors", code: "CSE 350" },
+  { name: "Computer Networks", code: "CSE 310" },
+  { name: "Fundamentals of Software Development", code: "CSE 316" },
+  { name: "Systems Fundamentals II", code: "CSE 320" },
+  { name: "Analysis of Algorithms", code: "CSE 373" },
+  { name: "Analysis of Algorithms: Honors", code: "CSE 385" },
+  { name: "Software Engineering", code: "CSE 416" },
+  { name: "Applied Calculus I", code: "AMS 151" },
+  { name: "Applied Calculus II", code: "AMS 161" },
+  { name: "Calculus A", code: "MAT 125" },
+  { name: "Calculus B", code: "MAT 126" },
+  { name: "Calculus C", code: "MAT 127" },
+  { name: "Calculus I", code: "MAT 131" },
+  { name: "Calculus II", code: "MAT 132" },
+  { name: "Analysis I", code: "MAT 141" },
+  { name: "Analysis II", code: "MAT 142" },
+  { name: "Accelerated Single-Variable Calculus", code: "MAT 171" },
+];
+
+const stonyBrook: School = {
+  name: "Stony Brook University",
+  shortName: "Stony Brook",
+  requirements: [],
+  color: { r: 153, g: 0, b: 0 },
+  courses: sbuCourses,
+};
+
+const schools: { [s: string]: School } = {
+  cornell,
+  nyuCAS,
+  cmu,
+  northeastern,
+  stonyBrook,
+};
 
 export default schools;

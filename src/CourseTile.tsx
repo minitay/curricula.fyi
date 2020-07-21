@@ -7,7 +7,7 @@ const styles = {
   CourseTile: {
     width: "200px",
     height: "100px",
-    fontSize: "0.8em",
+    fontSize: "0.8rem",
     backgroundColor: ({ color, opacity }: { color: Color; opacity: number }) =>
       `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity})`,
     display: "flex",

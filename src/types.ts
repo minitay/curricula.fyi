@@ -4,7 +4,7 @@ export interface School {
   requirements: Array<Requirement>;
   color: Color;
   courses: Course[];
-  logo: string;
+  logo?: string;
 }
 
 export interface Course {
