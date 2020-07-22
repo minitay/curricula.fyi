@@ -13,7 +13,6 @@ import { Course, Plan } from "./types";
 import CourseTile from "./CourseTile";
 import { createUseStyles } from "react-jss";
 import TermSchedule from "./TermSchedule";
-import { Link } from "react-router-dom";
 import schools from "./schools";
 
 const styles = {
@@ -89,16 +88,15 @@ const useStyles = createUseStyles(styles);
 interface Props {
   slug: string;
   plan: Plan;
+  setPlan: (p: Plan) => void;
 }
 
-const PlanCreator: React.FC<Props> = ({ slug, plan }) => {
+const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
   const school = schools[slug];
   const classes = useStyles();
   const [nonCSCount, setNonCSCount] = useState(1);
-  const [scheduleCourses, setScheduleCourses] = useState<Course[][]>(
-    plan.terms
-  );
-  const [reqCourses, setReqCourses] = useState<Course[]>(plan.courses);
+  const scheduleCourses = plan.terms;
+  const reqCourses = plan.courses;
   const handleDragEnd = (result: DropResult, provided: ResponderProvided) => {
     if (!result.destination) {
       return;
@@ -113,19 +111,14 @@ const PlanCreator: React.FC<Props> = ({ slug, plan }) => {
       const term = parseInt(destId);
       setNonCSCount(nonCSCount + 1);
       scheduleCourses[term].splice(result.destination.index, 0, course);
-      setScheduleCourses(scheduleCourses);
     } else if (srcType === "reqs" && destType === "term") {
       const [course] = reqCourses.splice(result.source.index, 1);
       const term = parseInt(destId);
-      setReqCourses(reqCourses);
       scheduleCourses[term].splice(result.destination.index, 0, course);
-      setScheduleCourses(scheduleCourses);
     } else if (srcType === "term" && destType === "reqs") {
       const term = parseInt(srcId);
       const [course] = scheduleCourses[term].splice(result.source.index, 1);
-      setScheduleCourses(scheduleCourses);
       reqCourses.splice(result.destination.index, 0, course);
-      setReqCourses(reqCourses);
     } else if (srcType === "term" && destType === "term") {
       const srcSemester = parseInt(srcId);
       const [course] = scheduleCourses[srcSemester].splice(
@@ -134,22 +127,21 @@ const PlanCreator: React.FC<Props> = ({ slug, plan }) => {
       );
       const destSemester = parseInt(destId);
       scheduleCourses[destSemester].splice(result.destination.index, 0, course);
-      setScheduleCourses(scheduleCourses);
     } else if (srcType === "reqs" && destType === "reqs") {
       const [course] = reqCourses.splice(result.source.index, 1);
       reqCourses.splice(result.destination.index, 0, course);
-      setReqCourses(reqCourses);
     }
+    setPlan(plan);
   };
   const terms = [];
-  for (let i = 0; i < scheduleCourses.length; i++) {
+  for (let i = 0; i < Object.keys(scheduleCourses).length; i++) {
     terms.push(
       <div className={classes.termSchedule}>
         <span className={classes.termIndex}> {i + 1}</span>
         <TermSchedule
           deleteSchedule={() => {
-            scheduleCourses.splice(i, 1);
-            setScheduleCourses(scheduleCourses);
+            delete scheduleCourses[i];
+            setPlan(plan);
           }}
           schoolColor={school.color}
           key={i}
@@ -161,7 +153,6 @@ const PlanCreator: React.FC<Props> = ({ slug, plan }) => {
   }
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
-      <Link to={`/schools/${slug}`}> Back to school page </Link>
       <div className={classes.PlanCreator}>
         <div className={classes.requirements}>
           <div className={classes.addCourseButton}>
@@ -260,11 +251,16 @@ const PlanCreator: React.FC<Props> = ({ slug, plan }) => {
         <div className={classes.plan}>
           <button
             onClick={() => {
-              setScheduleCourses((prevState) => [[], ...prevState]);
+              const newPlan = { ...plan };
+              newPlan.terms = {
+                [Object.keys(newPlan.terms).length]: [],
+                ...newPlan.terms,
+              };
+              setPlan(newPlan);
             }}
             className={classes.addTermButton}
           >
-            <AddCircleOutlineIcon /> Add Term{" "}
+            <AddCircleOutlineIcon /> Add Term
           </button>
           <div className={classes.terms}>{terms}</div>
         </div>

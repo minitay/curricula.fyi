@@ -14,16 +14,16 @@ async function getPlans(userKey: string) {
     .doc(userKey)
     .collection("plans")
     .get();
-  let plans: Plan[] = [];
+  let plans: { [id: string]: Plan } = {};
   query.forEach((doc) => {
-    plans.push(doc.data() as Plan);
+    plans[doc.id] = doc.data() as Plan;
   });
   return plans;
 }
 
 const MyPlansPage: React.FC<Props> = ({ userKey }) => {
   const [loadingState, setLoadingState] = useState(LoadingState.Loading);
-  const [plans, setPlans] = useState<Plan[]>([]);
+  const [plans, setPlans] = useState<{ [id: string]: Plan }>({});
   useEffect(() => {
     setLoadingState(LoadingState.Loading);
     getPlans(userKey)
@@ -46,8 +46,8 @@ const MyPlansPage: React.FC<Props> = ({ userKey }) => {
     return (
       <div>
         <h1> Your Plans </h1>
-        {plans.map((plan) => {
-          return <PlanPreview key={plan.name} plan={plan} />;
+        {Object.entries(plans).map(([id, plan]) => {
+          return <PlanPreview key={id} id={id} plan={plan} />;
         })}
         <Link to={`/plans/new`}> New Plan </Link>
       </div>

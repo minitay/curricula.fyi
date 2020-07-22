@@ -24,6 +24,15 @@ const PlanPage: React.FC<Props> = ({ userKey }) => {
       setLoadingState(LoadingState.Success);
     })();
   }, [userKey, id]);
+
+  function handlePlanUpdate(plan: Plan) {
+    db.collection("users")
+      .doc(userKey)
+      .collection("plans")
+      .doc(id)
+      .update({ terms: plan.terms, courses: plan.courses });
+    setPlan(plan);
+  }
   if (!id) {
     return <div> Invalid id, return home </div>;
   }
@@ -33,7 +42,12 @@ const PlanPage: React.FC<Props> = ({ userKey }) => {
   if (loadingState === LoadingState.Success && plan) {
     return (
       <div>
-        <h1> {plan.name} </h1> <PlanCreator slug={plan.school} plan={plan} />
+        <h1> {plan.name} </h1>{" "}
+        <PlanCreator
+          slug={plan.school}
+          plan={plan}
+          setPlan={handlePlanUpdate}
+        />
       </div>
     );
   }

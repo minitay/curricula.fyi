@@ -49,14 +49,7 @@ function App() {
         </Link>
         <Switch>
           <Route exact path="/">
-            <p>Explore different schools' Computer Science requirements</p>
-            {Object.entries(schools).map(([slug, school]) => {
-              return (
-                <Link key={slug} to={`/schools/${slug}`}>
-                  <div className={classes.schoolName}> {school.shortName}</div>
-                </Link>
-              );
-            })}
+            <MyPlansPage userKey={userKey} />
           </Route>
           <Route path="/compare">
             <ComparePage />
@@ -75,9 +68,6 @@ function App() {
           {Object.entries(schools).map(([slug, school]) => {
             return (
               <React.Fragment key={slug}>
-                <Route key={slug} path={`/schools/${slug}`}>
-                  <SchoolPage slug={slug} school={school} />
-                </Route>
                 <Route path={`/reqs/${slug}`}>
                   <ReqsPage slug={slug} school={school} />
                 </Route>

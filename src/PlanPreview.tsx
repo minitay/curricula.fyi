@@ -1,15 +1,17 @@
 import React from "react";
 import { Plan } from "./types";
+import { Link } from "react-router-dom";
 
 interface Props {
+  id: string;
   plan: Plan;
 }
 
-const PlanPreview: React.FC<Props> = ({ plan }) => {
+const PlanPreview: React.FC<Props> = ({ id, plan }) => {
   return (
-    <div>
+    <Link to={`/plans/${id}`}>
       <h1> {plan.name} </h1>
-    </div>
+    </Link>
   );
 };
 
