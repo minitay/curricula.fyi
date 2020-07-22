@@ -1557,12 +1557,12 @@ const uMichEng: School = {
 };
 
 const schools: { [s: string]: School } = {
-  cornell,
-  nyuCAS,
-  cmu,
-  northeastern,
-  stonyBrook,
-  uMichEng,
+  [cornell.slug]: cornell,
+  [nyuCAS.slug]: nyuCAS,
+  [cmu.slug]: cmu,
+  [northeastern.slug]: northeastern,
+  [stonyBrook.slug]: stonyBrook,
+  [uMichEng.slug]: uMichEng,
 };
 
 export default schools;

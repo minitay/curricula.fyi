@@ -3,6 +3,7 @@ import PlanPreview from "./PlanPreview";
 import { Link } from "react-router-dom";
 import { LoadingState, Plan } from "./types";
 import { db } from "./firebase";
+import { Button } from "@material-ui/core";
 
 interface Props {
   userKey: string;
@@ -49,7 +50,11 @@ const MyPlansPage: React.FC<Props> = ({ userKey }) => {
         {Object.entries(plans).map(([id, plan]) => {
           return <PlanPreview key={id} id={id} plan={plan} />;
         })}
-        <Link to={`/plans/new`}> New Plan </Link>
+        <Link to={`/plans/new`}>
+          <Button variant="contained" color="secondary">
+            Make New Plan
+          </Button>
+        </Link>
       </div>
     );
   }

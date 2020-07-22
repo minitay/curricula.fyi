@@ -65,11 +65,11 @@ function App() {
           </Route>
         </Switch>
         <div>
-          {Object.entries(schools).map(([slug, school]) => {
+          {Object.values(schools).map((school) => {
             return (
-              <React.Fragment key={slug}>
-                <Route path={`/reqs/${slug}`}>
-                  <ReqsPage slug={slug} school={school} />
+              <React.Fragment key={school.slug}>
+                <Route path={`/reqs/${school.slug}`}>
+                  <ReqsPage slug={school.slug} school={school} />
                 </Route>
               </React.Fragment>
             );
