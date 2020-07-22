@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { LoadingState, Plan } from "./types";
+import { Course, LoadingState, Plan } from "./types";
 import { db } from "./firebase";
 import PlanCreator from "./PlanCreator";
 import { useParams } from "react-router-dom";
@@ -20,18 +20,27 @@ const PlanPage: React.FC<Props> = ({ userKey }) => {
         .collection("plans")
         .doc(id)
         .get();
-      setPlan(ref.data() as Plan);
+      const { name, school, terms, courses } = ref.data() as any;
+      let termsArray: Course[][] = [];
+      Object.keys(terms).forEach((i: string) => {
+        termsArray[parseInt(i)] = terms[i];
+      });
+      setPlan({ name, school, courses, terms: termsArray });
       setLoadingState(LoadingState.Success);
     })();
   }, [userKey, id]);
 
   function handlePlanUpdate(plan: Plan) {
+    let termObj: { [s: string]: Course[] } = {};
+    plan.terms.forEach((term, i) => {
+      termObj[i] = term;
+    });
     db.collection("users")
       .doc(userKey)
       .collection("plans")
       .doc(id)
-      .update({ terms: plan.terms, courses: plan.courses });
-    setPlan(plan);
+      .update({ terms: termObj, courses: plan.courses });
+    setPlan({ ...plan });
   }
   if (!id) {
     return <div> Invalid id, return home </div>;

@@ -82,8 +82,6 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
   const school = schools[slug];
   const classes = useStyles();
   const [nonCSCount, setNonCSCount] = useState(1);
-  const scheduleCourses = plan.terms;
-  const reqCourses = plan.courses;
   const handleDragEnd = (result: DropResult, provided: ResponderProvided) => {
     if (!result.destination) {
       return;
@@ -97,43 +95,40 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
       };
       const term = parseInt(destId);
       setNonCSCount(nonCSCount + 1);
-      scheduleCourses[term].splice(result.destination.index, 0, course);
+      plan.terms[term].splice(result.destination.index, 0, course);
     } else if (srcType === "reqs" && destType === "term") {
-      const [course] = reqCourses.splice(result.source.index, 1);
+      const [course] = plan.courses.splice(result.source.index, 1);
       const term = parseInt(destId);
-      scheduleCourses[term].splice(result.destination.index, 0, course);
+      plan.terms[term].splice(result.destination.index, 0, course);
     } else if (srcType === "term" && destType === "reqs") {
       const term = parseInt(srcId);
-      const [course] = scheduleCourses[term].splice(result.source.index, 1);
-      reqCourses.splice(result.destination.index, 0, course);
+      const [course] = plan.terms[term].splice(result.source.index, 1);
+      plan.courses.splice(result.destination.index, 0, course);
     } else if (srcType === "term" && destType === "term") {
       const srcSemester = parseInt(srcId);
-      const [course] = scheduleCourses[srcSemester].splice(
-        result.source.index,
-        1
-      );
+      const [course] = plan.terms[srcSemester].splice(result.source.index, 1);
       const destSemester = parseInt(destId);
-      scheduleCourses[destSemester].splice(result.destination.index, 0, course);
+      plan.terms[destSemester].splice(result.destination.index, 0, course);
     } else if (srcType === "reqs" && destType === "reqs") {
-      const [course] = reqCourses.splice(result.source.index, 1);
-      reqCourses.splice(result.destination.index, 0, course);
+      const [course] = plan.courses.splice(result.source.index, 1);
+      plan.courses.splice(result.destination.index, 0, course);
     }
     setPlan(plan);
   };
   const terms = [];
-  for (let i = 0; i < Object.keys(scheduleCourses).length; i++) {
+  for (let i = 0; i < plan.terms.length; i++) {
     terms.push(
-      <div className={classes.termSchedule}>
+      <div className={classes.termSchedule} key={i}>
         <span className={classes.termIndex}> {i + 1}</span>
         <TermSchedule
           deleteSchedule={() => {
-            delete scheduleCourses[i];
+            plan.terms.splice(i, 1);
             setPlan(plan);
           }}
           schoolColor={school.color}
           key={i}
           id={i}
-          courses={scheduleCourses[i]}
+          courses={plan.terms[i]}
         />
       </div>
     );
@@ -208,12 +203,8 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
               snapshot: DroppableStateSnapshot
             ) => (
               <div ref={provided.innerRef} {...provided.droppableProps}>
-                {reqCourses.map((course, i) => (
-                  <Draggable
-                    key={course.name}
-                    draggableId={course.name}
-                    index={i}
-                  >
+                {plan.courses.map((course, i) => (
+                  <Draggable key={i} draggableId={course.name} index={i}>
                     {(provided, snapshot) => (
                       <div
                         ref={provided.innerRef}
@@ -239,10 +230,7 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
           <Button
             onClick={() => {
               const newPlan = { ...plan };
-              newPlan.terms = {
-                [Object.keys(newPlan.terms).length]: [],
-                ...newPlan.terms,
-              };
+              newPlan.terms = [...newPlan.terms, []];
               setPlan(newPlan);
             }}
             className={classes.addTermButton}

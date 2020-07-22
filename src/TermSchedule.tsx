@@ -1,9 +1,8 @@
 import { Draggable, Droppable } from "react-beautiful-dnd";
-import React, { useState } from "react";
+import React from "react";
 import CourseTile from "./CourseTile";
 import { Color, Course } from "./types";
 import { createUseStyles } from "react-jss";
-import { delay } from "./utils";
 import ClearIcon from "@material-ui/icons/Clear";
 
 interface Props {
@@ -30,15 +29,20 @@ const styles = {
     alignItems: "center",
   },
   deleteButton: {
+    background: "#cacaca",
     position: "absolute",
     borderRadius: "50%",
+    display: "grid",
+    placeItems: "center",
     width: "40px",
     height: "40px",
-    right: "0px",
-    top: "0px",
+    right: "10px",
+    top: "10px",
     zIndex: "10",
-    backgroundColor: "white",
     border: "none",
+    "&:hover": {
+      background: "#aaa",
+    },
   },
   course: {
     userSelect: "none",
@@ -58,33 +62,18 @@ const TermSchedule: React.FC<Props> = ({
   deleteSchedule,
 }) => {
   const classes = useStyles();
-  const [shouldDisplayDelete, setShouldDisplayDelete] = useState(false);
   return (
     <div className={classes.container}>
-      <button
-        className={classes.deleteButton}
-        onClick={deleteSchedule}
-        style={{ display: shouldDisplayDelete ? "block" : "none" }}
-      >
-        <ClearIcon />
-      </button>
       <Droppable droppableId={`term-${id}`} direction="horizontal">
         {(provided, snapshot) => (
           <div
             ref={provided.innerRef}
             className={classes.TermSchedule}
-            onMouseEnter={() => {
-              delay(200).then(() => {
-                setShouldDisplayDelete(true);
-              });
-            }}
-            onMouseLeave={() => {
-              delay(500).then(() => {
-                setShouldDisplayDelete(false);
-              });
-            }}
             {...provided.droppableProps}
           >
+            <button className={classes.deleteButton} onClick={deleteSchedule}>
+              <ClearIcon />
+            </button>
             {courses.length === 0 && (
               <div className={classes.placeholder}> Drop a course here </div>
             )}

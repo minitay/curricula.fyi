@@ -1,7 +1,7 @@
 export interface Plan {
   name: string;
   school: string;
-  terms: { [s: string]: Course[] };
+  terms:  Course[][];
   courses: Course[];
 }
 
