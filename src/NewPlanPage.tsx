@@ -7,6 +7,7 @@ import { School } from "./types";
 import { Box, Button } from "@material-ui/core";
 import { db } from "./firebase";
 import { useHistory } from "react-router-dom";
+import SchoolRequestForm from "./SchoolRequestForm";
 
 const styles = {
   NewPlanPage: {
@@ -18,14 +19,6 @@ const styles = {
   option: {
     padding: "10px",
     fontSize: "1.1em",
-  },
-  otherSchool: {
-    maxWidth: "400px",
-    padding: "15px",
-    borderRadius: "10px",
-    border: "1px solid #444499",
-    backgroundColor: "#ddddff",
-    margin: "20px",
   },
   submitButton: {
     width: "100px",
@@ -67,12 +60,9 @@ const NewPlanPage: React.FC<Props> = ({ userKey }) => {
             <TextField {...params} label="Which School?" variant="outlined" />
           )}
         />
-        <div className={classes.otherSchool}>
-          <h3> Don't see your school? </h3>
-          Please enter its name below and we'll add it as soon as possible
-        </div>
+        <SchoolRequestForm />
         <TextField
-          label="Name"
+          label="Plan Name"
           variant="outlined"
           value={name}
           onChange={(event) => setName(event.currentTarget.value)}
@@ -81,10 +71,10 @@ const NewPlanPage: React.FC<Props> = ({ userKey }) => {
           <Button
             type="submit"
             variant="contained"
-            color="primary"
+            color="secondary"
             className={classes.submitButton}
           >
-            SUBMIT
+            CREATE
           </Button>
         </Box>
       </form>

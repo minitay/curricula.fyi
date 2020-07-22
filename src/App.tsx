@@ -1,6 +1,5 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
-import SchoolPage from "./SchoolPage";
 import schools from "./schools";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import ComparePage from "./ComparePage";

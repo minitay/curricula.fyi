@@ -14,6 +14,7 @@ import CourseTile from "./CourseTile";
 import { createUseStyles } from "react-jss";
 import TermSchedule from "./TermSchedule";
 import schools from "./schools";
+import { Button } from "@material-ui/core";
 
 const styles = {
   PlanCreator: {
@@ -66,21 +67,7 @@ const styles = {
     boxSizing: "border-box",
   },
   addTermButton: {
-    border: "none",
-    fontSize: "1.1em",
-    color: "#555",
-    width: "20vw",
-    minWidth: "200px",
-    backgroundColor: "#dedede",
-    display: "flex",
-    alignItems: "center",
-    margin: "20px",
-    padding: "20px",
-    borderRadius: "5px",
-    transition: "filter 0.2s",
-    "&:hover": {
-      backgroundColor: "#cecece",
-    },
+    width: "200px",
   },
 } as const;
 const useStyles = createUseStyles(styles);
@@ -249,7 +236,7 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
           </Droppable>
         </div>
         <div className={classes.plan}>
-          <button
+          <Button
             onClick={() => {
               const newPlan = { ...plan };
               newPlan.terms = {
@@ -259,9 +246,10 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
               setPlan(newPlan);
             }}
             className={classes.addTermButton}
+            variant="contained"
           >
             <AddCircleOutlineIcon /> Add Term
-          </button>
+          </Button>
           <div className={classes.terms}>{terms}</div>
         </div>
       </div>
