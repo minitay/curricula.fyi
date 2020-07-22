@@ -19,7 +19,7 @@ const styles = {
   TermSchedule: {
     background: "#cacaca",
     margin: "5px",
-    padding: "20px",
+    padding: "25px",
     borderRadius: "5px",
     width: "min(880px, 50vw)",
     overflowX: "auto",
@@ -32,12 +32,13 @@ const styles = {
     background: "#cacaca",
     position: "absolute",
     borderRadius: "50%",
-    display: "grid",
-    placeItems: "center",
-    width: "40px",
-    height: "40px",
-    right: "10px",
-    top: "10px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "25px",
+    height: "25px",
+    right: "5px",
+    top: "5px",
     zIndex: "10",
     border: "none",
     "&:hover": {
@@ -72,7 +73,7 @@ const TermSchedule: React.FC<Props> = ({
             {...provided.droppableProps}
           >
             <button className={classes.deleteButton} onClick={deleteSchedule}>
-              <ClearIcon />
+              <ClearIcon fontSize="small" classes={{ fontSizeSmall: "10px" }} />
             </button>
             {courses.length === 0 && (
               <div className={classes.placeholder}> Drop a course here </div>

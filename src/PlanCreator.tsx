@@ -122,6 +122,7 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
         <span className={classes.termIndex}> {i + 1}</span>
         <TermSchedule
           deleteSchedule={() => {
+            plan.courses = [...plan.courses, ...plan.terms[i]];
             plan.terms.splice(i, 1);
             setPlan(plan);
           }}
