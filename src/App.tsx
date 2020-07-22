@@ -66,15 +66,15 @@ function App() {
         <Route path="/my-plans">
           <MyPlansPage userKey={userKey} />
         </Route>
+        <Route path={`/plans/:id`}>
+          <PlanPage userKey={userKey} />
+        </Route>
         <div>
           {Object.entries(schools).map(([slug, school]) => {
             return (
               <React.Fragment key={slug}>
                 <Route key={slug} path={`/schools/${slug}`}>
                   <SchoolPage slug={slug} school={school} />
-                </Route>
-                <Route path={`/plan/${slug}`}>
-                  <PlanPage slug={slug} school={school} />
                 </Route>
                 <Route path={`/reqs/${slug}`}>
                   <ReqsPage slug={slug} school={school} />
