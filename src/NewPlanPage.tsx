@@ -51,7 +51,7 @@ const NewPlanPage: React.FC<Props> = ({ userKey }) => {
       .collection("users")
       .doc(userKey)
       .collection("plans")
-      .add({ name, school: school.slug });
+      .add({ name, school: school.slug, courses: school.courses, terms: [] });
     history.push(`/plans/${ref.id}`);
   }
   return (

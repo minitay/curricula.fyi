@@ -31,8 +31,11 @@ const PlanPage: React.FC<Props> = ({ userKey }) => {
     return <div> Loading...</div>;
   }
   if (loadingState === LoadingState.Success && plan) {
-    console.log(plan);
-    return <PlanCreator slug={plan.school} />;
+    return (
+      <div>
+        <h1> {plan.name} </h1> <PlanCreator slug={plan.school} plan={plan} />
+      </div>
+    );
   }
   return <div> Error </div>;
 };

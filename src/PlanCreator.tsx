@@ -9,7 +9,7 @@ import {
   DropResult,
   ResponderProvided,
 } from "react-beautiful-dnd";
-import { Course } from "./types";
+import { Course, Plan } from "./types";
 import CourseTile from "./CourseTile";
 import { createUseStyles } from "react-jss";
 import TermSchedule from "./TermSchedule";
@@ -88,24 +88,17 @@ const useStyles = createUseStyles(styles);
 
 interface Props {
   slug: string;
+  plan: Plan;
 }
 
-const PlanCreator: React.FC<Props> = ({ slug }) => {
+const PlanCreator: React.FC<Props> = ({ slug, plan }) => {
   const school = schools[slug];
   const classes = useStyles();
   const [nonCSCount, setNonCSCount] = useState(1);
-  const [termCount, setTermCount] = useState(8);
-  const [scheduleCourses, setScheduleCourses] = useState<Course[][]>([
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-  ]);
-  const [reqCourses, setReqCourses] = useState<Course[]>(school.courses);
+  const [scheduleCourses, setScheduleCourses] = useState<Course[][]>(
+    plan.terms
+  );
+  const [reqCourses, setReqCourses] = useState<Course[]>(plan.courses);
   const handleDragEnd = (result: DropResult, provided: ResponderProvided) => {
     if (!result.destination) {
       return;
@@ -149,7 +142,7 @@ const PlanCreator: React.FC<Props> = ({ slug }) => {
     }
   };
   const terms = [];
-  for (let i = 0; i < termCount; i++) {
+  for (let i = 0; i < scheduleCourses.length; i++) {
     terms.push(
       <div className={classes.termSchedule}>
         <span className={classes.termIndex}> {i + 1}</span>
@@ -157,7 +150,6 @@ const PlanCreator: React.FC<Props> = ({ slug }) => {
           deleteSchedule={() => {
             scheduleCourses.splice(i, 1);
             setScheduleCourses(scheduleCourses);
-            setTermCount(termCount - 1);
           }}
           schoolColor={school.color}
           key={i}
@@ -268,7 +260,6 @@ const PlanCreator: React.FC<Props> = ({ slug }) => {
         <div className={classes.plan}>
           <button
             onClick={() => {
-              setTermCount(termCount + 1);
               setScheduleCourses((prevState) => [[], ...prevState]);
             }}
             className={classes.addTermButton}

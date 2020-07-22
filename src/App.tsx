@@ -2,7 +2,7 @@ import React from "react";
 import { createUseStyles } from "react-jss";
 import SchoolPage from "./SchoolPage";
 import schools from "./schools";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import ComparePage from "./ComparePage";
 import PlanPage from "./PlanPage";
 import ReqsPage from "./ReqsPage";
@@ -47,28 +47,30 @@ function App() {
         <Link to="/">
           <h1 className={classes.header}> Curricula.fyi </h1>
         </Link>
-        <Route exact path="/">
-          <p>Explore different schools' Computer Science requirements</p>
-          {Object.entries(schools).map(([slug, school]) => {
-            return (
-              <Link key={slug} to={`/schools/${slug}`}>
-                <div className={classes.schoolName}> {school.shortName}</div>
-              </Link>
-            );
-          })}
-        </Route>
-        <Route path="/compare">
-          <ComparePage />
-        </Route>
-        <Route path="/plans/new">
-          <NewPlanPage userKey={userKey} />
-        </Route>
-        <Route path="/my-plans">
-          <MyPlansPage userKey={userKey} />
-        </Route>
-        <Route path={`/plans/:id`}>
-          <PlanPage userKey={userKey} />
-        </Route>
+        <Switch>
+          <Route exact path="/">
+            <p>Explore different schools' Computer Science requirements</p>
+            {Object.entries(schools).map(([slug, school]) => {
+              return (
+                <Link key={slug} to={`/schools/${slug}`}>
+                  <div className={classes.schoolName}> {school.shortName}</div>
+                </Link>
+              );
+            })}
+          </Route>
+          <Route path="/compare">
+            <ComparePage />
+          </Route>
+          <Route path="/plans/new">
+            <NewPlanPage userKey={userKey} />
+          </Route>
+          <Route path="/my-plans">
+            <MyPlansPage userKey={userKey} />
+          </Route>
+          <Route path={`/plans/:id`}>
+            <PlanPage userKey={userKey} />
+          </Route>
+        </Switch>
         <div>
           {Object.entries(schools).map(([slug, school]) => {
             return (
