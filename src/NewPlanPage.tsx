@@ -60,7 +60,7 @@ const NewPlanPage: React.FC<Props> = ({ userKey }) => {
             <TextField {...params} label="Which School?" variant="outlined" />
           )}
         />
-        <SchoolRequestForm />
+        <SchoolRequestForm userKey={userKey} />
         <TextField
           label="Plan Name"
           variant="outlined"
