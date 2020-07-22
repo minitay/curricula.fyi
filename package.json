@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -13,6 +14,9 @@
     "@types/react": "^16.9.41",
     "@types/react-beautiful-dnd": "^13.0.0",
     "@types/react-dom": "^16.9.8",
+    "@types/react-select": "^3.0.14",
+    "@types/uuid": "^8.0.0",
+    "firebase": "^7.16.1",
     "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-beautiful-dnd": "^13.0.0",
@@ -20,7 +24,9 @@
     "react-jss": "^10.3.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "typescript": "3.9.7"
+    "react-select": "^3.1.0",
+    "typescript": "3.9.7",
+    "uuid": "^8.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,6 +1,13 @@
+export interface Plan {
+  name: string;
+  terms: Course[][];
+  courses: Course[];
+}
+
 export interface School {
   name: string;
   shortName: string;
+  slug: string;
   requirements: Array<Requirement>;
   color: Color;
   courses: Course[];
@@ -33,4 +40,10 @@ export interface Color {
   r: number;
   g: number;
   b: number;
+}
+
+export enum LoadingState {
+  Loading,
+  Success,
+  Failure
 }

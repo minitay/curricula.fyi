@@ -151,6 +151,7 @@ export const cornellCourses: Course[] = [
 const cornell: School = {
   name: "Cornell University",
   shortName: "Cornell",
+  slug: "cornell",
   color: { r: 255, g: 3, b: 3 },
   logo: cornellLogo,
   courses: cornellCourses,
@@ -322,6 +323,7 @@ const nyuCourses: Course[] = [
 const nyuCAS: School = {
   name: "New York University: College of Arts & Sciences",
   shortName: "NYU CAS",
+  slug: "nyuCAS",
   logo: nyuLogo,
   color: { r: 87, g: 6, b: 140 },
   courses: nyuCourses,
@@ -577,6 +579,7 @@ const cmu: School = {
   name: "Carnegie Mellon University",
   shortName: "CMU",
   logo: cmuLogo,
+  slug: "cmu",
   color: { r: 187, g: 0, b: 0 },
   courses: cmuCourses,
   requirements: [
@@ -861,6 +864,7 @@ const northeastern: School = {
   name: "Northeastern University",
   shortName: "Northeastern",
   logo: northeasternLogo,
+  slug: "neu",
   color: { r: 212, g: 27, b: 44 },
   courses: neuCourses,
   requirements: [
@@ -1221,6 +1225,7 @@ const sbuCourses: Course[] = [
 const stonyBrook: School = {
   name: "Stony Brook University",
   shortName: "Stony Brook",
+  slug: "sbu",
   requirements: [],
   color: { r: 153, g: 0, b: 0 },
   courses: sbuCourses,
@@ -1545,6 +1550,7 @@ const umCourses: Course[] = [
 const uMichEng: School = {
   name: "University of Michigan: Engineering",
   shortName: "UMichigan Engineering",
+  slug: "uMichEng",
   requirements: [],
   color: { r: 255, g: 203, b: 5 },
   courses: umCourses,

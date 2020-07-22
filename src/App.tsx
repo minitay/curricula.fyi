@@ -6,6 +6,10 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import ComparePage from "./ComparePage";
 import PlanPage from "./PlanPage";
 import ReqsPage from "./ReqsPage";
+import { useLocalStorage } from "./utils";
+import { v4 as uuid } from "uuid";
+import MyPlansPage from "./MyPlansPage";
+import NewPlanPage from "./NewPlanPage";
 
 const styles = {
   App: {
@@ -36,6 +40,7 @@ const useStyles = createUseStyles(styles);
 
 function App() {
   const classes = useStyles();
+  const [userKey, setUserKey] = useLocalStorage("userKey", uuid());
   return (
     <Router>
       <div className={classes.App}>
@@ -55,10 +60,16 @@ function App() {
         <Route path="/compare">
           <ComparePage />
         </Route>
+        <Route path="/plans/new">
+          <NewPlanPage userKey={userKey} />
+        </Route>
+        <Route path="/my-plans">
+          <MyPlansPage userKey={userKey} />
+        </Route>
         <div>
           {Object.entries(schools).map(([slug, school]) => {
             return (
-              <React.Fragment>
+              <React.Fragment key={slug}>
                 <Route key={slug} path={`/schools/${slug}`}>
                   <SchoolPage slug={slug} school={school} />
                 </Route>
