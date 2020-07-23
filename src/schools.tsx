@@ -1,8 +1,10 @@
 import { Course, ReqType, School } from "./types";
 import cornellLogo from "./cornell.png";
-import nyuLogo from "./nyu.png";
+import nyuLogo from "./nyu.jpg";
 import cmuLogo from "./cmu.png";
 import northeasternLogo from "./northeastern.png";
+import umichLogo from "./umich.jpeg";
+import sbuLogo from "./sbu.png";
 
 export const cornellCourses: Course[] = [
   {
@@ -1229,6 +1231,7 @@ const stonyBrook: School = {
   requirements: [],
   color: { r: 153, g: 0, b: 0 },
   courses: sbuCourses,
+  logo: sbuLogo,
 };
 
 const umCourses: Course[] = [
@@ -1552,8 +1555,9 @@ const uMichEng: School = {
   shortName: "UMichigan Engineering",
   slug: "uMichEng",
   requirements: [],
-  color: { r: 255, g: 203, b: 5 },
+  color: { r: 0, g: 39, b: 76 },
   courses: umCourses,
+  logo: umichLogo,
 };
 
 const schools: { [s: string]: School } = {

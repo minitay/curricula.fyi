@@ -4,10 +4,22 @@ import { Link } from "react-router-dom";
 import { LoadingState, Plan } from "./types";
 import { db } from "./firebase";
 import { Button } from "@material-ui/core";
+import { createUseStyles } from "react-jss";
 
 interface Props {
   userKey: string;
 }
+
+const styles = {
+  MyPlansPage: {
+    width: "80vw",
+  },
+  plans: {
+    display: "flex",
+    flexWrap: "wrap",
+  },
+} as const;
+const useStyles = createUseStyles(styles);
 
 async function getPlans(userKey: string) {
   const query = await db
@@ -25,6 +37,7 @@ async function getPlans(userKey: string) {
 const MyPlansPage: React.FC<Props> = ({ userKey }) => {
   const [loadingState, setLoadingState] = useState(LoadingState.Loading);
   const [plans, setPlans] = useState<{ [id: string]: Plan }>({});
+  const classes = useStyles();
   useEffect(() => {
     setLoadingState(LoadingState.Loading);
     getPlans(userKey)
@@ -45,11 +58,13 @@ const MyPlansPage: React.FC<Props> = ({ userKey }) => {
   }
   if (loadingState === LoadingState.Success) {
     return (
-      <div>
+      <div className={classes.MyPlansPage}>
         <h1> Your Plans </h1>
-        {Object.entries(plans).map(([id, plan]) => {
-          return <PlanPreview key={id} id={id} plan={plan} />;
-        })}
+        <div className={classes.plans}>
+          {Object.entries(plans).map(([id, plan]) => {
+            return <PlanPreview key={id} id={id} plan={plan} />;
+          })}
+        </div>
         <Link to={`/plans/new`}>
           <Button variant="contained" color="secondary">
             Make New Plan
