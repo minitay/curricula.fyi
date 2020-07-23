@@ -7,7 +7,7 @@ import PlanPage from "./PlanPage";
 import ReqsPage from "./ReqsPage";
 import { useLocalStorage } from "./utils";
 import { v4 as uuid } from "uuid";
-import MyPlansPage from "./MyPlansPage";
+import HomePage from "./HomePage";
 import NewPlanPage from "./NewPlanPage";
 
 const styles = {
@@ -43,23 +43,32 @@ function App() {
   return (
     <Router>
       <div className={classes.App}>
-        <Link to="/">
-          <h1 className={classes.header}> Curricula.fyi </h1>
-        </Link>
         <Switch>
           <Route exact path="/">
-            <MyPlansPage userKey={userKey} />
+            <HomePage userKey={userKey} />
           </Route>
           <Route path="/compare">
+            <Link to="/">
+              <h1 className={classes.header}> Curricula.fyi </h1>
+            </Link>
             <ComparePage />
           </Route>
           <Route path="/plans/new">
+            <Link to="/">
+              <h1 className={classes.header}> Curricula.fyi </h1>
+            </Link>
             <NewPlanPage userKey={userKey} />
           </Route>
           <Route path="/my-plans">
-            <MyPlansPage userKey={userKey} />
+            <Link to="/">
+              <h1 className={classes.header}> Curricula.fyi </h1>
+            </Link>
+            <HomePage userKey={userKey} />
           </Route>
           <Route path={`/plans/:id`}>
+            <Link to="/">
+              <h1 className={classes.header}> Curricula.fyi </h1>
+            </Link>
             <PlanPage userKey={userKey} />
           </Route>
         </Switch>

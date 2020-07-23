@@ -11,12 +11,46 @@ interface Props {
 }
 
 const styles = {
-  MyPlansPage: {
-    width: "80vw",
-  },
+  HomePage: {},
   plans: {
+    width: "80vw",
     display: "flex",
     flexWrap: "wrap",
+  },
+  header: {
+    minHeight: "200px",
+    height: "50vh",
+    width: "100vw",
+    display: "flex",
+  },
+  leftHeader: {
+    width: "40vw",
+    height: "100%",
+    background: "lightblue",
+    color: "white",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
+  },
+  rightHeader: {
+    background: "black",
+    color: "white",
+    width: "60vw",
+    fontSize: "2em",
+    display: "grid",
+    placeItems: "center",
+  },
+  headerName: {
+    fontSize: "4em",
+    padding: "25px",
+    width: "250px",
+    textAlign: "right",
+  },
+  mainContent: {
+    width: "100vw",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
 } as const;
 const useStyles = createUseStyles(styles);
@@ -34,7 +68,7 @@ async function getPlans(userKey: string) {
   return plans;
 }
 
-const MyPlansPage: React.FC<Props> = ({ userKey }) => {
+const HomePage: React.FC<Props> = ({ userKey }) => {
   const [loadingState, setLoadingState] = useState(LoadingState.Loading);
   const [plans, setPlans] = useState<{ [id: string]: Plan }>({});
   const classes = useStyles();
@@ -58,22 +92,32 @@ const MyPlansPage: React.FC<Props> = ({ userKey }) => {
   }
   if (loadingState === LoadingState.Success) {
     return (
-      <div className={classes.MyPlansPage}>
-        <h1> Your Plans </h1>
-        <div className={classes.plans}>
-          {Object.entries(plans).map(([id, plan]) => {
-            return <PlanPreview key={id} id={id} plan={plan} />;
-          })}
+      <div className={classes.HomePage}>
+        <div className={classes.header}>
+          <div className={classes.leftHeader}>
+            <h1 className={classes.headerName}> Curricula .fyi</h1>
+          </div>
+          <div className={classes.rightHeader}>
+            <h2> Plan your next 4 years </h2>
+          </div>
         </div>
-        <Link to={`/plans/new`}>
-          <Button variant="contained" color="secondary">
-            Make New Plan
-          </Button>
-        </Link>
+        <div className={classes.mainContent}>
+          <h1> Your Plans </h1>
+          <div className={classes.plans}>
+            {Object.entries(plans).map(([id, plan]) => {
+              return <PlanPreview key={id} id={id} plan={plan} />;
+            })}
+          </div>
+          <Link to={`/plans/new`}>
+            <Button variant="contained" color="secondary">
+              Make New Plan
+            </Button>
+          </Link>
+        </div>
       </div>
     );
   }
   return <div> Not reachable! </div>;
 };
 
-export default MyPlansPage;
+export default HomePage;
