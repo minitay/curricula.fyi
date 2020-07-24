@@ -23,7 +23,6 @@ const ReqsPage: React.FC<Props> = ({ slug, school, ...props }) => {
   const classes = useStyles(props);
   return (
     <div className={classes.ReqsPage}>
-      <Link to={`/schools/${slug}`}> Back to school page </Link>
       <h1>{school.name} </h1>
       <Requirements
         requirements={school.requirements}

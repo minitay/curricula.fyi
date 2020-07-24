@@ -75,11 +75,12 @@ function App() {
         <div>
           {Object.values(schools).map((school) => {
             return (
-              <React.Fragment key={school.slug}>
-                <Route path={`/reqs/${school.slug}`}>
-                  <ReqsPage slug={school.slug} school={school} />
-                </Route>
-              </React.Fragment>
+              <Route key={school.slug} path={`/reqs/${school.slug}`}>
+                <Link to="/">
+                  <h1 className={classes.header}> Curricula.fyi </h1>
+                </Link>
+                <ReqsPage slug={school.slug} school={school} />
+              </Route>
             );
           })}
         </div>

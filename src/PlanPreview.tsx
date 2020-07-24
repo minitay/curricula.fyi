@@ -11,8 +11,9 @@ interface Props {
 
 const styles = {
   PlanPreview: {
+    background: "white",
     display: "flex",
-    borderRadius: "15px",
+    borderRadius: "10px",
     width: "365px",
     height: "150px",
     margin: "20px",
@@ -24,7 +25,7 @@ const styles = {
     padding: "20px",
   },
   rightPartition: {
-    borderRadius: "0px 15px 15px 0px",
+    borderRadius: "0px 10px 10px 0px",
     width: "215px",
     height: "150px",
     backgroundColor: (props: Props) => {
@@ -33,12 +34,12 @@ const styles = {
     },
     display: "flex",
     flexDirection: "column",
-    alignItems: "flex-end",
+    alignItems: "center",
     color: "white",
   },
   name: {
     textDecoration: "none",
-    paddingRight: "20px",
+    //paddingRight: "20px",
     fontSize: "1.1em",
     margin: {
       top: "20px",
@@ -48,7 +49,7 @@ const styles = {
   school: {
     textAlign: "right",
     width: "140px",
-    paddingRight: "20px",
+    //paddingRight: "20px",
     margin: "0",
   },
 } as const;

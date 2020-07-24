@@ -33,8 +33,8 @@ const styles = {
     justifyContent: "flex-end",
   },
   rightHeader: {
-    background: "black",
-    color: "white",
+    background: "white",
+    color: "black",
     width: "60vw",
     fontSize: "2em",
     display: "grid",

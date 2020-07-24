@@ -19,6 +19,7 @@ import { Button } from "@material-ui/core";
 const styles = {
   PlanCreator: {
     display: "flex",
+    padding: "30px",
   },
   requirements: {
     background: "#bababa",
@@ -122,7 +123,7 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
         <span className={classes.termIndex}> {i + 1}</span>
         <TermSchedule
           deleteSchedule={() => {
-            plan.courses = [...plan.courses, ...plan.terms[i]];
+            plan.courses = [...plan.terms[i], ...plan.courses];
             plan.terms.splice(i, 1);
             setPlan(plan);
           }}

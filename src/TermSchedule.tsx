@@ -65,6 +65,9 @@ const TermSchedule: React.FC<Props> = ({
   const classes = useStyles();
   return (
     <div className={classes.container}>
+      <button className={classes.deleteButton} onClick={deleteSchedule}>
+        <ClearIcon fontSize="small" classes={{ fontSizeSmall: "10px" }} />
+      </button>
       <Droppable droppableId={`term-${id}`} direction="horizontal">
         {(provided, snapshot) => (
           <div
@@ -72,9 +75,6 @@ const TermSchedule: React.FC<Props> = ({
             className={classes.TermSchedule}
             {...provided.droppableProps}
           >
-            <button className={classes.deleteButton} onClick={deleteSchedule}>
-              <ClearIcon fontSize="small" classes={{ fontSizeSmall: "10px" }} />
-            </button>
             {courses.length === 0 && (
               <div className={classes.placeholder}> Drop a course here </div>
             )}

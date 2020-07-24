@@ -5,6 +5,7 @@ import cmuLogo from "./cmu.png";
 import northeasternLogo from "./northeastern.png";
 import umichLogo from "./umich.jpeg";
 import sbuLogo from "./sbu.png";
+import uchicagoLogo from "./uchicago.png";
 
 export const cornellCourses: Course[] = [
   {
@@ -1550,14 +1551,123 @@ const umCourses: Course[] = [
   { name: "Dissertation/Candidate", code: "EECS 995" },
 ];
 
-const uMichEng: School = {
-  name: "University of Michigan: Engineering",
-  shortName: "UMichigan Engineering",
-  slug: "uMichEng",
+const uMich: School = {
+  name: "University of Michigan",
+  shortName: "UMichigan",
+  slug: "uMich",
   requirements: [],
   color: { r: 0, g: 39, b: 76 },
   courses: umCourses,
   logo: umichLogo,
+};
+
+const uchicagoCourses = [
+  {
+    name: "Multimedia Programming as an Interdisciplinary Art I",
+    code: "CMSC 11000",
+  },
+  {
+    name: "Multimedia Programming as an Interdisciplinary Art II",
+    code: "CMSC 11100",
+  },
+  { name: "Creative Coding", code: "CMSC 11111" },
+  { name: "Networks", code: "CMSC 11710" },
+  { name: "Introduction to Data Science I", code: "CMSC 11800" },
+  { name: "Introduction to Data Science II", code: "CMSC 11900" },
+  { name: "Computer Science with Applications I", code: "CMSC 12100" },
+  { name: "Computer Science with Applications II", code: "CMSC 12200" },
+  { name: "Computer Science with Applications III", code: "CMSC 12300" },
+  { name: "Introduction to Data Engineering", code: "CMSC 13600" },
+  { name: "Introduction to Computer Science I", code: "CMSC 15100" },
+  { name: "Introduction to Computer Science II", code: "CMSC 15200" },
+  { name: "Introduction to Computer Systems", code: "CMSC 15400" },
+  { name: "Honors Introduction to Computer Science I", code: "CMSC 16100" },
+  { name: "Honors Introduction to Computer Science II", code: "CMSC 16200" },
+  { name: "Introduction to Human-Computer Interaction", code: "CMSC 20300" },
+  {
+    name:
+      "Inclusive Technology: Designing for Underserved and Marginalized Populations",
+    code: "CMSC 20370",
+  },
+  { name: "Computers for Learning", code: "CMSC 20900" },
+  { name: "Mathematical Foundations", code: "CMSC 21010" },
+  { name: "Data Science for Computer Scientists", code: "CMSC 21800" },
+  { name: "Introduction to Software Development", code: "CMSC 22000" },
+  { name: "Software Construction", code: "CMSC 22001" },
+  { name: "Digital Fabrication", code: "CMSC 22010" },
+  { name: "Programming Languages", code: "CMSC 22100" },
+  { name: "Computer Architecture", code: "CMSC 22200" },
+  { name: "Computer Architecture for Scientists", code: "CMSC 22240" },
+  { name: "Functional Programming", code: "CMSC 22300" },
+  { name: "Type Theory", code: "CMSC 22500" },
+  { name: "Compilers for Computer Languages", code: "CMSC 22600" },
+  { name: "Operating Systems", code: "CMSC 23000" },
+  { name: "Parallel Computing", code: "CMSC 23010" },
+  { name: "Introduction to Computer Security", code: "CMSC 23200" },
+  { name: "Usable Security and Privacy", code: "CMSC 23210" },
+  {
+    name: "Inventing, Engineering and Understanding Interactive Devices",
+    code: "CMSC 23220",
+  },
+  { name: "Emergent Interface Technologies", code: "CMSC 23240" },
+  { name: "Networks and Distributed Systems", code: "CMSC 23300" },
+  { name: "Advanced Distributed Systems", code: "CMSC 23310" },
+  { name: "Foundations of Computer Networks", code: "CMSC 23320" },
+  { name: "Advanced Networks", code: "CMSC 23360" },
+  { name: "Mobile Computing", code: "CMSC 23400" },
+  { name: "Introduction to Database Systems", code: "CMSC 23500" },
+  { name: "Introduction to Computer Graphics", code: "CMSC 23700" },
+  { name: "Scientific Visualization", code: "CMSC 23710" },
+  { name: "Data Visualization", code: "CMSC 23900" },
+  {
+    name: "Machine Learning and Large-Scale Data Analysis",
+    code: "CMSC 25025",
+  },
+  { name: "Introduction to Computer Vision", code: "CMSC 25040" },
+  { name: "Mathematical Foundations of Machine Learning", code: "CMSC 25300" },
+  { name: "Machine Learning", code: "CMSC 25400" },
+  { name: "Machine Learning in Medicine", code: "CMSC 25440" },
+  { name: "Introduction to Optimization", code: "CMSC 25460" },
+  { name: "Computational Linguistics I", code: "CMSC 25610" },
+  { name: "Computational Linguistics II", code: "CMSC 25620" },
+  {
+    name: "Ethics, Fairness, Responsibility, and Privacy in Data Science",
+    code: "CMSC 25900",
+  },
+  { name: "Discrete Mathematics", code: "CMSC 27100" },
+  { name: "Honors Discrete Mathematics", code: "CMSC 27130" },
+  { name: "Theory of Algorithms", code: "CMSC 27200" },
+  { name: "Honors Theory of Algorithms", code: "CMSC 27230" },
+  { name: "Honors Combinatorics", code: "CMSC 27410" },
+  { name: "Graph Theory", code: "CMSC 27500" },
+  { name: "Honors Graph Theory", code: "CMSC 27530" },
+  { name: "Computational Biology", code: "CMSC 27600" },
+  { name: "Mathematical Logic I", code: "CMSC 27700" },
+  { name: "Mathematical Logic II", code: "CMSC 27800" },
+  { name: "Chaos, Complexity And Computers", code: "CMSC 27900" },
+  { name: "Introduction to Formal Languages", code: "CMSC 28000" },
+  { name: "Introduction to Complexity Theory", code: "CMSC 28100" },
+  { name: "Honors Introduction to Complexity Theory", code: "CMSC 28130" },
+  { name: "Introduction to Cryptography", code: "CMSC 28400" },
+  { name: "Introduction to Scientific Computing", code: "CMSC 28510" },
+  {
+    name: "Introduction to Numerical Partial Differential Equations",
+    code: "CMSC 28515",
+  },
+  { name: "Numerical Methods", code: "CMSC 28540" },
+  { name: "Entrepreneurship in Technology", code: "CMSC 29512" },
+  { name: "Reading and Research in Computer Science", code: "CMSC 29700" },
+  { name: "Bachelor's Thesis", code: "CMSC 29900" },
+];
+
+const uChicago: School = {
+  name: "The University of Chicago",
+  shortName: "UChicago",
+  slug: "uchi",
+  requirements: [],
+  color: { r: 128, g: 0, b: 0 },
+  courses: uchicagoCourses,
+  logo: uchicagoLogo,
 };
 
 const schools: { [s: string]: School } = {
@@ -1566,7 +1676,8 @@ const schools: { [s: string]: School } = {
   [cmu.slug]: cmu,
   [northeastern.slug]: northeastern,
   [stonyBrook.slug]: stonyBrook,
-  [uMichEng.slug]: uMichEng,
+  [uMich.slug]: uMich,
+  [uChicago.slug]: uChicago,
 };
 
 export default schools;

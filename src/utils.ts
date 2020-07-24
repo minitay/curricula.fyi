@@ -1,4 +1,4 @@
-import {ReqType, Requirement} from "./types";
+import {Color, ReqType, Requirement} from "./types";
 import {useEffect, useState} from "react";
 import { useLocation } from "react-router-dom";
 
@@ -84,4 +84,9 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
     }
   };
   return [storedValue, setValue];
+}
+
+export function colorToString(color: Color, opacity: number = 0.5) {
+  const { r, g, b} = color;
+  return `rgba(${r}, ${g}, ${b}, ${opacity})`;
 }
