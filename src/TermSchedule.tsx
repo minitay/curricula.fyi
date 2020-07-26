@@ -85,7 +85,7 @@ const TermSchedule: React.FC<Props> = ({
                   : schoolColor;
               return (
                 <Draggable key={course.name} draggableId={course.id} index={i}>
-                  {(provided, snapshot) => (
+                  {(provided) => (
                     <div
                       ref={provided.innerRef}
                       {...provided.draggableProps}
