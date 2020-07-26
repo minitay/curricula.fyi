@@ -78,31 +78,26 @@ const TermSchedule: React.FC<Props> = ({
             {courses.length === 0 && (
               <div className={classes.placeholder}> Drop a course here </div>
             )}
-            {courses.map((course, i) => {
-              const color =
-                course.type === CourseType.NonCS
-                  ? { r: 120, g: 120, b: 120 }
-                  : schoolColor;
-              return (
-                <Draggable key={course.name} draggableId={course.id} index={i}>
-                  {(provided) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      className={classes.course}
-                    >
-                      <CourseTile
-                        name={course.name}
-                        code={course.code}
-                        color={color}
-                        opacity={0.5}
-                      />
-                    </div>
-                  )}
-                </Draggable>
-              );
-            })}
+            {courses.map((course, i) => (
+              <Draggable key={course.name} draggableId={course.id} index={i}>
+                {(provided) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                    className={classes.course}
+                  >
+                    <CourseTile
+                      name={course.name}
+                      code={course.code}
+                      color={schoolColor}
+                      type={course.type}
+                      opacity={0.5}
+                    />
+                  </div>
+                )}
+              </Draggable>
+            ))}
             {provided.placeholder}
           </div>
         )}

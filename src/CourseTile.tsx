@@ -1,6 +1,6 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
-import { Color } from "./types";
+import { Color, CourseType } from "./types";
 import { DraggableProps } from "react-beautiful-dnd";
 
 const styles = {
@@ -8,8 +8,12 @@ const styles = {
     width: "200px",
     height: "100px",
     fontSize: "0.8rem",
-    backgroundColor: ({ color, opacity }: { color: Color; opacity: number }) =>
-      `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity})`,
+    backgroundColor: ({ color, opacity, type }: Props) => {
+      if (type === CourseType.CS) {
+        return `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity})`;
+      }
+      return "#787878";
+    },
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -32,6 +36,8 @@ interface Props extends Partial<DraggableProps> {
   code?: string;
   color: Color;
   opacity: number;
+  type: CourseType;
+
   ref?: React.Ref<HTMLDivElement>;
 }
 
@@ -40,9 +46,10 @@ const CourseTile: React.FC<Props> = ({
   code,
   color,
   opacity,
+  type,
   ...props
 }) => {
-  const classes = useStyles({ color, opacity });
+  const classes = useStyles({ color, opacity, type });
   return (
     <div className={classes.CourseTile} {...props}>
       {code && <div>{code}</div>}

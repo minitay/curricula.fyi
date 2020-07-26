@@ -152,6 +152,8 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
     <DragDropContext onDragEnd={handleDragEnd}>
       {courseFormVisibility === Visibility.Visible && (
         <NewCourseForm
+          plan={plan}
+          setPlan={setPlan}
           closeForm={() => setCourseFormVisibility(Visibility.NotVisible)}
         />
       )}
@@ -174,6 +176,7 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
               >
                 <CourseTile
                   name="Non CS"
+                  type={CourseType.NonCS}
                   color={{ r: 120, g: 120, b: 120 }}
                   opacity={0.5}
                 />
@@ -189,6 +192,7 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
                   <div ref={provided.innerRef} {...provided.droppableProps}>
                     <CourseTile
                       name={"Non CS"}
+                      type={CourseType.NonCS}
                       color={{ r: 120, g: 120, b: 120 }}
                       opacity={0.5}
                     />
@@ -209,6 +213,7 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
                         {...provided.dragHandleProps}
                       >
                         <CourseTile
+                          type={CourseType.NonCS}
                           name={"Non CS"}
                           color={{ r: 120, g: 120, b: 120 }}
                           opacity={0.5}
@@ -228,7 +233,7 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
               <div ref={provided.innerRef} {...provided.droppableProps}>
                 {plan.courses.map((course, i) => (
                   <Draggable key={i} draggableId={course.id} index={i}>
-                    {(provided, snapshot) => (
+                    {(provided) => (
                       <div
                         ref={provided.innerRef}
                         {...provided.draggableProps}
@@ -238,6 +243,7 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
                           name={course.name}
                           code={course.code}
                           color={school.color}
+                          type={course.type}
                           opacity={0.5}
                         />
                       </div>

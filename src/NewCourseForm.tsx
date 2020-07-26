@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import {
-  TextField,
-  Checkbox,
-  FormControlLabel,
   Box,
   Button,
+  Checkbox,
+  FormControlLabel,
+  TextField,
 } from "@material-ui/core";
 import ClearIcon from "@material-ui/icons/Clear";
-import { SubmitState } from "./types";
+import { CourseType, Plan, SubmitState } from "./types";
 import { createUseStyles } from "react-jss";
-import { useSpring, animated } from "react-spring";
+import { animated, useSpring } from "react-spring";
 import { delay } from "./utils";
+import { v4 as uuid } from "uuid";
+import { db } from "./firebase";
 
 const styles = {
   NewCourseForm: {
@@ -46,9 +48,11 @@ const useStyles = createUseStyles(styles);
 
 interface Props {
   closeForm: () => void;
+  setPlan: (p: Plan) => void;
+  plan: Plan;
 }
 
-const NewCourseForm: React.FC<Props> = ({ closeForm }) => {
+const NewCourseForm: React.FC<Props> = ({ closeForm, setPlan, plan }) => {
   const classes = useStyles();
   const [submitState, setSubmitState] = useState(SubmitState.NotSubmited);
   const [courseName, setCourseName] = useState("");
@@ -60,12 +64,30 @@ const NewCourseForm: React.FC<Props> = ({ closeForm }) => {
     to: { height: isClosing ? "0px" : "400px" },
     from: { height: "0px" },
   });
+
+  async function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+    setSubmitState(SubmitState.Submitting);
+    const type = isCS ? CourseType.CS : CourseType.NonCS;
+    const course = { name: courseName, code: courseCode, id: uuid(), type };
+    plan.courses = [course, ...plan.courses];
+    try {
+      await db.collection("courseRequests").add(course);
+      setPlan(plan);
+    } catch (e) {
+      console.error(e);
+      setSubmitState(SubmitState.Failure);
+      return;
+    }
+    closeForm();
+  }
+
   if (isClosing) {
     return <animated.div style={props}></animated.div>;
   }
   return (
     <animated.div style={props}>
-      <form className={classes.NewCourseForm}>
+      <form className={classes.NewCourseForm} onSubmit={handleSubmit}>
         <button
           className={classes.closeButton}
           onClick={(event) => {

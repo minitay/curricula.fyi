@@ -1,6 +1,6 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
-import { Color, ReqType, Requirement } from "./types";
+import { Color, CourseType, ReqType, Requirement } from "./types";
 import TileRow from "./TileRow";
 import TileGrouping from "./TileGrouping";
 import { getReqsTreeHeight } from "./utils";
@@ -54,6 +54,7 @@ const Requirements: React.FC<Props> = ({
           case ReqType.One:
             component = (
               <CourseTile
+                type={CourseType.CS}
                 name={req.course.name}
                 color={color}
                 opacity={opacity}

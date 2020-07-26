@@ -40,8 +40,14 @@ const TileGrouping: React.FC<Props> = ({
     <div className={classes.TileGrouping}>
       <label> {label} </label>
       <div className={classes.tiles}>
-        {courses.map(({ name, code }) => (
-          <CourseTile name={name} code={code} color={color} opacity={opacity} />
+        {courses.map(({ name, code, type }) => (
+          <CourseTile
+            name={name}
+            code={code}
+            color={color}
+            opacity={opacity}
+            type={type}
+          />
         ))}
       </div>
     </div>

@@ -45,12 +45,13 @@ const TileRow: React.FC<Props> = (props) => {
     <div className={classes.TileRow}>
       {width! < 1000 && courses.length > 1 && <span> One of: </span>}
       <div className={classes.row}>
-        {courses.map(({ name, code }) => {
+        {courses.map(({ name, code, type }) => {
           return (
             <div>
               <CourseTile
                 name={name}
                 code={code}
+                type={type}
                 color={color}
                 opacity={opacity}
               />

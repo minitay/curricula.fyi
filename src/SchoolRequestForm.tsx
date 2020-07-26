@@ -54,7 +54,7 @@ const SchoolRequestForm: React.FC<Props> = ({ userKey }) => {
           html: `Request for ${schoolName}`,
         },
       });
-      await db.collection("requests").add({ userKey, schoolName, email });
+      await db.collection("schoolRequests").add({ userKey, schoolName, email });
     } catch (e) {
       setSubmitState(SubmitState.Failure);
       return;
