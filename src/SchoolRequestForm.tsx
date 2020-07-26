@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { createUseStyles } from "react-jss";
 import { Box, Button, TextField } from "@material-ui/core";
 import { db } from "./firebase";
+import { SubmitState } from "./types";
 
 const styles = {
   SchoolRequestForm: {
@@ -31,13 +32,6 @@ const useStyles = createUseStyles(styles);
 
 interface Props {
   userKey: string;
-}
-
-enum SubmitState {
-  NotSubmited,
-  Submitting,
-  Success,
-  Failure,
 }
 
 const SchoolRequestForm: React.FC<Props> = ({ userKey }) => {

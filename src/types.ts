@@ -48,3 +48,10 @@ export enum LoadingState {
   Success,
   Failure
 }
+
+export enum SubmitState {
+  NotSubmited,
+  Submitting,
+  Success,
+  Failure,
+}

@@ -15,6 +15,7 @@ import { createUseStyles } from "react-jss";
 import TermSchedule from "./TermSchedule";
 import schools from "./schools";
 import { Button } from "@material-ui/core";
+import NewCourseForm from "./NewCourseForm";
 
 const styles = {
   PlanCreator: {
@@ -66,6 +67,7 @@ const styles = {
     border: "2px dashed #989898",
     margin: "10px",
     boxSizing: "border-box",
+    fontSize: "1.1em",
   },
   addTermButton: {
     width: "200px",
@@ -79,9 +81,17 @@ interface Props {
   setPlan: (p: Plan) => void;
 }
 
+enum Visibility {
+  Visible,
+  NotVisible,
+}
+
 const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
   const school = schools[slug];
   const classes = useStyles();
+  const [courseFormVisibility, setCourseFormVisibility] = useState(
+    Visibility.NotVisible
+  );
   const [nonCSCount, setNonCSCount] = useState(1);
   const handleDragEnd = (result: DropResult, provided: ResponderProvided) => {
     if (!result.destination) {
@@ -137,11 +147,19 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
   }
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
+      {courseFormVisibility === Visibility.Visible && (
+        <NewCourseForm
+          closeForm={() => setCourseFormVisibility(Visibility.NotVisible)}
+        />
+      )}
       <div className={classes.PlanCreator}>
         <div className={classes.requirements}>
-          <div className={classes.addCourseButton}>
+          <button
+            className={classes.addCourseButton}
+            onClick={() => setCourseFormVisibility(Visibility.Visible)}
+          >
             <AddCircleOutlineIcon /> Add A Course
-          </div>
+          </button>
           <Droppable
             droppableId="reqs-1"
             isDropDisabled={true}
