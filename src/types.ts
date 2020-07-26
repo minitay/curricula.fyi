@@ -15,10 +15,16 @@ export interface School {
   logo: string;
 }
 
+export enum CourseType {
+  CS,
+  NonCS
+};
+
 export interface Course {
-  id?: string;
+  id: string;
   code?: string;
   name: string;
+  type: CourseType;
 }
 
 export enum ReqType {

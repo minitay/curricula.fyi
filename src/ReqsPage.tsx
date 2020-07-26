@@ -2,7 +2,6 @@ import React from "react";
 import Requirements from "./Requirements";
 import { getReqsTreeHeight } from "./utils";
 import { School } from "./types";
-import { Link } from "react-router-dom";
 import { createUseStyles } from "react-jss";
 
 interface Props {

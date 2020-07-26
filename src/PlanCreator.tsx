@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+import { v4 as uuid } from "uuid";
 import {
   DragDropContext,
   Draggable,
@@ -9,7 +10,7 @@ import {
   DropResult,
   ResponderProvided,
 } from "react-beautiful-dnd";
-import { Course, Plan } from "./types";
+import { Course, CourseType, Plan } from "./types";
 import CourseTile from "./CourseTile";
 import { createUseStyles } from "react-jss";
 import TermSchedule from "./TermSchedule";
@@ -102,7 +103,9 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
     // Non CS course chosen
     if (srcType === "reqs" && srcId === "1") {
       const course: Course = {
-        name: `Non CS ${nonCSCount}`,
+        id: uuid(),
+        name: `Non CS`,
+        type: CourseType.NonCS,
       };
       const term = parseInt(destId);
       setNonCSCount(nonCSCount + 1);
@@ -224,7 +227,7 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
             ) => (
               <div ref={provided.innerRef} {...provided.droppableProps}>
                 {plan.courses.map((course, i) => (
-                  <Draggable key={i} draggableId={course.name} index={i}>
+                  <Draggable key={i} draggableId={course.id} index={i}>
                     {(provided, snapshot) => (
                       <div
                         ref={provided.innerRef}

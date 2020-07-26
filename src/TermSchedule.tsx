@@ -1,7 +1,7 @@
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import React from "react";
 import CourseTile from "./CourseTile";
-import { Color, Course } from "./types";
+import { Color, Course, CourseType } from "./types";
 import { createUseStyles } from "react-jss";
 import ClearIcon from "@material-ui/icons/Clear";
 
@@ -79,15 +79,12 @@ const TermSchedule: React.FC<Props> = ({
               <div className={classes.placeholder}> Drop a course here </div>
             )}
             {courses.map((course, i) => {
-              const color = course.name.includes("Non CS")
-                ? { r: 120, g: 120, b: 120 }
-                : schoolColor;
+              const color =
+                course.type === CourseType.NonCS
+                  ? { r: 120, g: 120, b: 120 }
+                  : schoolColor;
               return (
-                <Draggable
-                  key={course.name}
-                  draggableId={course.name}
-                  index={i}
-                >
+                <Draggable key={course.name} draggableId={course.id} index={i}>
                   {(provided, snapshot) => (
                     <div
                       ref={provided.innerRef}
