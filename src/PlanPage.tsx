@@ -70,8 +70,8 @@ const PlanPage: React.FC<Props> = ({ userKey }) => {
           <Link
             to={`/reqs/${plan.school}`}
             style={{
-              backgroundColor: colorToString(school.color, 0.2),
-              border: `1px solid ${colorToString(school.color, 0.5)}`,
+              backgroundColor: colorToString(school.lightColor, 0.2),
+              border: `1px solid ${colorToString(school.lightColor, 0.5)}`,
             }}
             className={classes.requirements}
           >

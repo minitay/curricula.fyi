@@ -92,7 +92,6 @@ const TermSchedule: React.FC<Props> = ({
                       code={course.code}
                       color={schoolColor}
                       type={course.type}
-                      opacity={0.5}
                     />
                   </div>
                 )}

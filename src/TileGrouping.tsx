@@ -44,8 +44,7 @@ const TileGrouping: React.FC<Props> = ({
           <CourseTile
             name={name}
             code={code}
-            color={color}
-            opacity={opacity}
+            color={{ ...color, a: opacity }}
             type={type}
           />
         ))}

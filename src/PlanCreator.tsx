@@ -140,7 +140,7 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
             plan.terms.splice(i, 1);
             setPlan(plan);
           }}
-          schoolColor={school.color}
+          schoolColor={school.lightColor}
           key={i}
           id={i}
           courses={plan.terms[i]}
@@ -177,8 +177,7 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
                 <CourseTile
                   name="Non CS"
                   type={CourseType.NonCS}
-                  color={{ r: 120, g: 120, b: 120 }}
-                  opacity={0.5}
+                  color={{ r: 120, g: 120, b: 120, a: 0.5 }}
                 />
               </div>
             )}
@@ -193,8 +192,7 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
                     <CourseTile
                       name={"Non CS"}
                       type={CourseType.NonCS}
-                      color={{ r: 120, g: 120, b: 120 }}
-                      opacity={0.5}
+                      color={{ r: 120, g: 120, b: 120, a: 0.5 }}
                     />
                     <div style={{ display: "none" }}>
                       {" "}
@@ -215,8 +213,7 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
                         <CourseTile
                           type={CourseType.NonCS}
                           name={"Non CS"}
-                          color={{ r: 120, g: 120, b: 120 }}
-                          opacity={0.5}
+                          color={{ r: 120, g: 120, b: 120, a: 0.5 }}
                         />
                       </div>
                     )}
@@ -242,9 +239,8 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
                         <CourseTile
                           name={course.name}
                           code={course.code}
-                          color={school.color}
+                          color={school.lightColor}
                           type={course.type}
-                          opacity={0.5}
                         />
                       </div>
                     )}

@@ -10,7 +10,8 @@ export interface School {
   shortName: string;
   slug: string;
   requirements: Array<Requirement>;
-  color: Color;
+  darkColor: Color;
+  lightColor: Color;
   courses: Course[];
   logo: string;
 }
@@ -47,6 +48,7 @@ export interface Color {
   r: number;
   g: number;
   b: number;
+  a: number;
 }
 
 export enum LoadingState {

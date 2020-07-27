@@ -8,9 +8,9 @@ const styles = {
     width: "200px",
     height: "100px",
     fontSize: "0.8rem",
-    backgroundColor: ({ color, opacity, type }: Props) => {
+    backgroundColor: ({ color, type }: Props) => {
       if (type === CourseType.CS) {
-        return `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity})`;
+        return `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`;
       }
       return "#787878";
     },
@@ -35,21 +35,13 @@ interface Props extends Partial<DraggableProps> {
   name: string;
   code?: string;
   color: Color;
-  opacity: number;
   type: CourseType;
 
   ref?: React.Ref<HTMLDivElement>;
 }
 
-const CourseTile: React.FC<Props> = ({
-  name,
-  code,
-  color,
-  opacity,
-  type,
-  ...props
-}) => {
-  const classes = useStyles({ color, opacity, type });
+const CourseTile: React.FC<Props> = ({ name, code, color, type, ...props }) => {
+  const classes = useStyles({ color, type });
   return (
     <div className={classes.CourseTile} {...props}>
       {code && <div>{code}</div>}

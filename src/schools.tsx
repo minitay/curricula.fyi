@@ -228,7 +228,8 @@ const cornell: School = {
   name: "Cornell University",
   shortName: "Cornell",
   slug: "cornell",
-  color: { r: 255, g: 3, b: 3 },
+  darkColor: { r: 255, g: 3, b: 3, a: 1 },
+  lightColor: { r: 255, g: 3, b: 3, a: 0.4 },
   logo: cornellLogo,
   courses: cornellCourses,
   requirements: [
@@ -438,7 +439,8 @@ const nyuCAS: School = {
   shortName: "NYU CAS",
   slug: "nyuCAS",
   logo: nyuLogo,
-  color: { r: 87, g: 6, b: 140 },
+  darkColor: { r: 87, g: 6, b: 140, a: 1 },
+  lightColor: { r: 87, g: 6, b: 140, a: 0.4 },
   courses: nyuCourses,
   requirements: [
     {
@@ -803,7 +805,8 @@ const cmu: School = {
   shortName: "CMU",
   logo: cmuLogo,
   slug: "cmu",
-  color: { r: 187, g: 0, b: 0 },
+  darkColor: { r: 187, g: 0, b: 0, a: 1 },
+  lightColor: { r: 201, g: 202, b: 202, a: 0.8 },
   courses: cmuCourses,
   requirements: [
     {
@@ -1352,7 +1355,8 @@ const northeastern: School = {
   shortName: "Northeastern",
   logo: northeasternLogo,
   slug: "neu",
-  color: { r: 212, g: 27, b: 44 },
+  darkColor: { r: 212, g: 27, b: 44, a: 1 },
+  lightColor: { r: 153, g: 163, b: 176, a: 1 },
   courses: neuCourses,
   requirements: [
     {
@@ -2157,7 +2161,8 @@ const stonyBrook: School = {
   shortName: "Stony Brook",
   slug: "sbu",
   requirements: [],
-  color: { r: 153, g: 0, b: 0 },
+  darkColor: { r: 153, g: 0, b: 0, a: 1 },
+  lightColor: { r: 153, g: 0, b: 0, a: 0.2 },
   courses: sbuCourses,
   logo: sbuLogo,
 };
@@ -3511,7 +3516,8 @@ const uMich: School = {
   shortName: "UMichigan",
   slug: "uMich",
   requirements: [],
-  color: { r: 0, g: 39, b: 76 },
+  darkColor: { r: 0, g: 39, b: 76, a: 1 },
+  lightColor: { r: 255, g: 203, b: 5, a: 1 },
   courses: umCourses,
   logo: umichLogo,
 };
@@ -3969,7 +3975,8 @@ const uChicago: School = {
   shortName: "UChicago",
   slug: "uchi",
   requirements: [],
-  color: { r: 128, g: 0, b: 0 },
+  darkColor: { r: 128, g: 0, b: 0, a: 1 },
+  lightColor: { r: 128, g: 0, b: 0, a: 0.4 },
   courses: uchicagoCourses,
   logo: uchicagoLogo,
 };
@@ -5922,7 +5929,8 @@ const berkeley: School = {
   shortName: "Berkeley",
   slug: "cal",
   requirements: [],
-  color: { r: 59, g: 126, b: 161 },
+  darkColor: { r: 0, g: 50, b: 98, a: 1 },
+  lightColor: { r: 253, g: 181, b: 21, a: 1 },
   courses: berkeleyCourses,
   logo: berkeleyLogo,
 };
@@ -6962,7 +6970,8 @@ const usc: School = {
   shortName: "USC",
   slug: "usc",
   requirements: [],
-  color: { r: 255, g: 199, b: 44 },
+  darkColor: { r: 157, g: 34, b: 53, a: 1 },
+  lightColor: { r: 255, g: 199, b: 44, a: 1 },
   courses: uscCourses,
   logo: uscLogo,
 };

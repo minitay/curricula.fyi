@@ -25,7 +25,7 @@ const ReqsPage: React.FC<Props> = ({ slug, school, ...props }) => {
       <h1>{school.name} </h1>
       <Requirements
         requirements={school.requirements}
-        color={school.color}
+        color={school.darkColor}
         start={1}
         totalSteps={getReqsTreeHeight(school.requirements)}
         isOutlined={true}

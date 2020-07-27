@@ -29,8 +29,8 @@ const styles = {
     width: "215px",
     height: "150px",
     backgroundColor: (props: Props) => {
-      const color = schools[props.plan.school].color;
-      return `rgb(${color.r}, ${color.g}, ${color.b})`;
+      const { r, g, b, a } = schools[props.plan.school].darkColor;
+      return `rgba(${r}, ${g}, ${b}, ${a})`;
     },
     display: "flex",
     flexDirection: "column",

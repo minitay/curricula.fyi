@@ -56,8 +56,7 @@ const Requirements: React.FC<Props> = ({
               <CourseTile
                 type={CourseType.CS}
                 name={req.course.name}
-                color={color}
-                opacity={opacity}
+                color={{ ...color, a: opacity }}
               />
             );
             i += 1;

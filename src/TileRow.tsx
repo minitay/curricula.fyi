@@ -52,8 +52,7 @@ const TileRow: React.FC<Props> = (props) => {
                 name={name}
                 code={code}
                 type={type}
-                color={color}
-                opacity={opacity}
+                color={{ ...color, a: opacity }}
               />
             </div>
           );

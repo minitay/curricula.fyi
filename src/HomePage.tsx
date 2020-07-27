@@ -18,7 +18,7 @@ const styles = {
     flexWrap: "wrap",
   },
   header: {
-    minHeight: "200px",
+    minHeight: "300px",
     height: "50vh",
     width: "100vw",
     display: "flex",
@@ -26,7 +26,7 @@ const styles = {
   leftHeader: {
     width: "40vw",
     height: "100%",
-    background: "lightblue",
+    background: "#2E86AB",
     color: "white",
     display: "flex",
     alignItems: "center",
@@ -51,6 +51,10 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    backgroundColor: "#565554",
+    color: "white",
+    height: "50vh",
+    minHeight: "400px",
   },
 } as const;
 const useStyles = createUseStyles(styles);
