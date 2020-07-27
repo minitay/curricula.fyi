@@ -1,7 +1,7 @@
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import React from "react";
 import CourseTile from "./CourseTile";
-import { Color, Course, CourseType } from "./types";
+import { Color, Course } from "./types";
 import { createUseStyles } from "react-jss";
 import ClearIcon from "@material-ui/icons/Clear";
 

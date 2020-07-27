@@ -5,6 +5,7 @@ import { LoadingState, Plan } from "./types";
 import { db } from "./firebase";
 import { Button } from "@material-ui/core";
 import { createUseStyles } from "react-jss";
+import SloganScreen from "./SloganScreen";
 
 interface Props {
   userKey: string;
@@ -102,7 +103,7 @@ const HomePage: React.FC<Props> = ({ userKey }) => {
             <h1 className={classes.headerName}> Curricula .fyi</h1>
           </div>
           <div className={classes.rightHeader}>
-            <h2> Plan your next 4 years </h2>
+            <SloganScreen />
           </div>
         </div>
         <div className={classes.mainContent}>
