@@ -1,7 +1,7 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
 import schools from "./schools";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ComparePage from "./ComparePage";
 import PlanPage from "./PlanPage";
 import ReqsPage from "./ReqsPage";
@@ -11,6 +11,7 @@ import HomePage from "./HomePage";
 import NewPlanPage from "./NewPlanPage";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { MuiThemeProvider } from "@material-ui/core/styles";
+import Header from "./Header";
 
 const styles = {
   App: {
@@ -41,7 +42,7 @@ const useStyles = createUseStyles(styles);
 
 function App() {
   const classes = useStyles();
-  const [userKey, setUserKey] = useLocalStorage("userKey", uuid());
+  const [userKey] = useLocalStorage("userKey", uuid());
   const theme = createMuiTheme({
     palette: {
       secondary: {
@@ -61,27 +62,15 @@ function App() {
               <HomePage userKey={userKey} />
             </Route>
             <Route path="/compare">
-              <Link to="/">
-                <h1 className={classes.header}> Curricula.fyi </h1>
-              </Link>
+              <Header />
               <ComparePage />
             </Route>
             <Route path="/plans/new">
-              <Link to="/">
-                <h1 className={classes.header}> Curricula.fyi </h1>
-              </Link>
+              <Header />
               <NewPlanPage userKey={userKey} />
             </Route>
-            <Route path="/my-plans">
-              <Link to="/">
-                <h1 className={classes.header}> Curricula.fyi </h1>
-              </Link>
-              <HomePage userKey={userKey} />
-            </Route>
             <Route path={`/plans/:id`}>
-              <Link to="/">
-                <h1 className={classes.header}> Curricula.fyi </h1>
-              </Link>
+              <Header />
               <PlanPage userKey={userKey} />
             </Route>
           </Switch>
@@ -89,9 +78,7 @@ function App() {
             {Object.values(schools).map((school) => {
               return (
                 <Route key={school.slug} path={`/reqs/${school.slug}`}>
-                  <Link to="/">
-                    <h1 className={classes.header}> Curricula.fyi </h1>
-                  </Link>
+                  <Header />
                   <ReqsPage slug={school.slug} school={school} />
                 </Route>
               );

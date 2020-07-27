@@ -49,6 +49,7 @@ const NewPlanPage: React.FC<Props> = ({ userKey }) => {
   }
   return (
     <div className={classes.NewPlanPage}>
+      <h2> New Plan </h2>
       <form onSubmit={handleSubmit}>
         <Autocomplete
           id="schools"
