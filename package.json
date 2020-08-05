@@ -17,6 +17,7 @@
     "@types/react-select": "^3.0.14",
     "@types/uuid": "^8.0.0",
     "firebase": "^7.16.1",
+    "fuse.js": "^6.4.1",
     "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-beautiful-dnd": "^13.0.0",

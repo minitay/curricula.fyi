@@ -73,8 +73,6 @@ function App() {
               <Header />
               <PlanPage userKey={userKey} />
             </Route>
-          </Switch>
-          <div>
             {Object.values(schools).map((school) => {
               return (
                 <Route key={school.slug} path={`/reqs/${school.slug}`}>
@@ -83,7 +81,7 @@ function App() {
                 </Route>
               );
             })}
-          </div>
+          </Switch>
         </div>
       </Router>
     </MuiThemeProvider>

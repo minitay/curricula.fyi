@@ -1,6 +1,7 @@
-import {Color, ReqType, Requirement} from "./types";
+import {Color, Course, Plan, ReqType, Requirement} from "./types";
 import {useEffect, useState} from "react";
 import { useLocation } from "react-router-dom";
+import {db} from "./firebase";
 
 export function getReqsTreeHeight(reqs: Array<Requirement>): number {
   let count = 0;
@@ -89,4 +90,19 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
 export function colorToString(color: Color, opacity: number = 0.5) {
   const { r, g, b} = color;
   return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+}
+
+export async function getPlan(userKey: string, id: string): Promise<Plan> {
+  const ref = await db
+    .collection("users")
+    .doc(userKey)
+    .collection("plans")
+    .doc(id)
+    .get();
+  const {name, school, terms, courses} = ref.data() as any;
+  let termsArray: Course[][] = [];
+  Object.keys(terms).forEach((i: string) => {
+    termsArray[parseInt(i)] = terms[i];
+  });
+  return { name, school, courses, terms: termsArray }
 }

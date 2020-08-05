@@ -5,7 +5,9 @@ import PlanCreator from "./PlanCreator";
 import { Link, useParams } from "react-router-dom";
 import schools from "./schools";
 import { createUseStyles } from "react-jss";
-import { colorToString } from "./utils";
+import { colorToString, getPlan, useWindowSize } from "./utils";
+import { CircularProgress } from "@material-ui/core";
+import MobilePlanPage from "./MobilePlanPage";
 
 interface Props {
   userKey: string;
@@ -17,6 +19,9 @@ const styles = {
     borderRadius: "10px",
     margin: "20px",
   },
+  name: {
+    padding: "20px",
+  },
 } as const;
 const useStyles = createUseStyles(styles);
 
@@ -25,22 +30,16 @@ const PlanPage: React.FC<Props> = ({ userKey }) => {
   const [loadingState, setLoadingState] = useState(LoadingState.Loading);
   const [plan, setPlan] = useState<Plan | undefined>(undefined);
   const classes = useStyles();
+  const { width } = useWindowSize();
   useEffect(() => {
-    (async function () {
-      const ref = await db
-        .collection("users")
-        .doc(userKey)
-        .collection("plans")
-        .doc(id)
-        .get();
-      const { name, school, terms, courses } = ref.data() as any;
-      let termsArray: Course[][] = [];
-      Object.keys(terms).forEach((i: string) => {
-        termsArray[parseInt(i)] = terms[i];
+    getPlan(userKey, id)
+      .then((plan) => {
+        setPlan(plan);
+        setLoadingState(LoadingState.Success);
+      })
+      .catch(() => {
+        setLoadingState(LoadingState.Failure);
       });
-      setPlan({ name, school, courses, terms: termsArray });
-      setLoadingState(LoadingState.Success);
-    })();
   }, [userKey, id]);
 
   function handlePlanUpdate(plan: Plan) {
@@ -59,13 +58,20 @@ const PlanPage: React.FC<Props> = ({ userKey }) => {
     return <div> Invalid id, return home </div>;
   }
   if (loadingState === LoadingState.Loading) {
-    return <div> Loading...</div>;
+    return (
+      <div>
+        <CircularProgress color="secondary" />
+      </div>
+    );
   }
   if (loadingState === LoadingState.Success && plan) {
     const school = schools[plan.school];
+    if (width! < 700) {
+      return <MobilePlanPage plan={plan} school={school} />;
+    }
     return (
       <div>
-        <h1> {plan.name} </h1>
+        <h1 className={classes.name}> {plan.name} </h1>
         {school.requirements.length > 0 && (
           <Link
             to={`/reqs/${plan.school}`}
