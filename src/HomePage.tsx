@@ -47,8 +47,22 @@ const styles = {
     alignItems: "center",
     backgroundColor: "#565554",
     color: "white",
-    height: "50vh",
-    minHeight: "400px",
+    minHeight: "50vw",
+  },
+  "@media(max-width: 700px)": {
+    header: {
+      flexDirection: "column",
+      minHeight: "0px",
+    },
+    leftHeader: {
+      width: "100vw",
+    },
+    rightHeader: {
+      display: "none",
+    },
+    mainContent: {
+      paddingBottom: "50px",
+    },
   },
 } as const;
 const useStyles = createUseStyles(styles);

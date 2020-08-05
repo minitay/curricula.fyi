@@ -6,8 +6,9 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import { School } from "./types";
 import { Box, Button } from "@material-ui/core";
 import { db } from "./firebase";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import SchoolRequestForm from "./SchoolRequestForm";
+import { useWindowSize } from "./utils";
 
 const styles = {
   NewPlanPage: {
@@ -23,6 +24,13 @@ const styles = {
   submitButton: {
     width: "100px",
   },
+  warning: {
+    padding: "10px",
+    border: "1px solid #444499",
+    backgroundColor: "#ddddff",
+    borderRadius: "10px",
+    maxWidth: "80vw",
+  },
 } as const;
 const useStyles = createUseStyles(styles);
 
@@ -31,6 +39,7 @@ interface Props {
 }
 
 const NewPlanPage: React.FC<Props> = ({ userKey }) => {
+  const { width } = useWindowSize();
   const [school, setSchool] = useState<School | null>(null);
   const [name, setName] = useState<string>("My Awesome Plan");
   const history = useHistory();
@@ -46,6 +55,22 @@ const NewPlanPage: React.FC<Props> = ({ userKey }) => {
       .collection("plans")
       .add({ name, school: school.slug, courses: school.courses, terms: {} });
     history.push(`/plans/${ref.id}`);
+  }
+  if (width! < 700) {
+    return (
+      <div>
+        <div className={classes.warning}>
+          Unfortunately we don't allow creating plans on mobile :(
+        </div>
+        <Box m={2}>
+          <Link to={`/`}>
+            <Button variant="contained" color="secondary">
+              Go Back?
+            </Button>
+          </Link>
+        </Box>
+      </div>
+    );
   }
   return (
     <div className={classes.NewPlanPage}>

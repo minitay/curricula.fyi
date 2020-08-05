@@ -39,7 +39,6 @@ const styles = {
   },
   name: {
     textDecoration: "none",
-    //paddingRight: "20px",
     fontSize: "1.1em",
     margin: {
       top: "20px",
@@ -49,8 +48,27 @@ const styles = {
   school: {
     textAlign: "right",
     width: "140px",
-    //paddingRight: "20px",
     margin: "0",
+  },
+  "@media(max-width: 700px)": {
+    PlanPreview: {
+      width: "250px",
+      height: "120px",
+    },
+    rightPartition: {
+      width: "150px",
+      height: "120px",
+    },
+    name: {
+      fontSize: "0.8em",
+    },
+    school: {
+      fontSize: "0.6em",
+      width: "100px",
+    },
+    logo: {
+      width: "90px",
+    },
   },
 } as const;
 const useStyles = createUseStyles(styles);
