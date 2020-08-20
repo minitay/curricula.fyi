@@ -36,6 +36,10 @@ const useStyles = createUseStyles({
     color: "#888888",
     width: "200px",
     height: "100px",
+    padding: {
+      top: "50px",
+      bottom: "50px",
+    },
     backgroundColor: "#dedede",
     borderRadius: "5px",
     display: "flex",

@@ -79,7 +79,7 @@ const TermSchedule: React.FC<Props> = ({
               <div className={classes.placeholder}> Drop a course here </div>
             )}
             {courses.map((course, i) => (
-              <Draggable key={course.name} draggableId={course.id} index={i}>
+              <Draggable key={course.id} draggableId={course.id} index={i}>
                 {(provided) => (
                   <div
                     ref={provided.innerRef}

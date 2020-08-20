@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -15,17 +15,17 @@ import { v4 as uuid } from "uuid";
 import { db } from "./firebase";
 
 const styles = {
-  NewCourseForm: {
-    display: "flex",
+  NewCourseForm: (isOpening: boolean) => ({
+    display: isOpening ? "none" : "flex",
     flexDirection: "column",
     maxWidth: "400px",
     padding: "25px",
     borderRadius: "10px",
     border: "1px solid #444499",
     backgroundColor: "#ddddff",
-    margin: "20px",
+    margin: "40px",
     position: "relative",
-  },
+  }),
   closeButton: {
     backgroundColor: "#ddddff",
     position: "absolute",
@@ -52,16 +52,22 @@ interface Props {
   plan: Plan;
 }
 
+enum AnimState {
+  Opening,
+  Open,
+  Closing,
+}
+
 const NewCourseForm: React.FC<Props> = ({ closeForm, setPlan, plan }) => {
-  const classes = useStyles();
   const [submitState, setSubmitState] = useState(SubmitState.NotSubmited);
   const [courseName, setCourseName] = useState("");
   const [courseCode, setCourseCode] = useState("");
-  const [isClosing, setIsClosing] = useState(false);
+  const [animState, setAnimState] = useState(AnimState.Opening);
   const [isCS, setIsCS] = useState(false);
+  const classes = useStyles(animState === AnimState.Opening);
 
   const props = useSpring({
-    to: { height: isClosing ? "0px" : "400px" },
+    to: { height: animState === AnimState.Closing ? "0px" : "400px" },
     from: { height: "0px" },
   });
 
@@ -82,7 +88,11 @@ const NewCourseForm: React.FC<Props> = ({ closeForm, setPlan, plan }) => {
     closeForm();
   }
 
-  if (isClosing) {
+  useEffect(() => {
+    delay(250).then(() => setAnimState(AnimState.Open));
+  }, []);
+
+  if (animState === AnimState.Closing) {
     return <animated.div style={props}></animated.div>;
   }
   return (
@@ -92,7 +102,7 @@ const NewCourseForm: React.FC<Props> = ({ closeForm, setPlan, plan }) => {
           className={classes.closeButton}
           onClick={(event) => {
             event.preventDefault();
-            setIsClosing(true);
+            setAnimState(AnimState.Closing);
             delay(500).then(closeForm);
           }}
         >
