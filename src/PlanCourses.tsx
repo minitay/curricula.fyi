@@ -21,7 +21,7 @@ interface Props {
 
 const useStyles = createUseStyles({
   PlanCourses: {
-    background: "#bababa",
+    background: "#d6e0ea",
     margin: "20px",
     padding: "20px",
     borderRadius: "5px",

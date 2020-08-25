@@ -17,7 +17,7 @@ const styles = {
     position: "relative",
   },
   TermSchedule: {
-    background: "#cacaca",
+    background: "#d6e0ea",
     margin: "5px",
     padding: "25px",
     borderRadius: "5px",

@@ -10,24 +10,23 @@ interface Props {
 }
 
 const styles = {
-  HomePage: {},
+  HomePage: {
+    background: "linear-gradient(#2E86AB, white)",
+  },
   header: {
     minHeight: "300px",
     height: "50vh",
     width: "100vw",
     display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   leftHeader: {
-    width: "40vw",
     height: "100%",
-    background: "#2E86AB",
     color: "white",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-end",
   },
   rightHeader: {
-    background: "white",
+    //background: "white",
     color: "black",
     width: "60vw",
     fontSize: "2em",
@@ -45,7 +44,6 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    backgroundColor: "#565554",
     color: "white",
     minHeight: "50vw",
   },
@@ -74,9 +72,6 @@ const HomePage: React.FC<Props> = ({ userKey }) => {
       <div className={classes.header}>
         <div className={classes.leftHeader}>
           <h1 className={classes.headerName}> Curricula .fyi</h1>
-        </div>
-        <div className={classes.rightHeader}>
-          <SloganScreen />
         </div>
       </div>
       <div className={classes.mainContent}>

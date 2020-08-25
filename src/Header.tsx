@@ -5,14 +5,21 @@ import { createUseStyles } from "react-jss";
 const styles = {
   Header: {
     width: "100vw",
-    height: "75px",
+    height: "100px",
     backgroundColor: "#2E86AB",
-    textAlign: "center",
     marginBottom: "40px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
   },
   name: {
     color: "white",
+    textAlign: "right",
     textDecoration: "none",
+  },
+  h1: {
+    margin: "0",
   },
 } as const;
 const useStyles = createUseStyles(styles);
@@ -22,7 +29,10 @@ const Header = () => {
   return (
     <div className={classes.Header}>
       <Link to="/">
-        <h1 className={classes.name}> Curricula.fyi </h1>
+        <div className={classes.name}>
+          <h1 className={classes.h1}> Curricula </h1>
+          <h1 className={classes.h1}> .fyi</h1>
+        </div>
       </Link>
     </div>
   );
