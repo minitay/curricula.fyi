@@ -5,8 +5,8 @@ import { DraggableProps } from "react-beautiful-dnd";
 
 const styles = {
   CourseTile: {
-    width: "200px",
-    height: "100px",
+    width: "150px",
+    height: "80px",
     fontSize: "0.8rem",
     backgroundColor: ({ color, type }: Props) => {
       if (type === CourseType.CS) {
@@ -36,14 +36,13 @@ interface Props extends Partial<DraggableProps> {
   code?: string;
   color: Color;
   type: CourseType;
-
   ref?: React.Ref<HTMLDivElement>;
 }
 
 const CourseTile: React.FC<Props> = ({ name, code, color, type, ...props }) => {
   const classes = useStyles({ color, type });
   return (
-    <div className={classes.CourseTile} {...props}>
+    <div title={name} className={classes.CourseTile} {...props}>
       {code && <div>{code}</div>}
       <div className={classes.name}>{name}</div>
     </div>

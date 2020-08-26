@@ -24,12 +24,12 @@ const styles = {
     width: "min(880px, 50vw)",
     overflowX: "auto",
     display: "flex",
-    minHeight: "120px",
+    height: "90px",
     position: "relative",
     alignItems: "center",
   },
   deleteButton: {
-    background: "#cacaca",
+    background: "#d6e0ea",
     position: "absolute",
     borderRadius: "50%",
     display: "flex",
@@ -42,7 +42,7 @@ const styles = {
     zIndex: "10",
     border: "none",
     "&:hover": {
-      background: "#aaa",
+      background: "#c4ced8",
     },
   },
   course: {

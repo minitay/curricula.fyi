@@ -7,7 +7,6 @@ const styles = {
     width: "100vw",
     height: "100px",
     backgroundColor: "#2E86AB",
-    marginBottom: "40px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",

@@ -17,6 +17,7 @@ import PlanCourses from "./PlanCourses";
 const styles = {
   PlanCreator: {
     display: "flex",
+    flexDirection: "column",
     padding: "30px",
   },
   plan: {
@@ -27,6 +28,8 @@ const styles = {
   terms: {
     display: "flex",
     flexDirection: "column",
+    height: "800px",
+    overflowY: "scroll",
   },
   termSchedule: {
     display: "flex",

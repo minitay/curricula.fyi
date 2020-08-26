@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { createUseStyles } from "react-jss";
-import SloganScreen from "./SloganScreen";
 import MyPlans from "./MyPlans";
 
 interface Props {
@@ -20,18 +19,7 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-  },
-  leftHeader: {
-    height: "100%",
     color: "white",
-  },
-  rightHeader: {
-    //background: "white",
-    color: "black",
-    width: "60vw",
-    fontSize: "2em",
-    display: "grid",
-    placeItems: "center",
   },
   headerName: {
     fontSize: "4em",
@@ -70,9 +58,7 @@ const HomePage: React.FC<Props> = ({ userKey }) => {
   return (
     <div className={classes.HomePage}>
       <div className={classes.header}>
-        <div className={classes.leftHeader}>
-          <h1 className={classes.headerName}> Curricula .fyi</h1>
-        </div>
+        <h1 className={classes.headerName}> Curricula .fyi</h1>
       </div>
       <div className={classes.mainContent}>
         <h1> Your Plans </h1>
