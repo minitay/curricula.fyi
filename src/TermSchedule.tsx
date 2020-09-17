@@ -4,6 +4,7 @@ import CourseTile from "./CourseTile";
 import { Color, Course } from "./types";
 import { createUseStyles } from "react-jss";
 import ClearIcon from "@material-ui/icons/Clear";
+import { MuuriComponent } from "muuri-react";
 
 interface Props {
   id: number;
@@ -23,10 +24,6 @@ const styles = {
     borderRadius: "5px",
     width: "min(880px, 50vw)",
     overflowX: "auto",
-    display: "flex",
-    height: "90px",
-    position: "relative",
-    alignItems: "center",
   },
   deleteButton: {
     background: "#d6e0ea",
@@ -68,39 +65,17 @@ const TermSchedule: React.FC<Props> = ({
       <button className={classes.deleteButton} onClick={deleteSchedule}>
         <ClearIcon fontSize="small" classes={{ fontSizeSmall: "10px" }} />
       </button>
-      <Droppable droppableId={`term-${id}`} direction="horizontal">
-        {(provided, snapshot) => (
-          <div
-            ref={provided.innerRef}
-            className={classes.TermSchedule}
-            {...provided.droppableProps}
-          >
-            {courses.length === 0 && (
-              <div className={classes.placeholder}> Drop a course here </div>
-            )}
-            {courses.map((course, i) => (
-              <Draggable key={course.id} draggableId={course.id} index={i}>
-                {(provided) => (
-                  <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    className={classes.course}
-                  >
-                    <CourseTile
-                      name={course.name}
-                      code={course.code}
-                      color={schoolColor}
-                      type={course.type}
-                    />
-                  </div>
-                )}
-              </Draggable>
-            ))}
-            {provided.placeholder}
-          </div>
-        )}
-      </Droppable>
+      <MuuriComponent dragEnabled={true} containerClass={classes.TermSchedule}>
+        {courses.map((course, i) => (
+          <CourseTile
+            key={course.id}
+            name={course.name}
+            code={course.code}
+            color={schoolColor}
+            type={course.type}
+          />
+        ))}
+      </MuuriComponent>
     </div>
   );
 };
