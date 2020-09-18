@@ -25,7 +25,6 @@ const styles = {
     borderRadius: "5px",
     width: "min(880px, 50vw)",
     minHeight: "100px",
-    zIndex: 10,
   },
   deleteButton: {
     background: "#d6e0ea",

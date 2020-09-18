@@ -64,10 +64,12 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
     if (!fromId || !toId) {
       return;
     }
-    if (fromId.includes("term") && toId === "reqs") {
+    const isFromTerm = fromId.includes("term");
+    const isToTerm = toId.includes("term");
+    const newPlan = { ...plan };
+    if (isFromTerm && toId === "reqs") {
       const [_, fromTermStr] = fromId.split("-");
       const fromTermIndex = parseInt(fromTermStr);
-      const newPlan = { ...plan };
       const transferredItem = newPlan.terms[fromTermIndex].find(
         (item) => item.id === key
       );
@@ -75,9 +77,8 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
         (item) => item !== transferredItem
       );
       newPlan.courses = newPlan.courses.concat(transferredItem!);
-      setPlan(newPlan);
     }
-    if (toId.includes("term") && fromId === "reqs") {
+    if (isToTerm && fromId === "reqs") {
       const [_, toTermStr] = toId.split("-");
       const toTermIndex = parseInt(toTermStr);
       const newPlan = { ...plan };
@@ -88,8 +89,23 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
       newPlan.terms[toTermIndex] = newPlan.terms[toTermIndex].concat(
         transferredItem!
       );
-      setPlan(newPlan);
     }
+    if (isFromTerm && isToTerm) {
+      const [_, toTermStr] = toId.split("-");
+      const [__, fromTermStr] = fromId.split("-");
+      const toTermIndex = parseInt(toTermStr);
+      const fromTermIndex = parseInt(fromTermStr);
+      const transferredItem = newPlan.terms[fromTermIndex].find(
+        (item) => item.id === key
+      );
+      newPlan.terms[fromTermIndex] = newPlan.terms[fromTermIndex].filter(
+        (item) => item !== transferredItem
+      );
+      newPlan.terms[toTermIndex] = newPlan.terms[toTermIndex].concat(
+        transferredItem!
+      );
+    }
+    setPlan(newPlan);
   };
   const terms = [];
   for (let i = 0; i < plan.terms.length; i++) {
