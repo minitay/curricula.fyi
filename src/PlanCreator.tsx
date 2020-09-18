@@ -1,18 +1,13 @@
 import React, { useState } from "react";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-import { v4 as uuid } from "uuid";
-import {
-  DragDropContext,
-  DropResult,
-  ResponderProvided,
-} from "react-beautiful-dnd";
-import { Course, CourseType, Plan } from "./types";
+import { Plan } from "./types";
 import { createUseStyles } from "react-jss";
 import TermSchedule from "./TermSchedule";
 import schools from "./schools";
 import { Button } from "@material-ui/core";
 import NewCourseForm from "./NewCourseForm";
 import PlanCourses from "./PlanCourses";
+import { GridComponentProps } from "muuri-react/dist/types/interfaces";
 
 const styles = {
   PlanCreator: {
@@ -28,8 +23,6 @@ const styles = {
   terms: {
     display: "flex",
     flexDirection: "column",
-    height: "800px",
-    overflowY: "scroll",
   },
   termSchedule: {
     display: "flex",
@@ -67,41 +60,36 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
   const [courseFormVisibility, setCourseFormVisibility] = useState(
     Visibility.NotVisible
   );
-  const [nonCSCount, setNonCSCount] = useState(1);
-  const handleDragEnd = (result: DropResult, provided: ResponderProvided) => {
-    if (!result.destination) {
+  const handleSend: GridComponentProps["onSend"] = ({ key, fromId, toId }) => {
+    if (!fromId || !toId) {
       return;
     }
-    const [srcType, srcId] = result.source.droppableId.split("-");
-    const [destType, destId] = result.destination.droppableId.split("-");
-    // Non CS course chosen
-    if (srcType === "reqs" && srcId === "1") {
-      const course: Course = {
-        id: uuid(),
-        name: `Non CS`,
-        type: CourseType.NonCS,
-      };
-      const term = parseInt(destId);
-      setNonCSCount(nonCSCount + 1);
-      plan.terms[term].splice(result.destination.index, 0, course);
-    } else if (srcType === "reqs" && destType === "term") {
-      const [course] = plan.courses.splice(result.source.index, 1);
-      const term = parseInt(destId);
-      plan.terms[term].splice(result.destination.index, 0, course);
-    } else if (srcType === "term" && destType === "reqs") {
-      const term = parseInt(srcId);
-      const [course] = plan.terms[term].splice(result.source.index, 1);
-      plan.courses.splice(result.destination.index, 0, course);
-    } else if (srcType === "term" && destType === "term") {
-      const srcSemester = parseInt(srcId);
-      const [course] = plan.terms[srcSemester].splice(result.source.index, 1);
-      const destSemester = parseInt(destId);
-      plan.terms[destSemester].splice(result.destination.index, 0, course);
-    } else if (srcType === "reqs" && destType === "reqs") {
-      const [course] = plan.courses.splice(result.source.index, 1);
-      plan.courses.splice(result.destination.index, 0, course);
+    if (fromId.includes("term") && toId === "reqs") {
+      const [_, fromTermStr] = fromId.split("-");
+      const fromTermIndex = parseInt(fromTermStr);
+      const newPlan = { ...plan };
+      const transferredItem = newPlan.terms[fromTermIndex].find(
+        (item) => item.id === key
+      );
+      newPlan.terms[fromTermIndex] = newPlan.terms[fromTermIndex].filter(
+        (item) => item !== transferredItem
+      );
+      newPlan.courses = newPlan.courses.concat(transferredItem!);
+      setPlan(newPlan);
     }
-    setPlan(plan);
+    if (toId.includes("term") && fromId === "reqs") {
+      const [_, toTermStr] = toId.split("-");
+      const toTermIndex = parseInt(toTermStr);
+      const newPlan = { ...plan };
+      const transferredItem = newPlan.courses.find((item) => item.id === key);
+      newPlan.courses = newPlan.courses.filter(
+        (item) => item !== transferredItem
+      );
+      newPlan.terms[toTermIndex] = newPlan.terms[toTermIndex].concat(
+        transferredItem!
+      );
+      setPlan(newPlan);
+    }
   };
   const terms = [];
   for (let i = 0; i < plan.terms.length; i++) {
@@ -118,12 +106,13 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
           key={i}
           id={i}
           courses={plan.terms[i]}
+          onSend={handleSend}
         />
       </div>
     );
   }
   return (
-    <DragDropContext onDragEnd={handleDragEnd}>
+    <div>
       {courseFormVisibility === Visibility.Visible && (
         <NewCourseForm
           plan={plan}
@@ -136,6 +125,7 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
           showAddCourseForm={() => setCourseFormVisibility(Visibility.Visible)}
           courses={plan.courses}
           school={school}
+          onSend={handleSend}
         />
         <div className={classes.plan}>
           <Button
@@ -152,7 +142,7 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
           <div className={classes.terms}>{terms}</div>
         </div>
       </div>
-    </DragDropContext>
+    </div>
   );
 };
 

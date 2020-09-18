@@ -1,16 +1,17 @@
-import { Draggable, Droppable } from "react-beautiful-dnd";
 import React from "react";
 import CourseTile from "./CourseTile";
 import { Color, Course } from "./types";
 import { createUseStyles } from "react-jss";
 import ClearIcon from "@material-ui/icons/Clear";
 import { MuuriComponent } from "muuri-react";
+import { MuuriComponentProps } from "muuri-react/dist/types/interfaces";
 
 interface Props {
   id: number;
   courses: Course[];
   schoolColor: Color;
   deleteSchedule: () => void;
+  onSend: MuuriComponentProps["onSend"];
 }
 
 const styles = {
@@ -23,7 +24,8 @@ const styles = {
     padding: "25px",
     borderRadius: "5px",
     width: "min(880px, 50vw)",
-    overflowX: "auto",
+    minHeight: "100px",
+    zIndex: 10,
   },
   deleteButton: {
     background: "#d6e0ea",
@@ -50,6 +52,10 @@ const styles = {
     color: "#888",
     paddingLeft: "20px",
   },
+  itemDragging: {
+    zIndex: "100",
+    cursor: "move",
+  },
 } as const;
 const useStyles = createUseStyles(styles);
 
@@ -58,6 +64,7 @@ const TermSchedule: React.FC<Props> = ({
   courses,
   schoolColor,
   deleteSchedule,
+  onSend,
 }) => {
   const classes = useStyles();
   return (
@@ -65,7 +72,16 @@ const TermSchedule: React.FC<Props> = ({
       <button className={classes.deleteButton} onClick={deleteSchedule}>
         <ClearIcon fontSize="small" classes={{ fontSizeSmall: "10px" }} />
       </button>
-      <MuuriComponent dragEnabled={true} containerClass={classes.TermSchedule}>
+      <MuuriComponent
+        id={`term-${id}`}
+        dragEnabled={true}
+        groupIds={["COURSES"]}
+        dragSort={{ groupId: "COURSES" }}
+        dragFixed={true}
+        itemDraggingClass={classes.itemDragging}
+        containerClass={classes.TermSchedule}
+        onSend={onSend}
+      >
         {courses.map((course, i) => (
           <CourseTile
             key={course.id}

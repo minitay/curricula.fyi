@@ -1,24 +1,20 @@
 import React, { useState } from "react";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import Fuse from "fuse.js";
-import {
-  Draggable,
-  Droppable,
-  DroppableProvided,
-  DroppableStateSnapshot,
-} from "react-beautiful-dnd";
 import CourseTile from "./CourseTile";
-import { Course, CourseType, School } from "./types";
+import { Course, School } from "./types";
 import { createUseStyles } from "react-jss";
 import { TextField } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import { useInView } from "react-intersection-observer";
 import Box from "@material-ui/core/Box";
+import { MuuriComponent } from "muuri-react";
+import { MuuriComponentProps } from "muuri-react/dist/types/interfaces";
 
 interface Props {
   showAddCourseForm: () => void;
   courses: Course[];
   school: School;
+  onSend: MuuriComponentProps["onSend"];
 }
 
 const useStyles = createUseStyles({
@@ -29,7 +25,6 @@ const useStyles = createUseStyles({
     borderRadius: "5px",
     userSelect: "none",
     width: "80vw",
-    overflowX: "scroll",
     display: "flex",
     flexDirection: "column",
   },
@@ -52,10 +47,13 @@ const useStyles = createUseStyles({
     fontSize: "1em",
   },
   coursesContainer: {
-    display: "flex",
+    position: "relative",
   },
   courses: {
     display: "flex",
+  },
+  itemDragging: {
+    zIndex: "100",
   },
 });
 
@@ -63,11 +61,9 @@ const PlanCourses: React.FC<Props> = ({
   showAddCourseForm,
   courses,
   school,
+  onSend,
 }) => {
-  const [ref, inView, entry] = useInView({
-    threshold: 0.5,
-  });
-  const classes = useStyles(inView);
+  const classes = useStyles();
   const [query, setQuery] = useState("");
   let myCourses = courses;
   if (query !== "") {
@@ -75,7 +71,7 @@ const PlanCourses: React.FC<Props> = ({
     myCourses = fuse.search(query).map((entry) => entry.item);
   }
   return (
-    <div className={classes.PlanCourses} ref={ref}>
+    <div className={classes.PlanCourses}>
       <Box m={1}>
         <TextField
           variant="outlined"
@@ -90,86 +86,26 @@ const PlanCourses: React.FC<Props> = ({
         <button className={classes.addCourseButton} onClick={showAddCourseForm}>
           <AddCircleOutlineIcon /> Add A Course
         </button>
-        <Droppable
-          droppableId="reqs-1"
-          isDropDisabled={true}
-          renderClone={(provided, snapshot, rubric) => (
-            <div
-              {...provided.draggableProps}
-              {...provided.dragHandleProps}
-              ref={provided.innerRef}
-            >
-              <CourseTile
-                name="Non CS"
-                type={CourseType.NonCS}
-                color={{ r: 120, g: 120, b: 120, a: 0.5 }}
-              />
-            </div>
-          )}
+        <MuuriComponent
+          id="reqs"
+          dragEnabled={true}
+          groupIds={["COURSES"]}
+          dragSort={{ groupId: "COURSES" }}
+          dragFixed={true}
+          itemDraggingClass={classes.itemDragging}
+          containerClass={classes.coursesContainer}
+          onSend={onSend}
         >
-          {(provided: DroppableProvided, snapshot: DroppableStateSnapshot) => {
-            if (snapshot.draggingFromThisWith === "Non CS") {
-              return (
-                <div ref={provided.innerRef} {...provided.droppableProps}>
-                  <CourseTile
-                    name={"Non CS"}
-                    type={CourseType.NonCS}
-                    color={{ r: 120, g: 120, b: 120, a: 0.5 }}
-                  />
-                  <div style={{ display: "none" }}> {provided.placeholder}</div>
-                </div>
-              );
-            }
-            return (
-              <div ref={provided.innerRef} {...provided.droppableProps}>
-                <Draggable key={"Non CS"} draggableId={"Non CS"} index={-1}>
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                    >
-                      <CourseTile
-                        type={CourseType.NonCS}
-                        name={"Non CS"}
-                        color={{ r: 120, g: 120, b: 120, a: 0.5 }}
-                      />
-                    </div>
-                  )}
-                </Draggable>
-              </div>
-            );
-          }}
-        </Droppable>
-        <Droppable direction="horizontal" droppableId="reqs-0">
-          {(provided: DroppableProvided) => (
-            <div
-              className={classes.courses}
-              ref={provided.innerRef}
-              {...provided.droppableProps}
-            >
-              {myCourses.map((course, i) => (
-                <Draggable key={i} draggableId={course.id} index={i}>
-                  {(provided) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                    >
-                      <CourseTile
-                        name={course.name}
-                        code={course.code}
-                        color={school.lightColor}
-                        type={course.type}
-                      />
-                    </div>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
+          {myCourses.map((course, i) => (
+            <CourseTile
+              key={course.id}
+              name={course.name}
+              code={course.code}
+              color={school.lightColor}
+              type={course.type}
+            />
+          ))}
+        </MuuriComponent>
       </div>
     </div>
   );

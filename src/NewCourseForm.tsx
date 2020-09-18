@@ -37,7 +37,7 @@ const styles = {
     height: "25px",
     right: "5px",
     top: "5px",
-    zIndex: "10",
+    zIndex: 10,
     border: "none",
     "&:hover": {
       filter: "brightness(90%)",
