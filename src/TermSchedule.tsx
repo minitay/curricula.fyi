@@ -23,7 +23,7 @@ const styles = {
     margin: "5px",
     padding: "25px",
     borderRadius: "5px",
-    width: "min(880px, 50vw)",
+    width: "200px",
     minHeight: "100px",
   },
   deleteButton: {

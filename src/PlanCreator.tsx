@@ -8,6 +8,7 @@ import { Button } from "@material-ui/core";
 import NewCourseForm from "./NewCourseForm";
 import PlanCourses from "./PlanCourses";
 import { GridComponentProps } from "muuri-react/dist/types/interfaces";
+import { MuuriComponent } from "muuri-react";
 
 const styles = {
   PlanCreator: {
@@ -18,17 +19,17 @@ const styles = {
   plan: {
     display: "flex",
     flexDirection: "column",
-    width: "60vw",
   },
   terms: {
-    display: "flex",
-    flexDirection: "column",
+    overflow: "scroll",
   },
   termSchedule: {
+    float: "left",
     display: "flex",
+    flexDirection: "column",
     alignItems: "center",
     fontSize: "1.1em",
-    padding: "20px",
+    margin: "20px",
   },
   termIndex: {
     padding: {
@@ -39,6 +40,12 @@ const styles = {
   },
   addTermButton: {
     width: "200px",
+  },
+  termHandle: {
+    width: "200px",
+    height: "50px",
+    border: "1px solid black",
+    borderRadius: "10px",
   },
 } as const;
 const useStyles = createUseStyles(styles);
@@ -111,7 +118,9 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
   for (let i = 0; i < plan.terms.length; i++) {
     terms.push(
       <div className={classes.termSchedule} key={i}>
-        <span className={classes.termIndex}> {i + 1}</span>
+        <div className={classes.termHandle}>
+          <span className={classes.termIndex}> {i + 1}</span>
+        </div>
         <TermSchedule
           deleteSchedule={() => {
             plan.courses = [...plan.terms[i], ...plan.courses];
@@ -155,7 +164,14 @@ const PlanCreator: React.FC<Props> = ({ slug, plan, setPlan }) => {
           >
             <AddCircleOutlineIcon /> Add Term
           </Button>
-          <div className={classes.terms}>{terms}</div>
+          <MuuriComponent
+            dragEnabled={true}
+            containerClass={classes.terms}
+            dragAxis="x"
+            dragHandle={classes.termHandle}
+          >
+            {terms}
+          </MuuriComponent>
         </div>
       </div>
     </div>
